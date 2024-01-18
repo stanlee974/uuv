@@ -1,3 +1,10 @@
+## [1.0.0-beta.4](https://github.com/Orange-OpenSource/uuv/compare/a11y-v1.0.0-beta.3...a11y-v1.0.0-beta.4) (2024-01-11)
+
+
+### Features
+
+* **a11y:** add a contains sentence for a11y rgaa, [#424](https://github.com/Orange-OpenSource/uuv/issues/424) ([297cc33](https://github.com/Orange-OpenSource/uuv/commit/297cc3378798d1eb9c973a2038423ae6f874f70f))
+
 ## [1.0.0-beta.3](https://github.com/Orange-OpenSource/uuv/compare/a11y-v1.0.0-beta.2...a11y-v1.0.0-beta.3) (2024-01-08)
 
 

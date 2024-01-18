@@ -1,6 +1,6 @@
 {
   "name": "@uuv/assistant",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "author": "Louis Fredice NJAKO MOLOM (https://github.com/luifr10) & Stanley SERVICAL (https://github.com/stanlee974)",
   "description": "UUV Helper used to improve the life of testers and developers by generating cucumber phrases from the GUI.",
   "license": "MIT",
@@ -53,7 +53,7 @@
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
     "@cucumber/cucumber": "9.6.0",
-    "@uuv/runner-commons": "2.3.0",
+    "@uuv/runner-commons": "2.4.0",
     "antd": "^5.4.6",
     "figlet": "1.7.0",
     "inspector-dom": "0.1.1",

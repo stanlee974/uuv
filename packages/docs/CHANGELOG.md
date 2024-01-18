@@ -1,3 +1,24 @@
+## [1.24.0](https://github.com/Orange-OpenSource/uuv/compare/docs-v1.23.0...docs-v1.24.0) (2024-01-16)
+
+
+### Features
+
+* **docs:** add a11y to concept page, [#330](https://github.com/Orange-OpenSource/uuv/issues/330) ([e0fefd3](https://github.com/Orange-OpenSource/uuv/commit/e0fefd3300498bf72919476f25ee2bc85b1d977c))
+
+## [1.23.0](https://github.com/Orange-OpenSource/uuv/compare/docs-v1.22.0...docs-v1.23.0) (2024-01-11)
+
+
+### Features
+
+* **a11y:** add a contains sentence for a11y rgaa, [#424](https://github.com/Orange-OpenSource/uuv/issues/424) ([84d11c4](https://github.com/Orange-OpenSource/uuv/commit/84d11c46858970ce51eae28e8f74190c229c031e))
+* **a11y:** add a contains sentence for a11y rgaa, [#424](https://github.com/Orange-OpenSource/uuv/issues/424) ([297cc33](https://github.com/Orange-OpenSource/uuv/commit/297cc3378798d1eb9c973a2038423ae6f874f70f))
+
+
+### Bug Fixes
+
+* **a11y:** fix bad sidebar name, [#330](https://github.com/Orange-OpenSource/uuv/issues/330) ([745b8d2](https://github.com/Orange-OpenSource/uuv/commit/745b8d2bed83c304c9a7f91960d1d935c4fa1ab1))
+* replace cy.uuvFindAllByRole by cy.findAllByRole to find listitem, [#340](https://github.com/Orange-OpenSource/uuv/issues/340) ([31c27cc](https://github.com/Orange-OpenSource/uuv/commit/31c27cc7cdcc81708700df147b7f0196e232e6af))
+
 ## [1.22.0](https://github.com/Orange-OpenSource/uuv/compare/docs-v1.21.1...docs-v1.22.0) (2024-01-08)
 
 

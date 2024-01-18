@@ -29,10 +29,13 @@ Dès lors, plusieurs questions complémentaires se posent :
 - **Pour les applications omnicanales, comment faire pour vérifier votre application sur différents navigateurs et
   terminaux ?**
 - **Comment effectuer des vérifications de DOM pertinents en gardant un point de vue utilisateur ?**
+- **Comment garantir que l'application développée est conforme aux exigences d'accessibilité numérique** ?
 
 ## Notre solution
 
-Pour répondre aux problématiques ci-dessus et bien d'autres, notre solution est de mettre en place un écosystème cohérent s'appuyant sur des outils qui sont des références dans leur domaine.
+Pour répondre aux problématiques ci-dessus et bien d'autres, nous avons créer la librairie UUV, il s'agit d'une solution basée sur l'accessibilité pour faciliter l'écriture et l'exécution des tests bout en bout dans un langage compréhensible par tout être humain.
+
+UUV est un écosystème cohérent s'appuyant sur des outils qui sont des références dans leur domaine.
 
 ## Ecosystème
 ![Ecosystème UUV](@site/static/img/docs/ecosystem-uuv.png)
@@ -40,6 +43,7 @@ Pour répondre aux problématiques ci-dessus et bien d'autres, notre solution es
 - ### Accessibilité
   - *[Testing Library](https://testing-library.com/docs/)* : Pour effectuer des vérifications de DOM basées [les roles et attributs accessibles](https://www.w3.org/TR/accname-1.1/)
   - *[Axe Core](https://github.com/dequelabs/axe-core)* : Pour détecter les anomalies d'accessibilité
+  - *[@uuv/a11y](https://www.npmjs.com/package/@uuv/a11y)* : Pour effectuer des vérifications d'accessibilité rgaa _(développement en cours)_
 
 
 - ### BDD : Behaviour Driven Development
@@ -47,8 +51,8 @@ Pour répondre aux problématiques ci-dessus et bien d'autres, notre solution es
 
 
 - ### Runners : Vous pouvez choisir entre
-  - *[Cypress](https://www.cypress.io/)*
-  - *[Playwright](https://playwright.dev/)*
+  - *[Cypress](https://www.cypress.io/)* -> [@uuv/cypress](https://www.npmjs.com/package/@uuv/cypress)
+  - *[Playwright](https://playwright.dev/)* -> [@uuv/playwright](https://www.npmjs.com/package/@uuv/playwright)
 
 
 ## Les avantages

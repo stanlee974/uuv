@@ -1,30 +1,13 @@
-## [1.6.0](https://github.com/Orange-OpenSource/uuv/compare/intellij-plugin-v1.5.0...intellij-plugin-v1.6.0) (2024-01-08)
+## [1.3.0](https://github.com/Orange-OpenSource/uuv/compare/intellij-plugin-v1.2.2...intellij-plugin-v1.3.0) (2024-01-11)
 
 
 ### Features
 
-* **a11y:** reduce @uuv/a11y bundle size, [#330](https://github.com/Orange-OpenSource/uuv/issues/330) ([139b85a](https://github.com/Orange-OpenSource/uuv/commit/139b85a56e2ce4b8f370df4f6d410a9a1807e3b6))
-
-## [1.5.0](https://github.com/Orange-OpenSource/uuv/compare/intellij-plugin-v1.4.0...intellij-plugin-v1.5.0) (2024-01-08)
-
-
-### Features
-
+* **a11y:** add a contains sentence for a11y rgaa, [#424](https://github.com/Orange-OpenSource/uuv/issues/424) ([297cc33](https://github.com/Orange-OpenSource/uuv/commit/297cc3378798d1eb9c973a2038423ae6f874f70f))
 * **a11y:** initialize @uuv/a11y lib, [#330](https://github.com/Orange-OpenSource/uuv/issues/330) ([3c27ac5](https://github.com/Orange-OpenSource/uuv/commit/3c27ac5a1698a407289123aac85e500508e2d8c6))
-
-# [1.4.0](https://github.com/Orange-OpenSource/uuv/compare/intellij-plugin-v1.3.0...intellij-plugin-v1.4.0) (2023-12-28)
-
-
-### Features
-
-* **runner-playwright:** add tags option for runner-playwright, [#416](https://github.com/Orange-OpenSource/uuv/issues/416) ([8787581](https://github.com/Orange-OpenSource/uuv/commit/87875818114bbf77ff4b35ff8ccb26d525eba450))
-
-# [1.3.0](https://github.com/Orange-OpenSource/uuv/compare/intellij-plugin-v1.2.2...intellij-plugin-v1.3.0) (2023-12-21)
-
-
-### Features
-
+* **a11y:** reduce @uuv/a11y bundle size, [#330](https://github.com/Orange-OpenSource/uuv/issues/330) ([139b85a](https://github.com/Orange-OpenSource/uuv/commit/139b85a56e2ce4b8f370df4f6d410a9a1807e3b6))
 * **intellij-plugin:** makes it compatible with jetbrains app versions >= 232, [#399](https://github.com/Orange-OpenSource/uuv/issues/399) ([449a06c](https://github.com/Orange-OpenSource/uuv/commit/449a06c583dd756e7df14bbb86f4852f1d4c0bf4))
+* **runner-playwright:** add tags option for runner-playwright, [#416](https://github.com/Orange-OpenSource/uuv/issues/416) ([8787581](https://github.com/Orange-OpenSource/uuv/commit/87875818114bbf77ff4b35ff8ccb26d525eba450))
 
 ## [1.2.2](https://github.com/Orange-OpenSource/uuv/compare/intellij-plugin-v1.2.1...intellij-plugin-v1.2.2) (2023-12-20)
 

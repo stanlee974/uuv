@@ -21,7 +21,8 @@ Therefore, several additional questions arise:
 - How to clearly express use cases?
 - For omnichannel applications, how to check your application on different browsers and devices?
   For omnichannel applications, how do you check your application on different browsers and devices?**
-- How to perform relevant DOM checks from a user perspective
+- How to perform relevant DOM checks from a user perspective?
+- How to guarantee that the application developed complies with digital accessibility requirements?
 
 ## Our solution
 
@@ -32,6 +33,7 @@ To answer the above issues and many others, our solution is to set up a coherent
 - ### Accessibility
   - *[Testing Library](https://testing-library.com/docs/)* : To perform checks in the DOM based on the [accessible roles and attributes](https://www.w3.org/TR/accname-1.1/)
   - *[Axe Core](https://github.com/dequelabs/axe-core)* : To identify the accessibility's issues
+  - *[@uuv/a11y](https://www.npmjs.com/package/@uuv/a11y)* : To perform rgaa accessibility checks _(development in progress)_
   
 
 - ### BDD : Behaviour Driven Development
@@ -39,8 +41,8 @@ To answer the above issues and many others, our solution is to set up a coherent
   
 
 - ### Runners : You can choose between 
-  - *[Cypress](https://www.cypress.io/)*
-  - *[Playwright](https://playwright.dev/)*
+  - *[Cypress](https://www.cypress.io/)* -> [@uuv/cypress](https://www.npmjs.com/package/@uuv/cypress)
+  - *[Playwright](https://playwright.dev/)* -> [@uuv/playwright](https://www.npmjs.com/package/@uuv/playwright)
 
 ## The benefits
 

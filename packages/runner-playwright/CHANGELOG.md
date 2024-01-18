@@ -1,3 +1,15 @@
+## [2.4.0](https://github.com/Orange-OpenSource/uuv/compare/runner-playwright-v2.3.0...runner-playwright-v2.4.0) (2024-01-11)
+
+
+### Features
+
+* **a11y:** add a contains sentence for a11y rgaa, [#424](https://github.com/Orange-OpenSource/uuv/issues/424) ([297cc33](https://github.com/Orange-OpenSource/uuv/commit/297cc3378798d1eb9c973a2038423ae6f874f70f))
+
+
+### Bug Fixes
+
+* replace cy.uuvFindAllByRole by cy.findAllByRole to find listitem, [#340](https://github.com/Orange-OpenSource/uuv/issues/340) ([31c27cc](https://github.com/Orange-OpenSource/uuv/commit/31c27cc7cdcc81708700df147b7f0196e232e6af))
+
 ## [2.3.0](https://github.com/Orange-OpenSource/uuv/compare/runner-playwright-v2.2.0...runner-playwright-v2.3.0) (2024-01-08)
 
 
