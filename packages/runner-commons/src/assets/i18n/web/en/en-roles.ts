@@ -11,19 +11,15 @@ enum INDEFINITE_ARTICLE {
 
 
 class EnAccessibleRole extends AccessibleRole {
-    definiteArticle: DEFINITE_ARTICLE = DEFINITE_ARTICLE.THE;
-    indefiniteArticle: INDEFINITE_ARTICLE = INDEFINITE_ARTICLE.A;
-
-    constructor(id: string, name: string, definiteArticle?: DEFINITE_ARTICLE, indefiniteArticle?: INDEFINITE_ARTICLE) {
+    constructor(
+        override id: string,
+        override name: string,
+        private definiteArticle: DEFINITE_ARTICLE = DEFINITE_ARTICLE.THE,
+        private indefiniteArticle: INDEFINITE_ARTICLE = INDEFINITE_ARTICLE.A,
+        override shouldGenerateTypeSentence: boolean = true,
+        override shouldGenerateContainsSentence: boolean = true
+    ) {
         super();
-        this.id = id;
-        this.name = name;
-        if (definiteArticle) {
-            this.definiteArticle = definiteArticle;
-        }
-        if (indefiniteArticle) {
-            this.indefiniteArticle = indefiniteArticle;
-        }
     }
 
     public static from(input: any) : AccessibleRole {
@@ -32,6 +28,8 @@ class EnAccessibleRole extends AccessibleRole {
             input.name,
             input.definiteArticle,
             input.indefiniteArticle,
+            input.shouldGenerateTypeSentence,
+            input.shouldGenerateContainsSentence,
         );
     }
 
@@ -84,7 +82,7 @@ export const EN_ROLES: AccessibleRole[] = [
     { id: "input", name: "entry", indefiniteArticle: INDEFINITE_ARTICLE.AN },
     { id: "landmark", name: "landmark" },
     { id: "link", name: "link" },
-    { id: "list", name: "list" },
+    { id: "list", name: "list", shouldGenerateContainsSentence: false, shouldGenerateTypeSentence: false },
     { id: "listbox", name: "list box" },
     { id: "listitem", name: "list item" },
     { id: "log", name: "log" },

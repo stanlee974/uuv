@@ -1,6 +1,6 @@
 {
   "name": "@uuv/a11y",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0-beta.14",
   "type": "commonjs",
   "author": "Louis Fredice NJAKO MOLOM (https://github.com/luifr10) & Stanley SERVICAL (https://github.com/stanlee974)",
   "description": "A javascript lib for running a11y validation based on multiple reference(RGAA, etc)",
@@ -33,11 +33,13 @@
   "scripts": {
     "package": "npm pack --pack-destination=\"../../dist/packages\"",
     "test": "jest",
-    "test:run": "jest --coverage"
+    "test:run": "jest --coverage",
+    "dev": "ts-node watch.ts"
   },
   "dependencies": {
     "@testing-library/dom": "^9.3.3",
     "dom-accessibility-api": "^0.6.3",
+    "emulate-tab": "^1.2.1",
     "jquery": "^3.7.1",
     "lodash": "^4.17.21",
     "rxjs": "^7.8.1"
@@ -48,12 +50,14 @@
     "@babel/preset-typescript": "^7.23.3",
     "babel-loader": "^9.1.3",
     "babel-plugin-lodash": "^3.3.4",
-    "jest-puppeteer": "^9.0.2",
+    "chokidar": "^3.5.3",
+    "jest-junit": "^16.0.0",
+    "jest-puppeteer": "^10.0.0",
     "puppeteer": "^21.6.0",
     "tslib": "^2.3.0",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1"
+    "webpack-dev-server": "^5.0.0"
   },
   "files": [
     "dist/**/*",

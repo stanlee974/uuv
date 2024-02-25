@@ -1,3 +1,93 @@
+## [1.0.0-beta.14](https://github.com/Orange-OpenSource/uuv/compare/a11y-v1.0.0-beta.13...a11y-v1.0.0-beta.14) (2024-02-25)
+
+
+### Features
+
+* add junit xml report option, [#491](https://github.com/Orange-OpenSource/uuv/issues/491) ([b64b0b2](https://github.com/Orange-OpenSource/uuv/commit/b64b0b2a60200269f558bcf7e0c75d8a74ffc226))
+
+
+### Bug Fixes
+
+* **runner-playwright:** update dependency @cucumber/tag-expressions to v6.1.0 ([47fb579](https://github.com/Orange-OpenSource/uuv/commit/47fb579ee50c26ed67af6390f4e678f8206b7226))
+
+## [1.0.0-beta.13](https://github.com/Orange-OpenSource/uuv/compare/a11y-v1.0.0-beta.12...a11y-v1.0.0-beta.13) (2024-02-24)
+
+
+### Bug Fixes
+
+* **assistant:** update dependency antd to v5.14.2 ([1335df6](https://github.com/Orange-OpenSource/uuv/commit/1335df676dd4641a4bda7b7f36d29d8216de0da4))
+* **runner-cypress:** update dependency cypress-real-events to v1.12.0 ([55794fd](https://github.com/Orange-OpenSource/uuv/commit/55794fd04362ad2ece397d108ba400c50b152d59))
+
+## [1.0.0-beta.12](https://github.com/Orange-OpenSource/uuv/compare/a11y-v1.0.0-beta.11...a11y-v1.0.0-beta.12) (2024-02-23)
+
+
+### Features
+
+* **a11y:** add rgaa topic 6, [#457](https://github.com/Orange-OpenSource/uuv/issues/457) ([ae59c46](https://github.com/Orange-OpenSource/uuv/commit/ae59c46a8973ba4ad24d2d7479362c3f9a5b0b0b))
+
+
+### Bug Fixes
+
+* **a11y:** fix topic 5 typo in warning message, [#451](https://github.com/Orange-OpenSource/uuv/issues/451) ([ac503f0](https://github.com/Orange-OpenSource/uuv/commit/ac503f0641574c05222967eff0babc95bbc3f5fc))
+* **assistant:** update dependency @ant-design/icons to v5.3.0 ([b4b2782](https://github.com/Orange-OpenSource/uuv/commit/b4b2782cfa93290a2e3cece937c02c1b00aec938))
+
+## [1.0.0-beta.11](https://github.com/Orange-OpenSource/uuv/compare/a11y-v1.0.0-beta.10...a11y-v1.0.0-beta.11) (2024-02-21)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @mdx-js/react to v3.0.1 ([e4ba234](https://github.com/Orange-OpenSource/uuv/commit/e4ba234ec2883f93e6003a7c27843a35f119281b))
+
+## [1.0.0-beta.10](https://github.com/Orange-OpenSource/uuv/compare/a11y-v1.0.0-beta.9...a11y-v1.0.0-beta.10) (2024-02-15)
+
+
+### Bug Fixes
+
+* **runner-playwright:** update dependency axe-core to v4.8.4 ([1db34e2](https://github.com/Orange-OpenSource/uuv/commit/1db34e26b498bfc83d47cfd98064faa1aa65f558))
+
+## [1.0.0-beta.9](https://github.com/Orange-OpenSource/uuv/compare/a11y-v1.0.0-beta.8...a11y-v1.0.0-beta.9) (2024-02-13)
+
+
+### Bug Fixes
+
+* update dependency multiple-cucumber-html-reporter to v3.6.2 ([95d85c3](https://github.com/Orange-OpenSource/uuv/commit/95d85c3f29ff261232f75c83175d795b63766a89))
+
+## [1.0.0-beta.8](https://github.com/Orange-OpenSource/uuv/compare/a11y-v1.0.0-beta.7...a11y-v1.0.0-beta.8) (2024-02-13)
+
+
+### Features
+
+* **a11y:** add rgaa criteria 5.1 to 5.5, [#451](https://github.com/Orange-OpenSource/uuv/issues/451) ([fa3b369](https://github.com/Orange-OpenSource/uuv/commit/fa3b3693e102b54e1d72321aba573e66c864f4e3))
+* **a11y:** add rgaa criteria 5.6 to 5.8, [#451](https://github.com/Orange-OpenSource/uuv/issues/451) ([9cdf4ad](https://github.com/Orange-OpenSource/uuv/commit/9cdf4ad0e5ba16d7b8ddb90e014d96fc741acc17))
+
+## [1.0.0-beta.7](https://github.com/Orange-OpenSource/uuv/compare/a11y-v1.0.0-beta.6...a11y-v1.0.0-beta.7) (2024-01-24)
+
+
+### Features
+
+* **a11y:** add rgaa topic 2, [#432](https://github.com/Orange-OpenSource/uuv/issues/432) ([#450](https://github.com/Orange-OpenSource/uuv/issues/450)) ([231d95b](https://github.com/Orange-OpenSource/uuv/commit/231d95b48ecfbeb0c86f44d0de0ca8c68df7b9f1))
+
+## [1.0.0-beta.6](https://github.com/Orange-OpenSource/uuv/compare/a11y-v1.0.0-beta.5...a11y-v1.0.0-beta.6) (2024-01-23)
+
+
+### Features
+
+* **a11y:** add RGAA 1.1.6 and 1.1.3, [#429](https://github.com/Orange-OpenSource/uuv/issues/429) ([0e65889](https://github.com/Orange-OpenSource/uuv/commit/0e65889b479651c27e16c29fdb8e5123fe689f03))
+
+
+### Bug Fixes
+
+* **runner-playwright:** update dependency axe-core to v4.8.3 ([4623485](https://github.com/Orange-OpenSource/uuv/commit/46234851677cf0e5f0479fe30bc786ae2a607f1e))
+
+## [1.0.0-beta.5](https://github.com/Orange-OpenSource/uuv/compare/a11y-v1.0.0-beta.4...a11y-v1.0.0-beta.5) (2024-01-21)
+
+
+### Bug Fixes
+
+* **a11y:** update dependency @testing-library/dom to v9.3.4 ([368b6b4](https://github.com/Orange-OpenSource/uuv/commit/368b6b4210f83d2da7695a0bfedd8ac593df171a))
+* **assistant:** fix assistant and enable uuv test for assistant, [#437](https://github.com/Orange-OpenSource/uuv/issues/437) ([da82e1b](https://github.com/Orange-OpenSource/uuv/commit/da82e1b588a391eb24573ac8c3f2db18cfdbf5a5))
+* **deps:** update dependency @easyops-cn/docusaurus-search-local to v0.40.1 ([d5ed3d7](https://github.com/Orange-OpenSource/uuv/commit/d5ed3d75f44e2b83af81fcd7227521dea00371e6))
+
 ## [1.0.0-beta.4](https://github.com/Orange-OpenSource/uuv/compare/a11y-v1.0.0-beta.3...a11y-v1.0.0-beta.4) (2024-01-11)
 
 

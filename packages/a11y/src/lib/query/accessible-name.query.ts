@@ -1,6 +1,6 @@
-import { Query } from "./00-query";
+import { Query, QueryResult } from "./00-query";
 import { computeAccessibleName } from "dom-accessibility-api";
-import { isEmpty } from "lodash";
+import { isEmpty, isNull } from "lodash";
 
 export class AccessibleNameQuery implements Query {
 
@@ -10,17 +10,25 @@ export class AccessibleNameQuery implements Query {
     ) {
     }
 
-    execute(): HTMLElement[] {
+    execute(): QueryResult[] {
         return this.subQuery.execute().filter(element => {
-            const accessibleName = computeAccessibleName(element);
-            if (this.shouldBeEmpty && isEmpty(accessibleName)) {
+            const accessibleName = computeAccessibleName(element.domNode);
+            if (this.shouldBeEmpty && this.isNullOrEmpty(accessibleName)) {
                 return true;
-            } else if (!this.shouldBeEmpty && !isEmpty(accessibleName)) {
+            } else if (!this.shouldBeEmpty && this.isNotNullAndNotEmpty(accessibleName)) {
                 return true;
             } else {
                 return false;
             }
         });
+    }
+
+    private isNullOrEmpty(accessibleName: string) {
+        return isNull(accessibleName) || isEmpty(accessibleName);
+    }
+
+    private isNotNullAndNotEmpty(accessibleName: string) {
+        return !isNull(accessibleName) && !isEmpty(accessibleName);
     }
 
     getSelector(): string {

@@ -1,7 +1,7 @@
 /**
 * Software Name : UUV
 *
-* SPDX-FileCopyrightText: Copyright (c) 2022-2023 Orange
+* SPDX-FileCopyrightText: Copyright (c) 2022-2024 Orange
 * SPDX-License-Identifier: MIT
 *
 * This software is distributed under the MIT License,
@@ -14,5 +14,4 @@
 */
 
 import { runGenerateDoc } from "@uuv/runner-commons";
-
 runGenerateDoc(`${__dirname}/../docs`);

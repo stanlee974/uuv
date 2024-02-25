@@ -1,7 +1,7 @@
 /**
 * Software Name : UUV
 *
-* SPDX-FileCopyrightText: Copyright (c) 2022-2023 Orange
+* SPDX-FileCopyrightText: Copyright (c) 2022-2024 Orange
 * SPDX-License-Identifier: MIT
 *
 * This software is distributed under the MIT License,
@@ -14,10 +14,20 @@
 */
 
 import { Context } from "./_context";
+import { A11yReferenceEnum } from "@uuv/a11y";
+import { shouldGenerateA11yReport } from "./_.common";
 
 beforeEach(function () {
     cy.wrap(new Context()).as("context");
 });
+
+after(function () {
+    if (shouldGenerateA11yReport()) {
+        return cy.showUvvA11yReport(A11yReferenceEnum.RGAA);
+    }
+    return null;
+});
+
 
 export function assertTextContent<Subject>(
     response: Subject,

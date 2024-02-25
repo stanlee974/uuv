@@ -1,7 +1,7 @@
 /**
 * Software Name : UUV
 *
-* SPDX-FileCopyrightText: Copyright (c) 2022-2023 Orange
+* SPDX-FileCopyrightText: Copyright (c) 2022-2024 Orange
 * SPDX-License-Identifier: MIT
 *
 * This software is distributed under the MIT License,
@@ -16,6 +16,17 @@
 import { ByRoleOptions } from "@testing-library/cypress";
 import { Context } from "./_context";
 import Chainable = Cypress.Chainable;
+
+const ENV_GENERATE_A11_REPORT = "generateA11yReport";
+
+export const shouldGenerateA11yReport = (): boolean => {
+    const generateA11yReport = Cypress.env(ENV_GENERATE_A11_REPORT);
+    return generateA11yReport === true;
+};
+
+export const getA11yResultFilePath = (): string => {
+    return Cypress.env("uuvA11yReportFilePath");
+}
 
 export const uuvGetContext = (): Chainable<Context> => {
   return cy.get<Context>("@context");

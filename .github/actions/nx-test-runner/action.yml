@@ -7,6 +7,10 @@ inputs:
   runner-name:
     required: true
     description: Targeted runner
+  options:
+    required: false
+    description: test additional options
+    default: ""
 runs:
   using: "composite"
   steps:
@@ -28,10 +32,10 @@ runs:
         name: build-artifacts
         path: packages
     - name: Use Node.js ${{ inputs.node-version }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ inputs.node-version }}
     - run: npm ci
       shell: bash
-    - run: cd packages/${{ inputs.runner-name }} && npm run test:run
+    - run: cd packages/${{ inputs.runner-name }} && npm run test:run -- ${{inputs.options}}
       shell: bash

@@ -1,7 +1,7 @@
 /**
 * Software Name : UUV
 *
-* SPDX-FileCopyrightText: Copyright (c) 2022-2023 Orange
+* SPDX-FileCopyrightText: Copyright (c) 2022-2024 Orange
 * SPDX-License-Identifier: MIT
 *
 * This software is distributed under the MIT License,
@@ -75,6 +75,17 @@ export class BasedRoleStepDefinition extends GenerateFileProcessing {
                     .replaceAll("$ofDefiniteArticle", role.getOfDefiniteArticle())
                     .replaceAll(conf.key + ".description", conf.description);
             });
+
+            // Exclude Role based Content sentence if specified
+            if (!role.shouldGenerateContainsSentence) {
+                dataUpdated = dataUpdated.replace(/\/\/ Begin of Content Section[\s\S]*?\/\/ End of Content Section/, "");
+            }
+
+            // Exclude Role based Type sentence if specified
+            if (!role.shouldGenerateTypeSentence) {
+                dataUpdated = dataUpdated.replace(/\/\/ Begin of Type Section[\s\S]*?\/\/ End of Type Section/, "");
+            }
+
             const generatedFilename = generatedFile.replace("$roleId", role.id);
             // console.debug(">>> data", dataUpdated)
             // console.debug(">>> generatedFilename", generatedFilename)
