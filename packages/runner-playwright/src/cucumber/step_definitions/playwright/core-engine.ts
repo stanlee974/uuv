@@ -1,24 +1,23 @@
 /**
-* Software Name : UUV
-*
-* SPDX-FileCopyrightText: Copyright (c) 2022-2024 Orange
-* SPDX-License-Identifier: MIT
-*
-* This software is distributed under the MIT License,
-* the text of which is available at https://spdx.org/licenses/MIT.html
-* or see the "LICENSE" file for more details.
-*
-* Authors: NJAKO MOLOM Louis Fredice & SERVICAL Stanley
-* Software description: Make test writing fast, understandable by any human
-* understanding English or French.
-*/
+ * Software Name : UUV
+ *
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
+ *
+ * This software is distributed under the MIT License,
+ * see the "LICENSE" file for more details
+ *
+ * Authors: NJAKO MOLOM Louis Fredice & SERVICAL Stanley
+ * Software description: Make test writing fast, understandable by any human
+ * understanding English or French.
+ */
 
 import { World } from "../../preprocessor/run/world";
 import { expect, Locator as LocatorTest } from "@playwright/test";
 import { Cookie, Locator, Page } from "playwright";
 
 export enum COOKIE_NAME {
-    SELECTED_ELEMENT="selectedElement",
+    SELECTED_ELEMENT="withinFocusedElement",
     MOCK_URL="mockUrl"
 }
 export enum COOKIE_VALUE {
@@ -150,12 +149,21 @@ export async function notFoundWithRoleAndName(world: World, role: string, name: 
 export async function findWithRoleAndNameAndContent(world: World, expectedRole: string, name: string, expectedTextContent: string | undefined = undefined): Promise<any> {
     expectedRole = encodeURIComponent(expectedRole);
     await getPageOrElement(world).then(async (element) => {
-           // console.log("final:",expectedRole,name)
            const byRole = await element.getByRole(expectedRole, { name: name, includeHidden: true, exact: true });
            await expect(byRole).toHaveCount(1);
         if (expectedTextContent !== undefined) {
              await checkTextContentLocator(byRole, expectedTextContent);
         }
+    });
+}
+
+export async function findWithRoleAndNameFocused(world: World, expectedRole: string, name: string): Promise<any> {
+    expectedRole = encodeURIComponent(expectedRole);
+    await getPageOrElement(world).then(async (element) => {
+        // console.log("final:",expectedRole,name)
+        const byRole = await element.getByRole(expectedRole, { name: name, includeHidden: true, exact: true });
+        await expect(byRole).toHaveCount(1);
+        await expect(byRole).toBeFocused();
     });
 }
 
@@ -199,7 +207,7 @@ export async function checkTextContentLocator(locator: Locator, expectedTextCont
     } catch (err) {
         console.error("No value found for locator: ", locator);
         try {
-            await expect(await locator.getAttribute("value")).toBe(expectedTextContent);
+            await expect(locator).toHaveAttribute("value", expectedTextContent);
         } catch (err) {
             console.error("No attribute value found for locator: ", locator);
             try {

@@ -1,14 +1,15 @@
 /**
-* Software Name : UUV
-* SPDX-FileCopyrightText: Copyright (c) 2022-2024 Orange
-* SPDX-License-Identifier: MIT
-*
-* This software is distributed under the MIT License,
-* the text of which is available at https://spdx.org/licenses/MIT.html
-* or see the "LICENSE" file for more details.
-*
-* Authors: NJAKO MOLOM Louis Fredice & SERVICAL Stanley
-* Software description: Make test writing fast, understandable by any human understanding English or French.
+ * Software Name : UUV
+ *
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
+ *
+ * This software is distributed under the MIT License,
+ * see the "LICENSE" file for more details
+ *
+ * Authors: NJAKO MOLOM Louis Fredice & SERVICAL Stanley
+ * Software description: Make test writing fast, understandable by any human
+ * understanding English or French.
  */
 import { LANG } from "./lang-enum";
 import { Common, fs, GenerateFileProcessing } from "./common";
@@ -54,7 +55,8 @@ export class BaseStepDefinition extends GenerateFileProcessing {
             .replace("import { key } from \"@uuv/runner-commons/wording/web\";", "")
             .replace("./core-engine", "../core-engine")
             .replace("../../preprocessor/run/world", "../../../preprocessor/run/world")
-            .replace("./a11y-engine", "../a11y-engine");
+            .replace("./a11y-engine", "../a11y-engine")
+            .replace("./_.common", "/../_.common");
         const wordings = fs.readFileSync(wordingFile);
         const wordingsJson = JSON.parse(wordings.toString());
         wordingsJson.forEach((conf) => {

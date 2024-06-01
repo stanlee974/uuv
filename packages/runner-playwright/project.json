@@ -1,11 +1,12 @@
 {
   "name": "runner-playwright",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "root": "packages/runner-playwright",
   "sourceRoot": "packages/runner-playwright/src",
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nrwl/js:tsc",
+      "executor": "@nx/js:tsc",
       "outputs": [
         "{options.outputPath}"
       ],
@@ -26,7 +27,7 @@
     "generate": {
       "executor": "nx:run-script",
       "outputs": [
-        "{projectRoot}/src/cucumber/step_definitions/cypress/generated"
+        "{projectRoot}/src/cucumber/step_definitions/playwright/generated"
       ],
       "options": {
         "script": "generate:step-definitions"
@@ -41,7 +42,7 @@
         "lintFilePatterns": [
           "packages/runner-playwright/src/**/*.{ts,js,feature}"
         ],
-        "fix": true,
+        "fix": false,
         "eslintConfig": "packages/runner-playwright/.eslintrc.json",
         "ignorePath": "packages/runner-playwright/.eslintignore"
       }
@@ -68,6 +69,29 @@
                 {
                   "path": "dist/packages/uuv-playwright-*.tgz",
                   "label": "Npm Package"
+                }
+              ]
+            }
+          ],
+          [
+            "@google/semantic-release-replace-plugin",
+            {
+              "replacements": [
+                {
+                  "files": [
+                    "packages/assistant/package.json"
+                  ],
+                  "from": "\"@uuv/playwright\": \".*\"",
+                  "to": "\"@uuv/playwright\": \"${nextRelease.version}\"",
+                  "results": [
+                    {
+                      "file": "packages/assistant/package.json",
+                      "hasChanged": true,
+                      "numMatches": 1,
+                      "numReplacements": 1
+                    }
+                  ],
+                  "countMatches": true
                 }
               ]
             }

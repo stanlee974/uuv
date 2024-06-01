@@ -8,8 +8,9 @@ on:
 
 
 env:
-  NODE_VERSION: 18.14.0
+  NODE_VERSION: 20.8.1
   NPM_PACKAGE_SCOPE: uuv
+  UUV_BASE_URL: https://e2e-test-quest.github.io
 
 jobs:
   install:
@@ -17,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Cache node modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
@@ -54,8 +55,9 @@ jobs:
         with:
           node-version: ${{env.NODE_VERSION}}
           target: "build"
+          exclude: "runner-flutter"
       - name: Upload build artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build-artifacts
           path: |
@@ -82,12 +84,19 @@ jobs:
     needs: install
     steps:
       - uses: actions/checkout@v4
-      - name: Running playwright tests except cypress and playwright
+      - name: Running units tests except a11y and runner-flutter
         uses: ./.github/actions/nx-run-many
         with:
           node-version: ${{env.NODE_VERSION}}
-          target: "test"
-          exclude: "a11y,runner-cypress,runner-playwright"
+          target: "unit-tests"
+          exclude: "a11y,runner-flutter"
+      - name: Test Report
+        uses: dorny/test-reporter@v1.9.1
+        if: success() || failure()
+        with:
+          name: Report - Unit Tests - General
+          path: packages/**/reports/junit-report.xml
+          reporter: jest-junit
 
   unit-tests-a11y:
     runs-on: ubuntu-latest
@@ -97,12 +106,12 @@ jobs:
       - uses: browser-actions/setup-chrome@v1
       - run: chrome --version
       - name: Running A11y unit tests with Puppeteer
-        uses: ./.github/actions/nx-test-runner
+        uses: ./.github/actions/nx-e2e-test-runner
         with:
           node-version: ${{env.NODE_VERSION}}
           runner-name: "a11y"
       - name: Test Report
-        uses: dorny/test-reporter@v1
+        uses: dorny/test-reporter@v1.9.1
         if: success() || failure()
         with:
           name: Report - Unit Tests - A11y
@@ -115,13 +124,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Running assistant integration tests
-        uses: ./.github/actions/nx-test-runner
+        uses: ./.github/actions/nx-e2e-test-runner
         with:
           node-version: ${{env.NODE_VERSION}}
           runner-name: "assistant"
-          options: "-- --generateJunitReport"
+          options: "--generateJunitReport"
       - name: Test Report
-        uses: dorny/test-reporter@v1
+        uses: dorny/test-reporter@v1.9.1
         if: success() || failure()
         with:
           name: Report - Integration Tests - Assistant
@@ -136,13 +145,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Running cypress unit tests
-        uses: ./.github/actions/nx-test-runner
+        env:
+          UUV_BASE_URL: ${{env.UUV_BASE_URL}}
+        uses: ./.github/actions/nx-e2e-test-runner
         with:
           node-version: ${{env.NODE_VERSION}}
           runner-name: "runner-cypress"
-          options: "--generateJunitReport"
+          options: "--generateJunitReport --generateHtmlReport --generateA11yReport"
       - name: Test Report
-        uses: dorny/test-reporter@v1
+        uses: dorny/test-reporter@v1.9.1
         if: success() || failure()
         with:
           name: Report - Unit Tests - Cypress
@@ -155,18 +166,32 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Running playwright unit tests
-        uses: ./.github/actions/nx-test-runner
+        env:
+          UUV_BASE_URL: ${{env.UUV_BASE_URL}}
+        uses: ./.github/actions/nx-e2e-test-runner
         with:
           node-version: ${{env.NODE_VERSION}}
           runner-name: "runner-playwright"
-          options: "--generateJunitReport"
+          options: "--generateJunitReport --generateHtmlReport --generateA11yReport"
       - name: Test Report
-        uses: dorny/test-reporter@v1
+        uses: dorny/test-reporter@v1.9.1
         if: success() || failure()
         with:
           name: Report - Unit Tests - Playwright
           path: packages/runner-playwright/reports/e2e/junit-report.xml
           reporter: jest-junit
+
+  unit-tests-runner-flutter:
+    runs-on: ubuntu-latest
+    needs: [ lint, unit-tests, build ]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Running runner-flutter unit tests
+        uses: ./.github/actions/nx-dart-test-runner
+        with:
+          node-version: ${{env.NODE_VERSION}}
+          runner-name: "runner-flutter"
+          generate-test: "true"
 
   integration-tests-cypress:
     runs-on: ubuntu-latest
@@ -176,7 +201,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Cache node modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           path: |
@@ -188,7 +213,7 @@ jobs:
             packages/runner-cypress/node_modules
             packages/runner-playwright/node_modules
       - name: Download build artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: build-artifacts
           path: packages
@@ -201,16 +226,18 @@ jobs:
       - name: Package runner-cypress
         run: mkdir -p ./dist/packages && npm run nx package a11y && npm run nx package runner-commons && npm run nx package runner-cypress
       - name: Running cypress integration tests
+        env:
+          UUV_BASE_URL: ${{env.UUV_BASE_URL}}
         run: cd ./tests/integration && chmod 755 ./integration-tests-runner-cypress.sh && ./integration-tests-runner-cypress.sh
       - name: Upload uuv test artifact
         if: success() || failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: integration-tests-cypress-artifacts
           path: |
             tests/integration/runner-cypress/uuv/reports
       - name: Test Report
-        uses: dorny/test-reporter@v1
+        uses: dorny/test-reporter@v1.9.1
         if: success() || failure()
         with:
           name: Report - Integration Tests - Cypress
@@ -223,7 +250,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Cache node modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           path: |
@@ -235,7 +262,7 @@ jobs:
             packages/runner-cypress/node_modules
             packages/runner-playwright/node_modules
       - name: Download build artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: build-artifacts
           path:
@@ -243,16 +270,18 @@ jobs:
       - name: Package runner-playwright
         run: mkdir -p ./dist/packages && npm run nx package a11y && npm run nx package runner-commons && npm run nx package runner-playwright
       - name: Running playwright integration tests
+        env:
+          UUV_BASE_URL: ${{env.UUV_BASE_URL}}
         run: cd ./tests/integration && chmod 755 ./integration-tests-runner-playwright.sh && ./integration-tests-runner-playwright.sh
       - name: Upload uuv test artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: success() || failure()
         with:
           name: integration-tests-playwright-artifacts
           path: |
             tests/integration/runner-playwright/uuv/reports
       - name: Test Report
-        uses: dorny/test-reporter@v1
+        uses: dorny/test-reporter@v1.9.1
         if: success() || failure()
         with:
           name: Report - Integration Tests - Playwright
@@ -264,6 +293,10 @@ jobs:
     needs: install
     steps:
       - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.16.9'
+          channel: 'stable'
       - name: Lint for all projects
         uses: ./.github/actions/nx-run-many
         with:
@@ -272,7 +305,7 @@ jobs:
 
   release:
     if: github.ref == 'refs/heads/main'
-    needs: [ integration-tests-cypress, integration-tests-playwright, unit-tests-a11y, unit-tests-playwright, unit-tests-cypress, integration-tests-assistant ]
+    needs: [ integration-tests-cypress, integration-tests-playwright, unit-tests-a11y, unit-tests-playwright, unit-tests-cypress, integration-tests-assistant, unit-tests-runner-flutter ]
     runs-on: ubuntu-latest
     environment: release
     steps:
@@ -280,7 +313,7 @@ jobs:
         with:
           token: ${{ secrets.GH_TOKEN }}
       - name: Download build artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: build-artifacts
           path: packages
@@ -295,14 +328,14 @@ jobs:
           parallel: "false"
       - name: Update package-lock.json
         run: npm install
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - uses: stefanzweifel/git-auto-commit-action@v5
         name: Push the brand-new package-lock.json
         with:
-          commit_message: "chore(release): update package-lock.json [skip ci]"
+          commit_message: "release: update package-lock.json [skip ci]"
           commit_user_name: UUV Bot
           file_pattern: "package-lock.json"
       - name: Upload Release artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: release-artifacts
           path: |
@@ -315,12 +348,8 @@ jobs:
     needs: [ release ]
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '17'
       - name: Download Release artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: release-artifacts
       - name: Use Node.js ${{env.NODE_VERSION}}
@@ -353,7 +382,7 @@ jobs:
           node-version: ${{env.NODE_VERSION}}
           registry-url: 'https://registry.npmjs.org'
       - name: Download Release artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: release-artifacts
       - name: Publishing Intellij plugin
@@ -366,7 +395,7 @@ jobs:
 
   publish-docs:
     if: github.ref == 'refs/heads/main'
-    needs: [ integration-tests-cypress, integration-tests-playwright, unit-tests-a11y, unit-tests-playwright, unit-tests-cypress, integration-tests-assistant ]
+    needs: [ integration-tests-cypress, integration-tests-playwright, unit-tests-a11y, unit-tests-playwright, unit-tests-cypress, integration-tests-assistant, unit-tests-runner-flutter ]
     permissions:
       pages: write
       id-token: write

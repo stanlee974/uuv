@@ -50,8 +50,10 @@ export async function setupNodeEvents (
 
   on("before:run", async () => {
     await beforeRunHandler(config);
-    const a11yReportFilePath = config.env["uuvA11yReportFilePath"];
-    const generateA11yReport = config.env["generateA11yReport"];
+    // eslint-disable-next-line dot-notation
+    const a11yReportFilePath = config.env["uuvOptions"].report.a11y.outputFile;
+    // eslint-disable-next-line dot-notation
+    const generateA11yReport = config.env["uuvOptions"].report.a11y.enabled;
     clearA11yReport(a11yReportFilePath);
     if (generateA11yReport === true) {
       initA11yReport(a11yReportFilePath);
@@ -66,8 +68,8 @@ export async function setupNodeEvents (
 
   on("before:spec", async (spec: any) => {
     if (!startedFile.includes(spec.absolute)) {
-      await beforeSpecHandler(config);
-      logTeamCity(`##teamcity[testSuiteStarted ${teamcityAddName(spec.baseName)} ${teamcityFlowId(spec.baseName)}  ${teamcityAddCustomField("locationHint", "test://" + spec.absolute)} ]`);
+      await beforeSpecHandler(config, spec);
+      logTeamCity(`##teamcity[testSuiteStarted ${teamcityAddName(spec.name)} ${teamcityFlowId(spec.name)}  ${teamcityAddCustomField("locationHint", "test://" + spec.absolute)} ]`);
       startedFile.push(spec.absolute);
     }
   });
@@ -75,23 +77,24 @@ export async function setupNodeEvents (
   on("after:spec", async (spec: any, results: CypressCommandLine.RunResult) => {
     await afterSpecHandler(config, spec, results);
     results?.tests?.forEach(test => {
-      logTeamCity(`##teamcity[testStarted ${teamcityAddName(test.title[1])} ${teamcityFlowIdAndParentFlowId(test.title[1], spec.baseName)} ${teamcityAddCustomField("locationHint", "test://" + spec.absolute)} ]`);
+      logTeamCity(`##teamcity[testStarted ${teamcityAddName(test.title[1])} ${teamcityFlowIdAndParentFlowId(test.title[1], spec.name)} ${teamcityAddCustomField("locationHint", "test://" + spec.absolute)} ]`);
       if (test.state === "passed") {
         // eslint-disable-next-line max-len
-        logTeamCity(`##teamcity[testFinished ${teamcityAddName(test.title[1])} ${teamcityFlowIdAndParentFlowId(test.title[1], spec.baseName)} ${teamcityAddDuration(test)} ]`);
+        logTeamCity(`##teamcity[testFinished ${teamcityAddName(test.title[1])} ${teamcityFlowIdAndParentFlowId(test.title[1], spec.name)} ${teamcityAddDuration(test)} ]`);
       } else if (test.state === "failed") {
         // eslint-disable-next-line max-len
-        logTeamCity(`##teamcity[testFailed ${teamcityAddName(test.title[1])} ${teamcityFlowIdAndParentFlowId(test.title[1], spec.baseName)} type='comparisonFailure' message='Test failed' ]`);
+        logTeamCity(`##teamcity[testFailed ${teamcityAddName(test.title[1])} ${teamcityFlowIdAndParentFlowId(test.title[1], spec.name)} type='comparisonFailure' message='Test failed' ]`);
         // eslint-disable-next-line max-len
-        logTeamCity(`##teamcity[testFinished ${teamcityAddName(test.title[1])} ${teamcityFlowIdAndParentFlowId(test.title[1], spec.baseName)} ${teamcityAddDuration(test)} ]`);
+        logTeamCity(`##teamcity[testFinished ${teamcityAddName(test.title[1])} ${teamcityFlowIdAndParentFlowId(test.title[1], spec.name)} ${teamcityAddDuration(test)} ]`);
       } else {
-        logTeamCity(`##teamcity[testIgnored ${teamcityAddName(test.title[1])} ${teamcityFlowIdAndParentFlowId(test.title[1], spec.baseName)} ]`);
+        logTeamCity(`##teamcity[testIgnored ${teamcityAddName(test.title[1])} ${teamcityFlowIdAndParentFlowId(test.title[1], spec.name)} ]`);
       }
     });
-    logTeamCity(`##teamcity[testSuiteFinished ${teamcityAddName(spec.baseName)} ${teamcityFlowId(spec.baseName)}]`);
+    logTeamCity(`##teamcity[testSuiteFinished ${teamcityAddName(spec.name)} ${teamcityFlowId(spec.name)}]`);
   });
 
   function logTeamCity(line) {
+    // eslint-disable-next-line dot-notation
     if (config.env["enableTeamcityLogging"]) {
       console.log(line);
     }

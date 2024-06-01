@@ -1,17 +1,16 @@
 /**
-* Software Name : UUV
-*
-* SPDX-FileCopyrightText: Copyright (c) 2022-2024 Orange
-* SPDX-License-Identifier: MIT
-*
-* This software is distributed under the MIT License,
-* the text of which is available at https://spdx.org/licenses/MIT.html
-* or see the "LICENSE" file for more details.
-*
-* Authors: NJAKO MOLOM Louis Fredice & SERVICAL Stanley
-* Software description: Make test writing fast, understandable by any human
-* understanding English or French.
-*/
+ * Software Name : UUV
+ *
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
+ *
+ * This software is distributed under the MIT License,
+ * see the "LICENSE" file for more details
+ *
+ * Authors: NJAKO MOLOM Louis Fredice & SERVICAL Stanley
+ * Software description: Make test writing fast, understandable by any human
+ * understanding English or French.
+ */
 
 import { key } from "@uuv/runner-commons/wording/web";
 import { Then, When } from "@cucumber/cucumber";
@@ -19,7 +18,7 @@ import {
     findWithRoleAndName,
     findWithRoleAndNameAndContent,
     findWithRoleAndNameAndContentDisable,
-    findWithRoleAndNameAndContentEnable,
+    findWithRoleAndNameAndContentEnable, findWithRoleAndNameFocused,
     getPageOrElement,
     notFoundWithRoleAndName,
     withinRoleAndName
@@ -29,14 +28,23 @@ import { expect } from "@playwright/test";
 
 // Begin of General Section
 
+/**
+ * key.when.withinElement.roleAndName.description
+ * */
 When(`${key.when.withinElement.roleAndName}`, async function (this: World, name: string) {
     return await withinRoleAndName(this, "$roleId", name);
 });
 
+/**
+ * key.then.element.withRoleAndName.description
+ * */
 Then(`${key.then.element.withRoleAndName}`, async function (this: World, name: string)  {
     await findWithRoleAndName(this, "$roleId", name);
 });
 
+/**
+ * key.then.element.not.withRoleAndName.description
+ * */
 Then(
     `${key.then.element.not.withRoleAndName}`,
     async function (this: World, name: string)  {
@@ -47,6 +55,9 @@ Then(
 // End of General Section
 // Begin of Type Section
 
+/**
+ * key.when.type.description
+ * */
 When(`${key.when.type}`, async function(this: World, textToType: string, name: string) {
     await getPageOrElement(this).then(async (element) => {
         const byRole = await element.getByRole("$roleId", { name: name, includeHidden: true, exact: true });
@@ -59,6 +70,9 @@ When(`${key.when.type}`, async function(this: World, textToType: string, name: s
 // End of Type Section
 // Begin of Content Section
 
+/**
+ * key.then.element.withRoleAndNameAndContent.description
+ * */
 Then(
     `${key.then.element.withRoleAndNameAndContent}`,
     async function (this: World, name: string, expectedTextContent: string)  {
@@ -66,6 +80,9 @@ Then(
     }
 );
 
+/**
+ * key.then.element.withRoleAndNameAndContentDisabled.description
+ * */
 Then(
     `${key.then.element.withRoleAndNameAndContentDisabled}`,
     async function (this: World, name: string, expectedTextContent: string)  {
@@ -73,6 +90,9 @@ Then(
     }
 );
 
+/**
+ * key.then.element.withRoleAndNameAndContentEnabled.description
+ * */
 Then(
     `${key.then.element.withRoleAndNameAndContentEnabled}`,
     async function (this: World, name: string, expectedTextContent: string)  {
@@ -81,3 +101,38 @@ Then(
 );
 
 // End of Content Section
+
+// Begin of Keyboard Section
+
+/**
+ * key.then.element.withRoleAndNameFocused.description
+ * */
+Then(
+    `${key.then.element.withRoleAndNameFocused}`,
+    async function (this: World, name: string)  {
+        await findWithRoleAndNameFocused(this, "$roleId", name);
+    }
+);
+
+/**
+ * key.then.element.previousWithRoleAndNameFocused.description
+ * */
+Then(
+    `${key.then.element.previousWithRoleAndNameFocused}`,
+    async function (this: World, name: string)  {
+        await this.page.keyboard.press("ShiftLeft+Tab");
+        await findWithRoleAndNameFocused(this, "$roleId", name);
+    }
+);
+
+/**
+ * key.then.element.nextWithRoleAndNameFocused.description
+ * */
+Then(
+    `${key.then.element.nextWithRoleAndNameFocused}`,
+    async function (this: World, name: string)  {
+        await this.page.keyboard.press("Tab");
+        await findWithRoleAndNameFocused(this, "$roleId", name);
+    }
+);
+// End of Keyboard Section

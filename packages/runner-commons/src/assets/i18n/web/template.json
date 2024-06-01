@@ -9,7 +9,9 @@
     "type": "",
     "keyboard": {
       "multiplePress": "",
-      "press": ""
+      "press": "",
+      "previousElement": "",
+      "nextElement": ""
     },
     "timeout": "",
     "withinElement": {
@@ -33,6 +35,9 @@
     "viewport": {
       "preset": "",
       "withWidthAndHeight": ""
+    },
+    "keyboard": {
+      "startNavigationFromTheTop": ""
     }
   },
   "then": {
@@ -41,11 +46,15 @@
       "withRoleAndName": "",
       "withTestId": "",
       "withRoleAndNameAndContent": "",
+      "withRoleAndNameFocused": "",
+      "nextWithRoleAndNameFocused": "",
+      "previousWithRoleAndNameFocused": "",
       "withRoleAndNameAndContentDisabled": "",
       "withRoleAndNameAndContentEnabled": "",
       "withAriaLabel": "",
       "withAriaLabelAndContent": "",
       "withSelector": "",
+      "withSelectorFocused": "",
       "not": {
         "withContent": "",
         "withRoleAndName": "",

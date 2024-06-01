@@ -1,17 +1,16 @@
 /**
-* Software Name : UUV
-*
-* SPDX-FileCopyrightText: Copyright (c) 2022-2024 Orange
-* SPDX-License-Identifier: MIT
-*
-* This software is distributed under the MIT License,
-* the text of which is available at https://spdx.org/licenses/MIT.html
-* or see the "LICENSE" file for more details.
-*
-* Authors: NJAKO MOLOM Louis Fredice & SERVICAL Stanley
-* Software description: Make test writing fast, understandable by any human
-* understanding English or French.
-*/
+ * Software Name : UUV
+ *
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
+ *
+ * This software is distributed under the MIT License,
+ * see the "LICENSE" file for more details
+ *
+ * Authors: NJAKO MOLOM Louis Fredice & SERVICAL Stanley
+ * Software description: Make test writing fast, understandable by any human
+ * understanding English or French.
+ */
 
 import fs from "fs";
 import * as path from "path";
@@ -114,6 +113,15 @@ export class Common {
         console.log(
           `[WRITE] ${generatedFile} written successfully`
         );
+    }
+
+    static deleteAllFileOfDirectory(dirPath) {
+        for (const file of fs.readdirSync(dirPath)) {
+            const filePath = path.join(dirPath, file);
+            if (fs.lstatSync(filePath).isFile()) {
+                fs.rmSync(filePath);
+            }
+        }
     }
 }
 

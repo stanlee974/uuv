@@ -1,17 +1,16 @@
 /**
-* Software Name : UUV
-*
-* SPDX-FileCopyrightText: Copyright (c) 2022-2024 Orange
-* SPDX-License-Identifier: MIT
-*
-* This software is distributed under the MIT License,
-* the text of which is available at https://spdx.org/licenses/MIT.html
-* or see the "LICENSE" file for more details.
-*
-* Authors: NJAKO MOLOM Louis Fredice & SERVICAL Stanley
-* Software description: Make test writing fast, understandable by any human
-* understanding English or French.
-*/
+ * Software Name : UUV
+ *
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
+ *
+ * This software is distributed under the MIT License,
+ * see the "LICENSE" file for more details
+ *
+ * Authors: NJAKO MOLOM Louis Fredice & SERVICAL Stanley
+ * Software description: Make test writing fast, understandable by any human
+ * understanding English or French.
+ */
 
 import { Common, fs, GenerateFileProcessing, getDefinedRoles } from "./common";
 import { LANG } from "./lang-enum";
@@ -61,7 +60,8 @@ export class BasedRoleStepDefinition extends GenerateFileProcessing {
                 .replace("import { key } from \"@uuv/runner-commons/wording/web\";", "")
                 .replace("import {key} from \"@uuv/runner-commons/wording/web\";", "")
                 .replace("./core-engine", "../../../core-engine")
-                .replace("../../preprocessor/run/world", "../../../../../preprocessor/run/world");
+                .replace("../../preprocessor/run/world", "../../../../../preprocessor/run/world")
+                .replace("./_.common", "../../../_.common");
             wordingsJson.enriched.forEach((conf) => {
                 // console.debug(">> conf", conf)
                 // console.debug("${" + conf.key + "}");
@@ -84,6 +84,11 @@ export class BasedRoleStepDefinition extends GenerateFileProcessing {
             // Exclude Role based Type sentence if specified
             if (!role.shouldGenerateTypeSentence) {
                 dataUpdated = dataUpdated.replace(/\/\/ Begin of Type Section[\s\S]*?\/\/ End of Type Section/, "");
+            }
+
+            // Exclude Role based Keyboard sentence if specified
+            if (!role.shouldGenerateKeyboardSentence) {
+                dataUpdated = dataUpdated.replace(/\/\/ Begin of Keyboard Section[\s\S]*?\/\/ End of Keyboard Section/, "");
             }
 
             const generatedFilename = generatedFile.replace("$roleId", role.id);

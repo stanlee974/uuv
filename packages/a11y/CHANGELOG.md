@@ -1,3 +1,132 @@
+# [1.0.0-beta.28](https://github.com/Orange-OpenSource/uuv/compare/a11y-v1.0.0-beta.27...a11y-v1.0.0-beta.28) (2024-05-31)
+
+
+### Features
+
+* **assistant:** redesign assistant and implement keyboard navigation, [#592](https://github.com/Orange-OpenSource/uuv/issues/592), closes [#623](https://github.com/Orange-OpenSource/uuv/issues/623) ([761bfae](https://github.com/Orange-OpenSource/uuv/commit/761bfae4cb6bf5b1bd1c018e93068ded70463821))
+
+# [1.0.0-beta.27](https://github.com/Orange-OpenSource/uuv/compare/a11y-v1.0.0-beta.26...a11y-v1.0.0-beta.27) (2024-05-24)
+
+
+### Bug Fixes
+
+* **runner-playwright:** update playwright monorepo to v1.44.1 ([f2a5cb2](https://github.com/Orange-OpenSource/uuv/commit/f2a5cb26c12af3030b09e2b2bd7de02d6b6504b4))
+
+
+### Features
+
+* **deps:** update dependency clsx to v2 ([d455fb5](https://github.com/Orange-OpenSource/uuv/commit/d455fb504839be771357589434afeed8f64ce1d9))
+* **runner-cypress:** update dependency cypress to v13 ([d21c332](https://github.com/Orange-OpenSource/uuv/commit/d21c332b0de83b4adc77db72fc7e1865f7b6c997))
+
+# [1.0.0-beta.26](https://github.com/Orange-OpenSource/uuv/compare/a11y-v1.0.0-beta.25...a11y-v1.0.0-beta.26) (2024-05-14)
+
+
+### Features
+
+* **runner-cypress:** update dependency @badeball/cypress-cucumber-preprocessor to v20 ([e3e8e7c](https://github.com/Orange-OpenSource/uuv/commit/e3e8e7c6bea1a776d3e9dd1c225206b785bc390f))
+* **runner-cypress:** update steps definitions for @badeball/cypress-cucumber-preprocessor v20 ([9ec1e82](https://github.com/Orange-OpenSource/uuv/commit/9ec1e826868632fff6443adadaf398ad7b6e2ec5))
+* **runner-playwright:** update playwright monorepo to v1.44.0 ([bbd0518](https://github.com/Orange-OpenSource/uuv/commit/bbd051862e6020b8aa51bc850b5ac65a4361a4e4))
+
+# [1.0.0-beta.25](https://github.com/Orange-OpenSource/uuv/compare/a11y-v1.0.0-beta.24...a11y-v1.0.0-beta.25) (2024-05-10)
+
+
+### Bug Fixes
+
+* **runner-playwright:** update dependency axe-core to v4.9.1 ([770cd9f](https://github.com/Orange-OpenSource/uuv/commit/770cd9f8e4d87d64c2875dd9e629b3e6c6ad1931))
+
+
+### Features
+
+* **runner-cypress:** update dependency junit-report-merger to v7 ([7a9e310](https://github.com/Orange-OpenSource/uuv/commit/7a9e310dc192081c5feec543f2dca94468b34230))
+
+# [1.0.0-beta.24](https://github.com/Orange-OpenSource/uuv/compare/a11y-v1.0.0-beta.23...a11y-v1.0.0-beta.24) (2024-05-02)
+
+
+### Features
+
+* update package-lock for update dependency typescript to v5 ([f058481](https://github.com/Orange-OpenSource/uuv/commit/f058481e2ae75ba91e708a5c4dd8ce16c0f1a04f))
+
+# [1.0.0-beta.23](https://github.com/Orange-OpenSource/uuv/compare/a11y-v1.0.0-beta.22...a11y-v1.0.0-beta.23) (2024-04-22)
+
+
+### Features
+
+* (refactor) introduce uuv-cli engine from runner-commons, [#576](https://github.com/Orange-OpenSource/uuv/issues/576) ([6de2feb](https://github.com/Orange-OpenSource/uuv/commit/6de2feb2b2d74eddf1244694dfb7d697af28baf8))
+* add unit tests for uuv-cli implementations, [#576](https://github.com/Orange-OpenSource/uuv/issues/576) ([7e67f13](https://github.com/Orange-OpenSource/uuv/commit/7e67f13b9929577162bce84c5e8b5c08a4396a09))
+
+# [1.0.0-beta.22](https://github.com/Orange-OpenSource/uuv/compare/a11y-v1.0.0-beta.21...a11y-v1.0.0-beta.22) (2024-04-14)
+
+
+### Bug Fixes
+
+* **runner-cypress:** update dependency is-admin to v4 ([768819f](https://github.com/Orange-OpenSource/uuv/commit/768819f114dcba0a8a92412cfd877544e187a289))
+* **runner-playwright:** update dependency axe-core to v4.9.0 ([59a4a6f](https://github.com/Orange-OpenSource/uuv/commit/59a4a6f3d07cddad33a9596253ab8b0fbc85c7c3))
+* **runner-playwright:** update playwright monorepo to v1.43.1 ([bf431d5](https://github.com/Orange-OpenSource/uuv/commit/bf431d5d3ec6cfc26845a44fb38251960546d27e))
+
+# [1.0.0-beta.21](https://github.com/Orange-OpenSource/uuv/compare/a11y-v1.0.0-beta.20...a11y-v1.0.0-beta.21) (2024-04-04)
+
+
+### Bug Fixes
+
+* update nx to version 18.2.1, fixes [#562](https://github.com/Orange-OpenSource/uuv/issues/562) ([669a363](https://github.com/Orange-OpenSource/uuv/commit/669a36307b02d8aa5b41609a08e794eae335b4ed))
+
+# [1.0.0-beta.20](https://github.com/Orange-OpenSource/uuv/compare/a11y-v1.0.0-beta.19...a11y-v1.0.0-beta.20) (2024-03-28)
+
+
+### Features
+
+* **deps:** update node.js to v20 ([f771f22](https://github.com/Orange-OpenSource/uuv/commit/f771f22197d7efc32bba6f8a345b5f6b2f3dd114))
+
+# [1.0.0-beta.19](https://github.com/Orange-OpenSource/uuv/compare/a11y-v1.0.0-beta.18...a11y-v1.0.0-beta.19) (2024-03-15)
+
+
+### Bug Fixes
+
+* **runner-cypress:** update dependency @cypress/webpack-preprocessor to v6 ([2e9a52b](https://github.com/Orange-OpenSource/uuv/commit/2e9a52b2cc1bfb05e96c212cdec0fd644f41d02b))
+
+# [1.0.0-beta.18](https://github.com/Orange-OpenSource/uuv/compare/a11y-v1.0.0-beta.17...a11y-v1.0.0-beta.18) (2024-03-10)
+
+
+### Bug Fixes
+
+* **runner-cypress:** update dependency @testing-library/cypress to v10 ([8ef11bf](https://github.com/Orange-OpenSource/uuv/commit/8ef11bfde65efb9ace5942113a03c06c6f8c3b6e))
+* **runner-playwright:** update dependency axe-playwright to v2 ([7e3f1f4](https://github.com/Orange-OpenSource/uuv/commit/7e3f1f4793f89c9d826c341bb73f59d698c3dfa0))
+
+# [1.0.0-beta.17](https://github.com/Orange-OpenSource/uuv/compare/a11y-v1.0.0-beta.16...a11y-v1.0.0-beta.17) (2024-03-07)
+
+
+### Bug Fixes
+
+* fix husky migration to v9, [#530](https://github.com/Orange-OpenSource/uuv/issues/530) ([dbce11e](https://github.com/Orange-OpenSource/uuv/commit/dbce11e2c8edb8e759538eb9731fbe0ecfb06552))
+
+
+### Features
+
+* **flutter-finder-usercentric:** initialize flutter usercentric finder, [#423](https://github.com/Orange-OpenSource/uuv/issues/423) ([cedcc3a](https://github.com/Orange-OpenSource/uuv/commit/cedcc3a8803b07a21a9fa3ca18c86d7359743ebc))
+* **runner-flutter:** initialize uuv_flutter e2e cucumber library, [#423](https://github.com/Orange-OpenSource/uuv/issues/423) ([bace2f6](https://github.com/Orange-OpenSource/uuv/commit/bace2f6a6e12b48d99fb69b84e7ce930b0292d4a))
+
+# [1.0.0-beta.16](https://github.com/Orange-OpenSource/uuv/compare/a11y-v1.0.0-beta.15...a11y-v1.0.0-beta.16) (2024-03-04)
+
+
+### Bug Fixes
+
+* **assistant:** update dependency @ant-design/icons to v5.3.1 ([a428304](https://github.com/Orange-OpenSource/uuv/commit/a428304f37759003424e79d93dc1d5582ef34626))
+* **assistant:** update dependency antd to v5.15.0 ([cb516bc](https://github.com/Orange-OpenSource/uuv/commit/cb516bcd7bb6993c6d7de8ec3f24c7d0ce4dd8b7))
+* fix semantic release ([aef0c23](https://github.com/Orange-OpenSource/uuv/commit/aef0c234009fa8eb6e6a1b63c158af7c407f318a))
+* **runner-playwright:** update playwright monorepo to v1.42.1 ([d0e78f6](https://github.com/Orange-OpenSource/uuv/commit/d0e78f6c73be178e7c00bf4e88d57aef3b537a70))
+
+## [1.0.0-beta.15](https://github.com/Orange-OpenSource/uuv/compare/a11y-v1.0.0-beta.14...a11y-v1.0.0-beta.15) (2024-02-26)
+
+
+### Features
+
+* **a11y:** add rgaa criteria 8.*, [#476](https://github.com/Orange-OpenSource/uuv/issues/476) ([426184b](https://github.com/Orange-OpenSource/uuv/commit/426184b56bec5648f85dd86d54a733e445e7fdcd))
+
+
+### Bug Fixes
+
+* **runner-playwright:** update playwright monorepo to v1.41.2 ([8791934](https://github.com/Orange-OpenSource/uuv/commit/87919348646fb4e5fefed2dc8a16a86e61e7dfc2))
+
 ## [1.0.0-beta.14](https://github.com/Orange-OpenSource/uuv/compare/a11y-v1.0.0-beta.13...a11y-v1.0.0-beta.14) (2024-02-25)
 
 

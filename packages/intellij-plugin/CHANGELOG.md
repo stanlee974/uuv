@@ -1,50 +1,85 @@
-## [1.5.0](https://github.com/Orange-OpenSource/uuv/compare/intellij-plugin-v1.4.6...intellij-plugin-v1.5.0) (2024-02-25)
+# [1.10.0](https://github.com/Orange-OpenSource/uuv/compare/intellij-plugin-v1.9.0...intellij-plugin-v1.10.0) (2024-05-31)
 
 
 ### Features
 
-* add junit xml report option, [#491](https://github.com/Orange-OpenSource/uuv/issues/491) ([b64b0b2](https://github.com/Orange-OpenSource/uuv/commit/b64b0b2a60200269f558bcf7e0c75d8a74ffc226))
+* **assistant:** redesign assistant and implement keyboard navigation, [#592](https://github.com/Orange-OpenSource/uuv/issues/592), closes [#623](https://github.com/Orange-OpenSource/uuv/issues/623) ([761bfae](https://github.com/Orange-OpenSource/uuv/commit/761bfae4cb6bf5b1bd1c018e93068ded70463821))
+
+# [1.9.0](https://github.com/Orange-OpenSource/uuv/compare/intellij-plugin-v1.8.0...intellij-plugin-v1.9.0) (2024-05-24)
 
 
 ### Bug Fixes
 
-* **runner-playwright:** update dependency @cucumber/tag-expressions to v6.1.0 ([47fb579](https://github.com/Orange-OpenSource/uuv/commit/47fb579ee50c26ed67af6390f4e678f8206b7226))
+* **runner-playwright:** update playwright monorepo to v1.44.1 ([f2a5cb2](https://github.com/Orange-OpenSource/uuv/commit/f2a5cb26c12af3030b09e2b2bd7de02d6b6504b4))
 
-## [1.4.6](https://github.com/Orange-OpenSource/uuv/compare/intellij-plugin-v1.4.5...intellij-plugin-v1.4.6) (2024-02-24)
+
+### Features
+
+* **deps:** update dependency clsx to v2 ([d455fb5](https://github.com/Orange-OpenSource/uuv/commit/d455fb504839be771357589434afeed8f64ce1d9))
+* **runner-cypress:** update dependency cypress to v13 ([d21c332](https://github.com/Orange-OpenSource/uuv/commit/d21c332b0de83b4adc77db72fc7e1865f7b6c997))
+
+# [1.8.0](https://github.com/Orange-OpenSource/uuv/compare/intellij-plugin-v1.7.0...intellij-plugin-v1.8.0) (2024-05-14)
+
+
+### Features
+
+* **runner-cypress:** update dependency @badeball/cypress-cucumber-preprocessor to v20 ([e3e8e7c](https://github.com/Orange-OpenSource/uuv/commit/e3e8e7c6bea1a776d3e9dd1c225206b785bc390f))
+* **runner-playwright:** update playwright monorepo to v1.44.0 ([bbd0518](https://github.com/Orange-OpenSource/uuv/commit/bbd051862e6020b8aa51bc850b5ac65a4361a4e4))
+
+# [1.7.0](https://github.com/Orange-OpenSource/uuv/compare/intellij-plugin-v1.6.0...intellij-plugin-v1.7.0) (2024-05-10)
 
 
 ### Bug Fixes
 
-* **assistant:** update dependency antd to v5.14.2 ([1335df6](https://github.com/Orange-OpenSource/uuv/commit/1335df676dd4641a4bda7b7f36d29d8216de0da4))
-* **runner-cypress:** update dependency cypress-real-events to v1.12.0 ([55794fd](https://github.com/Orange-OpenSource/uuv/commit/55794fd04362ad2ece397d108ba400c50b152d59))
+* **runner-playwright:** update dependency axe-core to v4.9.1 ([770cd9f](https://github.com/Orange-OpenSource/uuv/commit/770cd9f8e4d87d64c2875dd9e629b3e6c6ad1931))
 
-## [1.4.5](https://github.com/Orange-OpenSource/uuv/compare/intellij-plugin-v1.4.4...intellij-plugin-v1.4.5) (2024-02-23)
+
+### Features
+
+* **runner-cypress:** update dependency junit-report-merger to v7 ([7a9e310](https://github.com/Orange-OpenSource/uuv/commit/7a9e310dc192081c5feec543f2dca94468b34230))
+
+# [1.6.0](https://github.com/Orange-OpenSource/uuv/compare/intellij-plugin-v1.5.0...intellij-plugin-v1.6.0) (2024-05-02)
+
+
+### Features
+
+* update package-lock for update dependency typescript to v5 ([f058481](https://github.com/Orange-OpenSource/uuv/commit/f058481e2ae75ba91e708a5c4dd8ce16c0f1a04f))
+
+# [1.5.0](https://github.com/Orange-OpenSource/uuv/compare/intellij-plugin-v1.4.1...intellij-plugin-v1.5.0) (2024-04-22)
 
 
 ### Bug Fixes
 
 * **assistant:** update dependency @ant-design/icons to v5.3.0 ([b4b2782](https://github.com/Orange-OpenSource/uuv/commit/b4b2782cfa93290a2e3cece937c02c1b00aec938))
-
-## [1.4.4](https://github.com/Orange-OpenSource/uuv/compare/intellij-plugin-v1.4.3...intellij-plugin-v1.4.4) (2024-02-21)
-
-
-### Bug Fixes
-
+* **assistant:** update dependency @ant-design/icons to v5.3.1 ([a428304](https://github.com/Orange-OpenSource/uuv/commit/a428304f37759003424e79d93dc1d5582ef34626))
+* **assistant:** update dependency antd to v5.14.2 ([1335df6](https://github.com/Orange-OpenSource/uuv/commit/1335df676dd4641a4bda7b7f36d29d8216de0da4))
+* **assistant:** update dependency antd to v5.15.0 ([cb516bc](https://github.com/Orange-OpenSource/uuv/commit/cb516bcd7bb6993c6d7de8ec3f24c7d0ce4dd8b7))
 * **deps:** update dependency @mdx-js/react to v3.0.1 ([e4ba234](https://github.com/Orange-OpenSource/uuv/commit/e4ba234ec2883f93e6003a7c27843a35f119281b))
-
-## [1.4.3](https://github.com/Orange-OpenSource/uuv/compare/intellij-plugin-v1.4.2...intellij-plugin-v1.4.3) (2024-02-15)
-
-
-### Bug Fixes
-
+* fix husky migration to v9, [#530](https://github.com/Orange-OpenSource/uuv/issues/530) ([dbce11e](https://github.com/Orange-OpenSource/uuv/commit/dbce11e2c8edb8e759538eb9731fbe0ecfb06552))
+* fix semantic release ([aef0c23](https://github.com/Orange-OpenSource/uuv/commit/aef0c234009fa8eb6e6a1b63c158af7c407f318a))
+* **runner-cypress:** update dependency @cypress/webpack-preprocessor to v6 ([2e9a52b](https://github.com/Orange-OpenSource/uuv/commit/2e9a52b2cc1bfb05e96c212cdec0fd644f41d02b))
+* **runner-cypress:** update dependency @testing-library/cypress to v10 ([8ef11bf](https://github.com/Orange-OpenSource/uuv/commit/8ef11bfde65efb9ace5942113a03c06c6f8c3b6e))
+* **runner-cypress:** update dependency cypress-real-events to v1.12.0 ([55794fd](https://github.com/Orange-OpenSource/uuv/commit/55794fd04362ad2ece397d108ba400c50b152d59))
+* **runner-cypress:** update dependency is-admin to v4 ([768819f](https://github.com/Orange-OpenSource/uuv/commit/768819f114dcba0a8a92412cfd877544e187a289))
+* **runner-playwright:** update dependency @cucumber/tag-expressions to v6.1.0 ([47fb579](https://github.com/Orange-OpenSource/uuv/commit/47fb579ee50c26ed67af6390f4e678f8206b7226))
 * **runner-playwright:** update dependency axe-core to v4.8.4 ([1db34e2](https://github.com/Orange-OpenSource/uuv/commit/1db34e26b498bfc83d47cfd98064faa1aa65f558))
-
-## [1.4.2](https://github.com/Orange-OpenSource/uuv/compare/intellij-plugin-v1.4.1...intellij-plugin-v1.4.2) (2024-02-13)
-
-
-### Bug Fixes
-
+* **runner-playwright:** update dependency axe-core to v4.9.0 ([59a4a6f](https://github.com/Orange-OpenSource/uuv/commit/59a4a6f3d07cddad33a9596253ab8b0fbc85c7c3))
+* **runner-playwright:** update dependency axe-playwright to v2 ([7e3f1f4](https://github.com/Orange-OpenSource/uuv/commit/7e3f1f4793f89c9d826c341bb73f59d698c3dfa0))
+* **runner-playwright:** update playwright monorepo to v1.41.2 ([8791934](https://github.com/Orange-OpenSource/uuv/commit/87919348646fb4e5fefed2dc8a16a86e61e7dfc2))
+* **runner-playwright:** update playwright monorepo to v1.42.1 ([d0e78f6](https://github.com/Orange-OpenSource/uuv/commit/d0e78f6c73be178e7c00bf4e88d57aef3b537a70))
+* **runner-playwright:** update playwright monorepo to v1.43.1 ([bf431d5](https://github.com/Orange-OpenSource/uuv/commit/bf431d5d3ec6cfc26845a44fb38251960546d27e))
 * update dependency multiple-cucumber-html-reporter to v3.6.2 ([95d85c3](https://github.com/Orange-OpenSource/uuv/commit/95d85c3f29ff261232f75c83175d795b63766a89))
+* update nx to version 18.2.1, fixes [#562](https://github.com/Orange-OpenSource/uuv/issues/562) ([669a363](https://github.com/Orange-OpenSource/uuv/commit/669a36307b02d8aa5b41609a08e794eae335b4ed))
+
+
+### Features
+
+* (refactor) introduce uuv-cli engine from runner-commons, [#576](https://github.com/Orange-OpenSource/uuv/issues/576) ([6de2feb](https://github.com/Orange-OpenSource/uuv/commit/6de2feb2b2d74eddf1244694dfb7d697af28baf8))
+* add junit xml report option, [#491](https://github.com/Orange-OpenSource/uuv/issues/491) ([b64b0b2](https://github.com/Orange-OpenSource/uuv/commit/b64b0b2a60200269f558bcf7e0c75d8a74ffc226))
+* add unit tests for uuv-cli implementations, [#576](https://github.com/Orange-OpenSource/uuv/issues/576) ([7e67f13](https://github.com/Orange-OpenSource/uuv/commit/7e67f13b9929577162bce84c5e8b5c08a4396a09))
+* **deps:** update node.js to v20 ([f771f22](https://github.com/Orange-OpenSource/uuv/commit/f771f22197d7efc32bba6f8a345b5f6b2f3dd114))
+* **flutter-finder-usercentric:** initialize flutter usercentric finder, [#423](https://github.com/Orange-OpenSource/uuv/issues/423) ([cedcc3a](https://github.com/Orange-OpenSource/uuv/commit/cedcc3a8803b07a21a9fa3ca18c86d7359743ebc))
+* **runner-flutter:** initialize uuv_flutter e2e cucumber library, [#423](https://github.com/Orange-OpenSource/uuv/issues/423) ([bace2f6](https://github.com/Orange-OpenSource/uuv/commit/bace2f6a6e12b48d99fb69b84e7ce930b0292d4a))
 
 ## [1.4.1](https://github.com/Orange-OpenSource/uuv/compare/intellij-plugin-v1.4.0...intellij-plugin-v1.4.1) (2024-01-24)
 

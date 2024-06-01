@@ -2,10 +2,11 @@
   "name": "assistant",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/assistant/src",
+  "root": "packages/assistant",
   "projectType": "library",
   "targets": {
-    "build:tsc": {
-      "executor": "@nrwl/js:tsc",
+    "build-tsc": {
+      "executor": "@nx/js:tsc",
       "inputs": [
         "{projectRoot}/launcher/*"
       ],
@@ -32,13 +33,13 @@
         "{projectRoot}/dist/uuv-assistant-resources.bundle.js"
       ],
       "options": {
-        "script": "build:bundle"
+        "script": "build-bundle"
       },
       "dependsOn": [
-        "build:conf"
+        "build-conf"
       ]
     },
-    "build:conf": {
+    "build-conf": {
       "executor": "nx:run-script",
       "inputs": [
         "{projectRoot}/compute-conf.js",
@@ -49,14 +50,14 @@
         "{projectRoot}/launcher/conf.json"
       ],
       "options": {
-        "script": "build:conf"
+        "script": "build-conf"
       },
       "dependsOn": [
-        "build:react",
-        "build:tsc"
+        "build-react",
+        "build-tsc"
       ]
     },
-    "build:react": {
+    "build-react": {
       "executor": "nx:run-script",
       "inputs": [
         "{projectRoot}/src/*"
@@ -65,7 +66,7 @@
         "{projectRoot}/build"
       ],
       "options": {
-        "script": "build:react"
+        "script": "build-react"
       }
     },
     "lint": {
@@ -79,22 +80,6 @@
         ],
         "fix": true,
         "eslintConfig": "packages/assistant/.eslintrc.json"
-      }
-    },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
-      "options": {
-        "jestConfig": "packages/assistant/jest.config.ts",
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
       }
     },
     "semantic-release": {

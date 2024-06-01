@@ -1,17 +1,16 @@
 /**
-* Software Name : UUV
-*
-* SPDX-FileCopyrightText: Copyright (c) 2022-2024 Orange
-* SPDX-License-Identifier: MIT
-*
-* This software is distributed under the MIT License,
-* the text of which is available at https://spdx.org/licenses/MIT.html
-* or see the "LICENSE" file for more details.
-*
-* Authors: NJAKO MOLOM Louis Fredice & SERVICAL Stanley
-* Software description: Make test writing fast, understandable by any human
-* understanding English or French.
-*/
+ * Software Name : UUV
+ *
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
+ *
+ * This software is distributed under the MIT License,
+ * see the "LICENSE" file for more details
+ *
+ * Authors: NJAKO MOLOM Louis Fredice & SERVICAL Stanley
+ * Software description: Make test writing fast, understandable by any human
+ * understanding English or French.
+ */
 
 const fs = require("fs");
 const PROJECT_DIR = `${__dirname}/../../../`;
@@ -43,7 +42,7 @@ function main () {
         //copyFile('uuv-cli.js', `${CLI_DIR}`, `${PROJECT_DIR}`);
         copyFileIfMissing("cypress.config.ts", `${TARGET_CONFIG_DIR}`, `${PROJECT_DIR}/uuv`);
         copyFileIfMissing("command.ts", `${TARGET_CONFIG_DIR}`, `${PROJECT_DIR}/uuv/cypress/support`);
-        copyFileIfMissing(".cypress-cucumber-preprocessorrc.json", `${TARGET_CONFIG_DIR}`, `${PROJECT_DIR}`);
+        copyFileIfMissing(".cypress-cucumber-preprocessorrc.json", `${TARGET_CONFIG_DIR}`, `${PROJECT_DIR}/uuv`);
     } else {
         console.log("postinstall - Nothing to copy");
     }

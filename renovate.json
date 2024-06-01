@@ -16,10 +16,29 @@
       "automergeType": "branch"
     },
     {
-      "matchDepTypes": ["dependencies", "devDependencies"],
+      "matchDepTypes": ["devDependencies"],
       "automerge": true,
       "automergeType": "pr",
-      "automergeStrategy": "rebase"
+      "automergeStrategy": "rebase",
+      "semanticCommitType": "chore"
+    },
+    {
+      "matchDepTypes": ["dependencies"],
+      "automerge": true,
+      "automergeType": "pr",
+      "automergeStrategy": "rebase",
+      "semanticCommitType": "fix"
+    },
+    {
+      "matchDepTypes": ["dependencies"],
+      "automerge": true,
+      "automergeType": "pr",
+      "automergeStrategy": "rebase",
+      "matchUpdateTypes": [
+        "major",
+        "minor"
+      ],
+      "semanticCommitType": "feat"
     },
     {
       "matchFileNames": ["packages/a11y/package.json"],

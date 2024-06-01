@@ -1,17 +1,16 @@
 /**
-* Software Name : UUV
-*
-* SPDX-FileCopyrightText: Copyright (c) 2022-2024 Orange
-* SPDX-License-Identifier: MIT
-*
-* This software is distributed under the MIT License,
-* the text of which is available at https://spdx.org/licenses/MIT.html
-* or see the "LICENSE" file for more details.
-*
-* Authors: NJAKO MOLOM Louis Fredice & SERVICAL Stanley
-* Software description: Make test writing fast, understandable by any human
-* understanding English or French.
-*/
+ * Software Name : UUV
+ *
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
+ *
+ * This software is distributed under the MIT License,
+ * see the "LICENSE" file for more details
+ *
+ * Authors: NJAKO MOLOM Louis Fredice & SERVICAL Stanley
+ * Software description: Make test writing fast, understandable by any human
+ * understanding English or French.
+ */
 
 import { LANG } from "./lang-enum";
 import fs from "fs";
@@ -250,6 +249,8 @@ export function runGenerateDoc(destDir: string) {
                 return role.shouldGenerateContainsSentence;
             case "type" :
                 return role.shouldGenerateTypeSentence;
+            case "keyboard" :
+                return role.shouldGenerateKeyboardSentence;
             default :
                 return true;
         }
@@ -257,10 +258,11 @@ export function runGenerateDoc(destDir: string) {
 
     function writeWordingFile(generatedFile, data, lang, indexOfFile) {
         fs.writeFileSync(generatedFile, data);
-            console.log(
-                `[WRITE] ${indexOfFile}-${lang}-generated-wording-description.md written successfully`
-            );
-        }
+        console.log(
+            `[WRITE] ${indexOfFile}-${lang}-generated-wording-description.md written successfully`
+        );
+    }
+
     function normalizedMdxData(data) {
         return data.replaceAll("{string}", "\\\\{string\\\\}")
          .replaceAll("{}", "\\\\{\\\\}")
