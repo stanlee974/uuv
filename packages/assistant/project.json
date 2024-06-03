@@ -36,6 +36,7 @@
         "script": "build-bundle"
       },
       "dependsOn": [
+        "^build",
         "build-conf"
       ]
     },
