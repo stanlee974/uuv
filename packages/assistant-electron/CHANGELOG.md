@@ -1,3 +1,10 @@
+# [1.51.0](https://github.com/e2e-test-quest/uuv/compare/assistant-electron-v1.50.1...assistant-electron-v1.51.0) (2024-11-05)
+
+
+### Features
+
+* migrate uuv repository from orange opensource to e2e-test-quest organization, [#859](https://github.com/e2e-test-quest/uuv/issues/859) ([e0a6e5c](https://github.com/e2e-test-quest/uuv/commit/e0a6e5ca572a43b031228db469cfd2f7b669bdaa))
+
 ## [1.50.1](https://github.com/Orange-OpenSource/uuv/compare/assistant-electron-v1.50.0...assistant-electron-v1.50.1) (2024-10-27)
 
 
