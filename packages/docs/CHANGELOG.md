@@ -1,3 +1,10 @@
+# [1.62.0](https://github.com/e2e-test-quest/uuv/compare/docs-v1.61.1...docs-v1.62.0) (2024-11-05)
+
+
+### Features
+
+* migrate uuv repository from orange opensource to e2e-test-quest organization, [#859](https://github.com/e2e-test-quest/uuv/issues/859) ([e0a6e5c](https://github.com/e2e-test-quest/uuv/commit/e0a6e5ca572a43b031228db469cfd2f7b669bdaa))
+
 ## [1.61.1](https://github.com/Orange-OpenSource/uuv/compare/docs-v1.61.0...docs-v1.61.1) (2024-10-27)
 
 
