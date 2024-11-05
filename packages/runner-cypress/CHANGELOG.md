@@ -1,3 +1,10 @@
+# [2.38.0](https://github.com/e2e-test-quest/uuv/compare/runner-cypress-v2.37.1...runner-cypress-v2.38.0) (2024-11-05)
+
+
+### Features
+
+* migrate uuv repository from orange opensource to e2e-test-quest organization, [#859](https://github.com/e2e-test-quest/uuv/issues/859) ([e0a6e5c](https://github.com/e2e-test-quest/uuv/commit/e0a6e5ca572a43b031228db469cfd2f7b669bdaa))
+
 ## [2.37.1](https://github.com/Orange-OpenSource/uuv/compare/runner-cypress-v2.37.0...runner-cypress-v2.37.1) (2024-10-27)
 
 
