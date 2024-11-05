@@ -1,3 +1,10 @@
+# [1.0.0-beta.50](https://github.com/e2e-test-quest/uuv/compare/a11y-v1.0.0-beta.49...a11y-v1.0.0-beta.50) (2024-11-05)
+
+
+### Features
+
+* migrate uuv repository from orange opensource to e2e-test-quest organization, [#859](https://github.com/e2e-test-quest/uuv/issues/859) ([e0a6e5c](https://github.com/e2e-test-quest/uuv/commit/e0a6e5ca572a43b031228db469cfd2f7b669bdaa))
+
 # [1.0.0-beta.49](https://github.com/Orange-OpenSource/uuv/compare/a11y-v1.0.0-beta.48...a11y-v1.0.0-beta.49) (2024-10-27)
 
 
