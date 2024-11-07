@@ -87,7 +87,6 @@ To answer the above issues and many others, our solution is to set up a coherent
 ![Ecosystème UUV](./packages/docs/static/img/docs/ecosystem-uuv.png)
 
 
-
 ## License
 
 [<a href="https://github.com/e2e-test-quest/uuv/blob/main/LICENSE">  
@@ -95,6 +94,31 @@ To answer the above issues and many others, our solution is to set up a coherent
 </a>](https://spdx.org/licenses/MIT.html)
 
 This project is licensed under the terms of the [MIT license](https://github.com/e2e-test-quest/uuv/blob/main/LICENSE).
+
+## Sponsorship
+We thank the following parties for sponsoring this project:
+
+<table>
+  <tr>
+    <td align="center" width="200px">
+      <a href="https://www.jetbrains.com/">
+        <img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jetbrains.png" alt="JetBrains logo.">
+      </a>
+      <br>
+      <strong>JetBrains</strong>
+      <br>
+      Providing free open-source licenses for IntelliJ.
+    </td>
+    <td align="center" width="200px">
+      <!-- Placeholder for future sponsor -->
+    </td>
+    <td align="center" width="200px">
+      <!-- Placeholder for future sponsor -->
+    </td>
+  </tr>
+</table>
+
+Interested in supporting UUV ? We welcome sponsorships of all sizes! Your support helps us maintain and improve this open-source project. Please get in touch with us via GitHub or Discord to discuss sponsorship opportunities.
 
 ## Authors
 
