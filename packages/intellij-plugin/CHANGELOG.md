@@ -1,3 +1,20 @@
+# [1.7.0](https://github.com/e2e-test-quest/uuv/compare/intellij-plugin-v1.6.0...intellij-plugin-v1.7.0) (2024-11-10)
+
+
+### Bug Fixes
+
+* **assistant:** update dependency @uiw/codemirror-theme-github to v4.23.6 ([6e2ae5e](https://github.com/e2e-test-quest/uuv/commit/6e2ae5e9380fdba6b452fd7c5b51fe01ca109585))
+* **assistant:** update dependency antd to v5.21.6 ([ecfa97d](https://github.com/e2e-test-quest/uuv/commit/ecfa97d5ba0178db2a63c30ab6580ad08e597baf))
+* **runner-cypress:** update dependency cypress to v13.15.2 ([04de8dc](https://github.com/e2e-test-quest/uuv/commit/04de8dce6acef5be29c0773edc9e6a814d4bd1db))
+* **runner-playwright:** update dependency @cucumber/tag-expressions to v6.1.1 ([8cb97c8](https://github.com/e2e-test-quest/uuv/commit/8cb97c8bd16a3e891b5579dfaefc279b3cbee0f0))
+
+
+### Features
+
+* **deps:** update dependency @cucumber/gherkin to v30 ([b7ec4ba](https://github.com/e2e-test-quest/uuv/commit/b7ec4ba293cbfbfb0232fc1a7129e91a530c254c))
+* **deps:** update dependency @cucumber/messages to v27 ([1605685](https://github.com/e2e-test-quest/uuv/commit/1605685524ae19a92898889a9dd790da9f72bf9a))
+* **deps:** update dependency @mdx-js/react to v3.1.0 ([5568b66](https://github.com/e2e-test-quest/uuv/commit/5568b66fb6cf96da160e12d2043ae33a79a87f6d))
+
 # [1.6.0](https://github.com/e2e-test-quest/uuv/compare/intellij-plugin-v1.5.0...intellij-plugin-v1.6.0) (2024-11-05)
 
 
