@@ -1,3 +1,18 @@
+# [2.35.0](https://github.com/e2e-test-quest/uuv/compare/runner-commons-v2.34.0...runner-commons-v2.35.0) (2024-11-17)
+
+
+### Bug Fixes
+
+* **assistant:** update codemirror ([fe073ce](https://github.com/e2e-test-quest/uuv/commit/fe073ce266a22c26b9c3dc90d499c2d51e345f5e))
+* **deps:** update dependency @cucumber/gherkin to v30.0.4 ([ca4c17d](https://github.com/e2e-test-quest/uuv/commit/ca4c17d20f08c9819b6e335fa6acced2ca5c675a))
+* **deps:** update dependency @cucumber/messages to v27.0.2 ([d86ba3d](https://github.com/e2e-test-quest/uuv/commit/d86ba3d9509f035873c991332a5d843c52696d0b))
+
+
+### Features
+
+* **assistant:** update dependency antd to v5.22.1 ([338f997](https://github.com/e2e-test-quest/uuv/commit/338f9979a03d7d9c285cb434852e8009644c7e85))
+* **deps:** update dependency tslib to v2.8.1 ([c745d59](https://github.com/e2e-test-quest/uuv/commit/c745d59f74e7cf264b0ae97f349b34310e040410))
+
 # [2.34.0](https://github.com/e2e-test-quest/uuv/compare/runner-commons-v2.33.0...runner-commons-v2.34.0) (2024-11-10)
 
 
