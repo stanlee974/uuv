@@ -1,3 +1,17 @@
+# [2.41.0](https://github.com/e2e-test-quest/uuv/compare/runner-cypress-v2.40.0...runner-cypress-v2.41.0) (2024-11-24)
+
+
+### Bug Fixes
+
+* **assistant:** update dependency antd to v5.22.2 ([ca58136](https://github.com/e2e-test-quest/uuv/commit/ca581367951ff18f4abdd048e92fd9f34582c7ff))
+
+
+### Features
+
+* **assistant:** update dependency @codemirror/view to v6.35.0 ([fd83add](https://github.com/e2e-test-quest/uuv/commit/fd83add8a853f97a5e402c41c6e8963ec6a194c4))
+* **runner-cypress:** update dependency cypress to v13.16.0 ([b28d613](https://github.com/e2e-test-quest/uuv/commit/b28d613e87e36014b1a2d4f9099e870e8014c38a))
+* **runner-playwright:** update playwright monorepo to v1.49.0 ([976b46c](https://github.com/e2e-test-quest/uuv/commit/976b46cebfeb88faa1a2767f04ee43d89303ad91))
+
 # [2.40.0](https://github.com/e2e-test-quest/uuv/compare/runner-cypress-v2.39.0...runner-cypress-v2.40.0) (2024-11-17)
 
 
