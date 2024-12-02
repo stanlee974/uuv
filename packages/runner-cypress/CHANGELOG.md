@@ -1,3 +1,16 @@
+# [2.42.0](https://github.com/e2e-test-quest/uuv/compare/runner-cypress-v2.41.0...runner-cypress-v2.42.0) (2024-12-02)
+
+
+### Bug Fixes
+
+* **runner-playwright:** update dependency nanoid to v3.3.8 ([1129db9](https://github.com/e2e-test-quest/uuv/commit/1129db97724767746ff6e83e99fcf2a842953ed5))
+* update package-lock.json,[#891](https://github.com/e2e-test-quest/uuv/issues/891) ([3bcb03f](https://github.com/e2e-test-quest/uuv/commit/3bcb03f8522bb96df366aade023c0c104a70bcf0))
+
+
+### Features
+
+* **runner-playwright:** update dependency typescript to v5.7.2 ([f278b59](https://github.com/e2e-test-quest/uuv/commit/f278b59a08ffef7319e83e9f60bacc1681e9589c))
+
 # [2.41.0](https://github.com/e2e-test-quest/uuv/compare/runner-cypress-v2.40.0...runner-cypress-v2.41.0) (2024-11-24)
 
 
