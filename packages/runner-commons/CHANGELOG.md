@@ -1,3 +1,17 @@
+# [2.37.0](https://github.com/e2e-test-quest/uuv/compare/runner-commons-v2.36.1...runner-commons-v2.37.0) (2024-12-08)
+
+
+### Bug Fixes
+
+* **assistant:** update dependency @codemirror/view to v6.35.2 ([33e5c81](https://github.com/e2e-test-quest/uuv/commit/33e5c810caa5c19f96305f721bb10ab8d762ec64))
+* **assistant:** update dependency antd to v5.22.3 ([e47ecd5](https://github.com/e2e-test-quest/uuv/commit/e47ecd56df07c844e3b448e0d02204903c1eb879))
+* **runner-cypress:** update dependency cypress to v13.16.1 ([090cb35](https://github.com/e2e-test-quest/uuv/commit/090cb35efa1ad5c30a44ec4565a653eff1117fc7))
+
+
+### Features
+
+* **runner-playwright:** update dependency chokidar to v4 ([463c2c0](https://github.com/e2e-test-quest/uuv/commit/463c2c01f60c9ade5de26b1ce2c61c3e27e95cf2))
+
 ## [2.36.1](https://github.com/e2e-test-quest/uuv/compare/runner-commons-v2.36.0...runner-commons-v2.36.1) (2024-12-02)
 
 
