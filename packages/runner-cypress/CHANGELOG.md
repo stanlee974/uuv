@@ -1,3 +1,10 @@
+# [2.44.0](https://github.com/e2e-test-quest/uuv/compare/runner-cypress-v2.43.0...runner-cypress-v2.44.0) (2024-12-15)
+
+
+### Features
+
+* add a11y-dashboard project to workspace, [#460](https://github.com/e2e-test-quest/uuv/issues/460) ([5051848](https://github.com/e2e-test-quest/uuv/commit/5051848c426350746ba319f7227c10d4af71b0fe))
+
 # [2.43.0](https://github.com/e2e-test-quest/uuv/compare/runner-cypress-v2.42.0...runner-cypress-v2.43.0) (2024-12-08)
 
 
