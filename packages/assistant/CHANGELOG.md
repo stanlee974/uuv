@@ -1,3 +1,10 @@
+# [2.41.0](https://github.com/e2e-test-quest/uuv/compare/assistant-v2.40.0...assistant-v2.41.0) (2024-12-15)
+
+
+### Features
+
+* add a11y-dashboard project to workspace, [#460](https://github.com/e2e-test-quest/uuv/issues/460) ([5051848](https://github.com/e2e-test-quest/uuv/commit/5051848c426350746ba319f7227c10d4af71b0fe))
+
 # [2.40.0](https://github.com/e2e-test-quest/uuv/compare/assistant-v2.39.0...assistant-v2.40.0) (2024-12-08)
 
 
