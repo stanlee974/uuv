@@ -1,3 +1,10 @@
+# [3.24.0](https://github.com/e2e-test-quest/uuv/compare/runner-playwright-v3.23.0...runner-playwright-v3.24.0) (2024-12-15)
+
+
+### Features
+
+* add a11y-dashboard project to workspace, [#460](https://github.com/e2e-test-quest/uuv/issues/460) ([5051848](https://github.com/e2e-test-quest/uuv/commit/5051848c426350746ba319f7227c10d4af71b0fe))
+
 # [3.23.0](https://github.com/e2e-test-quest/uuv/compare/runner-playwright-v3.22.0...runner-playwright-v3.23.0) (2024-12-08)
 
 
