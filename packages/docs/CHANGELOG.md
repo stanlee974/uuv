@@ -1,3 +1,10 @@
+# [1.66.0](https://github.com/e2e-test-quest/uuv/compare/docs-v1.65.0...docs-v1.66.0) (2024-12-15)
+
+
+### Features
+
+* add a11y-dashboard project to workspace, [#460](https://github.com/e2e-test-quest/uuv/issues/460) ([5051848](https://github.com/e2e-test-quest/uuv/commit/5051848c426350746ba319f7227c10d4af71b0fe))
+
 # [1.65.0](https://github.com/e2e-test-quest/uuv/compare/docs-v1.64.0...docs-v1.65.0) (2024-12-08)
 
 
