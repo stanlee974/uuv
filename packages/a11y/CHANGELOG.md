@@ -1,3 +1,10 @@
+# [1.0.0-beta.56](https://github.com/e2e-test-quest/uuv/compare/a11y-v1.0.0-beta.55...a11y-v1.0.0-beta.56) (2024-12-15)
+
+
+### Features
+
+* add a11y-dashboard project to workspace, [#460](https://github.com/e2e-test-quest/uuv/issues/460) ([5051848](https://github.com/e2e-test-quest/uuv/commit/5051848c426350746ba319f7227c10d4af71b0fe))
+
 # [1.0.0-beta.55](https://github.com/e2e-test-quest/uuv/compare/a11y-v1.0.0-beta.54...a11y-v1.0.0-beta.55) (2024-12-08)
 
 
