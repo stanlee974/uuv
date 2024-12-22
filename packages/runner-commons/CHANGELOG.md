@@ -1,3 +1,19 @@
+# [2.39.0](https://github.com/e2e-test-quest/uuv/compare/runner-commons-v2.38.0...runner-commons-v2.39.0) (2024-12-22)
+
+
+### Bug Fixes
+
+* **assistant:** update dependency @uiw/codemirror-theme-github to v4.23.7 ([186f12e](https://github.com/e2e-test-quest/uuv/commit/186f12e27cead4d33ea237f0397262d6af3ba515))
+* **assistant:** update dependency @uiw/react-codemirror to v4.23.7 ([357b9cf](https://github.com/e2e-test-quest/uuv/commit/357b9cfb908a5a8b90e67053328abb4b05ab069d))
+* **assistant:** update dependency antd to v5.22.5 ([9dc158d](https://github.com/e2e-test-quest/uuv/commit/9dc158d474a9e507b4c8f3054fc8808371064937))
+* **runner-playwright:** update playwright monorepo to v1.49.1 ([101653f](https://github.com/e2e-test-quest/uuv/commit/101653f646eb6e881fde6ef5b5af608f2856eec1))
+
+
+### Features
+
+* **runner-cypress:** update dependency cypress to v13.17.0 ([937dd6e](https://github.com/e2e-test-quest/uuv/commit/937dd6eb08c10c89e095d04e1965596dd95c14dc))
+* **runner-playwright:** update dependency webpack to v5.97.1 ([f8ad895](https://github.com/e2e-test-quest/uuv/commit/f8ad895ddad3f3a752f384c9bb9b6a128526bc5d))
+
 # [2.38.0](https://github.com/e2e-test-quest/uuv/compare/runner-commons-v2.37.0...runner-commons-v2.38.0) (2024-12-15)
 
 
