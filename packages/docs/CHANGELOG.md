@@ -1,3 +1,17 @@
+# [1.68.0](https://github.com/e2e-test-quest/uuv/compare/docs-v1.67.0...docs-v1.68.0) (2024-12-29)
+
+
+### Bug Fixes
+
+* **assistant:** update dependency antd to v5.22.7 ([a5873ae](https://github.com/e2e-test-quest/uuv/commit/a5873ae614acf0ea2ac15737224159f62319a855))
+
+
+### Features
+
+* **a11y:** update testing-library monorepo ([3d86317](https://github.com/e2e-test-quest/uuv/commit/3d8631760747a532fcf721b65920ec44cc471bcd))
+* add @uuv/a11y dependency to @uuv/playwright ([323aee0](https://github.com/e2e-test-quest/uuv/commit/323aee0f4d1d52653e7d6209f496a1322fe6cba3))
+* **assistant:** update dependency @codemirror/view to v6.36.1 ([2a7f3f8](https://github.com/e2e-test-quest/uuv/commit/2a7f3f8c10785b5af1c15d11c8b69fb9368bec50))
+
 # [1.67.0](https://github.com/e2e-test-quest/uuv/compare/docs-v1.66.0...docs-v1.67.0) (2024-12-22)
 
 
