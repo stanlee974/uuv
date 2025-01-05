@@ -1,3 +1,10 @@
+# [1.0.0-beta.59](https://github.com/e2e-test-quest/uuv/compare/a11y-v1.0.0-beta.58...a11y-v1.0.0-beta.59) (2025-01-05)
+
+
+### Features
+
+* **a11y:** update dependency @testing-library/dom to v10 ([de56925](https://github.com/e2e-test-quest/uuv/commit/de56925247cb9b0e504f2b98389ab6e82ce85c4b))
+
 # [1.0.0-beta.58](https://github.com/e2e-test-quest/uuv/compare/a11y-v1.0.0-beta.57...a11y-v1.0.0-beta.58) (2024-12-29)
 
 
