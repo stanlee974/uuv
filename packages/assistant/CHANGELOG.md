@@ -1,3 +1,10 @@
+# [2.44.0](https://github.com/e2e-test-quest/uuv/compare/assistant-v2.43.0...assistant-v2.44.0) (2025-01-05)
+
+
+### Features
+
+* **a11y:** update dependency @testing-library/dom to v10 ([de56925](https://github.com/e2e-test-quest/uuv/commit/de56925247cb9b0e504f2b98389ab6e82ce85c4b))
+
 # [2.43.0](https://github.com/e2e-test-quest/uuv/compare/assistant-v2.42.0...assistant-v2.43.0) (2024-12-29)
 
 
