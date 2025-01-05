@@ -1,3 +1,10 @@
+# [2.41.0](https://github.com/e2e-test-quest/uuv/compare/runner-commons-v2.40.0...runner-commons-v2.41.0) (2025-01-05)
+
+
+### Features
+
+* **a11y:** update dependency @testing-library/dom to v10 ([de56925](https://github.com/e2e-test-quest/uuv/commit/de56925247cb9b0e504f2b98389ab6e82ce85c4b))
+
 # [2.40.0](https://github.com/e2e-test-quest/uuv/compare/runner-commons-v2.39.0...runner-commons-v2.40.0) (2024-12-29)
 
 
