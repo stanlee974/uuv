@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/e2e-test-quest/uuv/compare/vscode-extension-v1.9.0...vscode-extension-v1.10.0) (2025-01-05)
+
+
+### Features
+
+* **a11y:** update dependency @testing-library/dom to v10 ([de56925](https://github.com/e2e-test-quest/uuv/commit/de56925247cb9b0e504f2b98389ab6e82ce85c4b))
+
 # [1.9.0](https://github.com/e2e-test-quest/uuv/compare/vscode-extension-v1.8.0...vscode-extension-v1.9.0) (2024-12-29)
 
 
