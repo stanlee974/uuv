@@ -1,3 +1,15 @@
+# [3.28.0](https://github.com/e2e-test-quest/uuv/compare/runner-playwright-v3.27.0...runner-playwright-v3.28.0) (2025-01-13)
+
+
+### Bug Fixes
+
+* **assistant:** update dependency @codemirror/view to v6.36.2 ([63b0594](https://github.com/e2e-test-quest/uuv/commit/63b05944448f5d7338bab42faca9d8ee47cb93c6))
+
+
+### Features
+
+* **runner-playwright:** update dependency multiple-cucumber-html-reporter to v3.9.0 ([ae6f840](https://github.com/e2e-test-quest/uuv/commit/ae6f840742357b5c513c72177082a59770328b27))
+
 # [3.27.0](https://github.com/e2e-test-quest/uuv/compare/runner-playwright-v3.26.0...runner-playwright-v3.27.0) (2025-01-05)
 
 
