@@ -1,3 +1,15 @@
+# [1.70.0](https://github.com/e2e-test-quest/uuv/compare/docs-v1.69.0...docs-v1.70.0) (2025-01-13)
+
+
+### Bug Fixes
+
+* **assistant:** update dependency @codemirror/view to v6.36.2 ([63b0594](https://github.com/e2e-test-quest/uuv/commit/63b05944448f5d7338bab42faca9d8ee47cb93c6))
+
+
+### Features
+
+* **runner-playwright:** update dependency multiple-cucumber-html-reporter to v3.9.0 ([ae6f840](https://github.com/e2e-test-quest/uuv/commit/ae6f840742357b5c513c72177082a59770328b27))
+
 # [1.69.0](https://github.com/e2e-test-quest/uuv/compare/docs-v1.68.0...docs-v1.69.0) (2025-01-05)
 
 
