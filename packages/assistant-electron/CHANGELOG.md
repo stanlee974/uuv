@@ -1,3 +1,20 @@
+# [1.62.0](https://github.com/e2e-test-quest/uuv/compare/assistant-electron-v1.61.0...assistant-electron-v1.62.0) (2025-02-02)
+
+
+### Bug Fixes
+
+* **runner-cypress:** update testing-library monorepo ([be9645a](https://github.com/e2e-test-quest/uuv/commit/be9645a58812eb51ea6a445e5fb8504f4e201420))
+* **runner-playwright:** update dependency @cucumber/tag-expressions to v6.1.2 ([3612d07](https://github.com/e2e-test-quest/uuv/commit/3612d0774a30b23a8f520f33733577117fb7b067))
+* **runner-playwright:** update dependency typescript to v5.7.3 ([6402d29](https://github.com/e2e-test-quest/uuv/commit/6402d29ddb24bc38e33af4efb5bea5923c032fd0))
+* update package-lock too, [#954](https://github.com/e2e-test-quest/uuv/issues/954) ([c2b8ecd](https://github.com/e2e-test-quest/uuv/commit/c2b8ecd123733b6fc253977e35f6b65001adae41))
+
+
+### Features
+
+* **runner-cypress:** update dependency cypress-axe to v1.6.0 ([637762b](https://github.com/e2e-test-quest/uuv/commit/637762b35a2d39dd9de9930a87c49d17cd8882c8))
+* **runner-cypress:** update dependency cypress-real-events to v1.14.0 ([0e6b3a5](https://github.com/e2e-test-quest/uuv/commit/0e6b3a501e55098d4b48d97fb3b98b675ceee02d))
+* **runner-playwright:** update playwright monorepo to v1.50.1 ([0b8d9b1](https://github.com/e2e-test-quest/uuv/commit/0b8d9b1ffc8876693ed80dcb80580c3480b798b7))
+
 # [1.61.0](https://github.com/e2e-test-quest/uuv/compare/assistant-electron-v1.60.0...assistant-electron-v1.61.0) (2025-01-13)
 
 
