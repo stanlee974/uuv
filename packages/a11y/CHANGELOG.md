@@ -1,3 +1,12 @@
+# [1.0.0-beta.62](https://github.com/e2e-test-quest/uuv/compare/a11y-v1.0.0-beta.61...a11y-v1.0.0-beta.62) (2025-02-11)
+
+
+### Features
+
+* **assistant:** update dependency antd to v5.24.0 ([420fa88](https://github.com/e2e-test-quest/uuv/commit/420fa88c4d73b95f5b8be677a801200b033e22e1))
+* **deps:** update dependency @cucumber/gherkin to v31 ([f661a82](https://github.com/e2e-test-quest/uuv/commit/f661a825045b94d3cb7f578266a9872cdd84f02a))
+* **runner-playwright:** update dependency axe-playwright to v2.1.0 ([dfb261a](https://github.com/e2e-test-quest/uuv/commit/dfb261acae0584f696e26c2ce0b10e06e9064e72))
+
 # [1.0.0-beta.61](https://github.com/e2e-test-quest/uuv/compare/a11y-v1.0.0-beta.60...a11y-v1.0.0-beta.61) (2025-02-02)
 
 
