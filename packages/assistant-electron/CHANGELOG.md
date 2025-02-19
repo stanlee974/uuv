@@ -1,3 +1,16 @@
+# [1.64.0](https://github.com/e2e-test-quest/uuv/compare/assistant-electron-v1.63.0...assistant-electron-v1.64.0) (2025-02-19)
+
+
+### Bug Fixes
+
+* **deps:** update dependency chart.js to v4.4.8 ([1b34479](https://github.com/e2e-test-quest/uuv/commit/1b34479b6d07921dde0b3835ce8c23e2a56824a9))
+* **runner-playwright:** update dependency multiple-cucumber-html-reporter to v3.9.1 ([5beda1d](https://github.com/e2e-test-quest/uuv/commit/5beda1dd42a4d2ccd2639bb5e0f84f953548e8da))
+
+
+### Features
+
+* **deps:** update dependency @cucumber/messages to v27.2.0 ([9360afb](https://github.com/e2e-test-quest/uuv/commit/9360afb54c314d009273b5e1e98b623ada494587))
+
 # [1.63.0](https://github.com/e2e-test-quest/uuv/compare/assistant-electron-v1.62.0...assistant-electron-v1.63.0) (2025-02-11)
 
 
