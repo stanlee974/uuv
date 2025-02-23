@@ -1,3 +1,11 @@
+## [2.51.1](https://github.com/e2e-test-quest/uuv/compare/runner-cypress-v2.51.0...runner-cypress-v2.51.1) (2025-02-23)
+
+
+### Bug Fixes
+
+* **runner-commons:** remove useless "newReal" in teamcity log ([303cf9d](https://github.com/e2e-test-quest/uuv/commit/303cf9d56f78fe889e475af0197fb75b006737f7))
+* set multiple-cucumber-html-reporter to v 3.9.0 and useCDN to true, [#980](https://github.com/e2e-test-quest/uuv/issues/980) ([a85c1c8](https://github.com/e2e-test-quest/uuv/commit/a85c1c898dbd2137ec75c2a2eb79a3d372609b9e))
+
 # [2.51.0](https://github.com/e2e-test-quest/uuv/compare/runner-cypress-v2.50.0...runner-cypress-v2.51.0) (2025-02-19)
 
 
