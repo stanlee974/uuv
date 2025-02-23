@@ -1,3 +1,10 @@
+# [1.0.0-beta.64](https://github.com/e2e-test-quest/uuv/compare/a11y-v1.0.0-beta.63...a11y-v1.0.0-beta.64) (2025-02-23)
+
+
+### Bug Fixes
+
+* set multiple-cucumber-html-reporter to v 3.9.0 and useCDN to true, [#980](https://github.com/e2e-test-quest/uuv/issues/980) ([a85c1c8](https://github.com/e2e-test-quest/uuv/commit/a85c1c898dbd2137ec75c2a2eb79a3d372609b9e))
+
 # [1.0.0-beta.63](https://github.com/e2e-test-quest/uuv/compare/a11y-v1.0.0-beta.62...a11y-v1.0.0-beta.63) (2025-02-19)
 
 
