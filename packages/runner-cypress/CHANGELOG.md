@@ -1,3 +1,18 @@
+# [2.52.0](https://github.com/e2e-test-quest/uuv/compare/runner-cypress-v2.51.1...runner-cypress-v2.52.0) (2025-03-05)
+
+
+### Bug Fixes
+
+* **a11y:** update dependency rxjs to v7.8.2 ([a2d97bc](https://github.com/e2e-test-quest/uuv/commit/a2d97bc1ab46ebc7d53afcff30041f8fd79598a3))
+* **assistant:** update codemirror ([d319dec](https://github.com/e2e-test-quest/uuv/commit/d319dec8788269942a7d9c5f6e76d549ed0cc126))
+* **assistant:** update dependency @uiw/codemirror-theme-github to v4.23.10 ([67d021c](https://github.com/e2e-test-quest/uuv/commit/67d021c310f781469b14b05524d8d22c25162c23))
+* **runner-cypress:** update dependency junit-report-merger to v7.0.1 ([c644145](https://github.com/e2e-test-quest/uuv/commit/c644145dfa51a0728e5491e6fe20c233bc4f949c))
+
+
+### Features
+
+* **deps:** update dependency @cucumber/gherkin to v32 ([75c57c3](https://github.com/e2e-test-quest/uuv/commit/75c57c3319236706aa8cf18dcdb1e2c346e01732))
+
 ## [2.51.1](https://github.com/e2e-test-quest/uuv/compare/runner-cypress-v2.51.0...runner-cypress-v2.51.1) (2025-02-23)
 
 
