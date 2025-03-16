@@ -1,3 +1,12 @@
+# [1.0.0-beta.66](https://github.com/e2e-test-quest/uuv/compare/a11y-v1.0.0-beta.65...a11y-v1.0.0-beta.66) (2025-03-16)
+
+
+### Bug Fixes
+
+* **a11y:** update dependency axe-core to v4.10.3 ([a2d1012](https://github.com/e2e-test-quest/uuv/commit/a2d101264510ce249196d7bdf6bb1bea44454d64))
+* **runner-playwright:** update dependency axe-core to v4.10.3 ([5781908](https://github.com/e2e-test-quest/uuv/commit/57819081adc571250f69d5d4784ada7dd4e19a15))
+* **runner-playwright:** update dependency nanoid to v3.3.10 ([a6e9109](https://github.com/e2e-test-quest/uuv/commit/a6e9109f6fac1571e699118a669e1e382e9ccd26))
+
 # [1.0.0-beta.65](https://github.com/e2e-test-quest/uuv/compare/a11y-v1.0.0-beta.64...a11y-v1.0.0-beta.65) (2025-03-05)
 
 
