@@ -1,3 +1,12 @@
+## [3.32.1](https://github.com/e2e-test-quest/uuv/compare/runner-playwright-v3.32.0...runner-playwright-v3.32.1) (2025-03-16)
+
+
+### Bug Fixes
+
+* **a11y:** update dependency axe-core to v4.10.3 ([a2d1012](https://github.com/e2e-test-quest/uuv/commit/a2d101264510ce249196d7bdf6bb1bea44454d64))
+* **runner-playwright:** update dependency axe-core to v4.10.3 ([5781908](https://github.com/e2e-test-quest/uuv/commit/57819081adc571250f69d5d4784ada7dd4e19a15))
+* **runner-playwright:** update dependency nanoid to v3.3.10 ([a6e9109](https://github.com/e2e-test-quest/uuv/commit/a6e9109f6fac1571e699118a669e1e382e9ccd26))
+
 # [3.32.0](https://github.com/e2e-test-quest/uuv/compare/runner-playwright-v3.31.1...runner-playwright-v3.32.0) (2025-03-05)
 
 
