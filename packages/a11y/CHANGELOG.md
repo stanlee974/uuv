@@ -1,3 +1,16 @@
+# [1.0.0-beta.67](https://github.com/e2e-test-quest/uuv/compare/a11y-v1.0.0-beta.66...a11y-v1.0.0-beta.67) (2025-03-27)
+
+
+### Bug Fixes
+
+* **runner-cypress:** update dependency @cypress/webpack-preprocessor to v6.0.4 ([eee7215](https://github.com/e2e-test-quest/uuv/commit/eee7215613a276a5ab854a0a024b318c4335ca61))
+* **runner-playwright:** update dependency nanoid to v3.3.11 ([c2adcce](https://github.com/e2e-test-quest/uuv/commit/c2adcceb0cadf44786a32f7531bc4a46c81d5463))
+
+
+### Features
+
+* **runner-playwright:** update playwright monorepo to v1.51.1 ([3f0f81f](https://github.com/e2e-test-quest/uuv/commit/3f0f81fe901fb8e77c7739857389831188ec5620))
+
 # [1.0.0-beta.66](https://github.com/e2e-test-quest/uuv/compare/a11y-v1.0.0-beta.65...a11y-v1.0.0-beta.66) (2025-03-16)
 
 
