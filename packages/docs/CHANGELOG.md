@@ -1,3 +1,17 @@
+# [1.77.0](https://github.com/e2e-test-quest/uuv/compare/docs-v1.76.0...docs-v1.77.0) (2025-04-21)
+
+
+### Bug Fixes
+
+* **deps:** update dependency bootstrap to v5.3.5 ([c698360](https://github.com/e2e-test-quest/uuv/commit/c698360522ac4f4ea60e73f05cf2aa5b748bc314))
+* **deps:** update dependency chart.js to v4.4.9 ([2dbb916](https://github.com/e2e-test-quest/uuv/commit/2dbb9162d28774c839fba79c9414f340b675d7e0))
+* **runner-commons:** update dependency figlet to v1.8.1 ([54c4b28](https://github.com/e2e-test-quest/uuv/commit/54c4b2843bc72c98e4aea015bc33e5304a91c8c3))
+
+
+### Features
+
+* **runner-playwright:** update dependency webpack to v5.99.6 ([2c219f6](https://github.com/e2e-test-quest/uuv/commit/2c219f61a65431cca7d5553d935031a7f60b9b68))
+
 # [1.76.0](https://github.com/e2e-test-quest/uuv/compare/docs-v1.75.1...docs-v1.76.0) (2025-03-27)
 
 
