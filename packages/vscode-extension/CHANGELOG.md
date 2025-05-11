@@ -1,3 +1,17 @@
+# [1.18.0](https://github.com/e2e-test-quest/uuv/compare/vscode-extension-v1.17.0...vscode-extension-v1.18.0) (2025-05-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency bootstrap to v5.3.6 ([03b87ff](https://github.com/e2e-test-quest/uuv/commit/03b87ff4056777c6ab73b65bcf3ce2ac6e76ce99))
+* **deps:** update dependency sequelize to v6.37.7 ([7dda0b5](https://github.com/e2e-test-quest/uuv/commit/7dda0b53b95064a43858d6abc799e6f2d83c5672))
+
+
+### Features
+
+* **runner-playwright:** update dependency typescript to v5.8.3 -- package-lock ([e8fb704](https://github.com/e2e-test-quest/uuv/commit/e8fb704bbc7e15e7689cb44c09fbd778eae35c60))
+* **runner-playwright:** update playwright monorepo to v1.52.0 ([eba6ca0](https://github.com/e2e-test-quest/uuv/commit/eba6ca0ac76a50bc97272e90d441c9bfc5856e5c))
+
 # [1.17.0](https://github.com/e2e-test-quest/uuv/compare/vscode-extension-v1.16.0...vscode-extension-v1.17.0) (2025-04-21)
 
 
