@@ -1,3 +1,10 @@
+## [1.69.1](https://github.com/e2e-test-quest/uuv/compare/assistant-electron-v1.69.0...assistant-electron-v1.69.1) (2025-05-13)
+
+
+### Bug Fixes
+
+* **runner-playwright:** update chokidar watch expression ([24fa0b9](https://github.com/e2e-test-quest/uuv/commit/24fa0b9d36da606d0badbb9633b044658210268e))
+
 # [1.69.0](https://github.com/e2e-test-quest/uuv/compare/assistant-electron-v1.68.0...assistant-electron-v1.69.0) (2025-05-13)
 
 
