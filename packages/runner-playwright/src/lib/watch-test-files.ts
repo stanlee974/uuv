@@ -27,8 +27,9 @@ if (!tempDir || !projectDir) {
   process.exit(-1);
 }
 
-chokidar.watch(`${projectDir}/e2e/**/*.feature`, {
-  ignoreInitial: true
+chokidar.watch(`${projectDir}/e2e`, {
+  ignoreInitial: true,
+  ignored: (path, stats) => !!stats && stats.isFile() && !path.endsWith(".feature")
 })
  .on("change", () => {
    console.log(chalk.yellowBright("\nRefreshing test files..."));
