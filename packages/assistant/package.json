@@ -1,6 +1,6 @@
 {
   "name": "@uuv/assistant",
-  "version": "2.53.0",
+  "version": "2.53.1",
   "author": "Louis Fredice NJAKO MOLOM (https://github.com/luifr10) & Stanley SERVICAL (https://github.com/stanlee974)",
   "description": "UUV Helper used to improve the life of testers and developers by generating cucumber phrases from the GUI.",
   "license": "MIT",
@@ -92,7 +92,7 @@
     "@types/testing-library__jest-dom": "5.14.9",
     "@typescript-eslint/eslint-plugin": "5.62.0",
     "@typescript-eslint/parser": "5.62.0",
-    "@uuv/playwright": "3.35.0",
+    "@uuv/playwright": "3.35.1",
     "dom-accessibility-api": "0.7.0",
     "eslint": "8.57.1",
     "eslint-plugin-react": "7.37.4",
