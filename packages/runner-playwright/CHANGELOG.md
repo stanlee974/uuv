@@ -1,3 +1,10 @@
+## [3.35.1](https://github.com/e2e-test-quest/uuv/compare/runner-playwright-v3.35.0...runner-playwright-v3.35.1) (2025-05-13)
+
+
+### Bug Fixes
+
+* **runner-playwright:** update chokidar watch expression ([24fa0b9](https://github.com/e2e-test-quest/uuv/commit/24fa0b9d36da606d0badbb9633b044658210268e))
+
 # [3.35.0](https://github.com/e2e-test-quest/uuv/compare/runner-playwright-v3.34.0...runner-playwright-v3.35.0) (2025-05-11)
 
 
