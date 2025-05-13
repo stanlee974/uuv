@@ -1,3 +1,11 @@
+# [2.53.0](https://github.com/e2e-test-quest/uuv/compare/assistant-v2.52.0...assistant-v2.53.0) (2025-05-13)
+
+
+### Features
+
+* **assistant:** fix assistant uuv test, [#1006](https://github.com/e2e-test-quest/uuv/issues/1006) ([d670572](https://github.com/e2e-test-quest/uuv/commit/d6705723ef7f6f94962b63d52788db721c80c2e2))
+* **assistant:** remove hidden fields and enhance form completion, [#1006](https://github.com/e2e-test-quest/uuv/issues/1006) ([dd98cd0](https://github.com/e2e-test-quest/uuv/commit/dd98cd0a30060aab88b64727f317435127c3f715))
+
 # [2.52.0](https://github.com/e2e-test-quest/uuv/compare/assistant-v2.51.0...assistant-v2.52.0) (2025-05-11)
 
 
