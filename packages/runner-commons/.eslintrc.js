@@ -1,27 +1,14 @@
-{
+module.exports = {
     "env": {
         "browser": true,
         "es2021": true
     },
     "extends": [
+        "../../.eslintrc.json",
         "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:playwright/playwright-test"
+        "plugin:@nx/typescript"
     ],
     "overrides": [
-        {
-            "files": ["*.js"],
-            "rules": {
-                "@typescript-eslint/no-var-requires": "off"
-            }
-        },
-        {
-            "files": ["**/base-check-engine.ts", "**/based-role-check-engine.ts"],
-            "rules": {
-                "cucumber/expression-type": "off",
-                "playwright/no-standalone-expect": "off"
-            }
-        }
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -29,8 +16,6 @@
         "sourceType": "module"
     },
     "plugins": [
-        "@typescript-eslint",
-        "cucumber",
         "jest"
     ],
     "rules": {
@@ -91,7 +76,7 @@
         ],
         "space-infix-ops": "error",
         "eol-last": "error",
-        "linebreak-style": ["error", "unix"],
+        "linebreak-style": ["error", process.platform === "win32" ? "windows" : "unix"],
         "no-with": "error",
         "brace-style": "error",
         "space-before-function-paren": ["off"],
@@ -110,15 +95,6 @@
                 "nonwords": false
             }
         ],
-        "no-multiple-empty-lines": 2,
-        "cucumber/async-then": 2,
-         "cucumber/expression-type": 2,
-        "cucumber/no-restricted-tags": [2, "wip", "broken", "foo"],
-        "cucumber/no-arrow-functions": 2,
-      "jest/no-disabled-tests": "warn",
-      "jest/no-focused-tests": "error",
-      "jest/no-identical-title": "error",
-      "jest/prefer-to-have-length": "warn",
-      "jest/valid-expect": "error"
+        "no-multiple-empty-lines": 2
     }
-}
+};

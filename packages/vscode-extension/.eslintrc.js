@@ -1,11 +1,12 @@
-{
+module.exports = {
     "env": {
       "browser": true,
       "es2021": true
     },
     "extends": [
+      "../../.eslintrc.json",
       "eslint:recommended",
-      "plugin:@typescript-eslint/recommended"
+      "plugin:@nx/typescript"
     ],
     "overrides": [
     ],
@@ -15,7 +16,6 @@
       "sourceType": "module"
     },
     "plugins": [
-      "@typescript-eslint",
       "jest"
     ],
     "rules": {
@@ -76,7 +76,7 @@
       ],
       "space-infix-ops": "error",
       "eol-last": "error",
-      "linebreak-style": ["error", "unix"],
+      "linebreak-style": ["error", process.platform === "win32" ? "windows" : "unix"],
       "no-with": "error",
       "brace-style": "error",
       "space-before-function-paren": ["off"],
@@ -97,5 +97,5 @@
       ],
       "no-multiple-empty-lines": 2
     }
-  }
+};
   

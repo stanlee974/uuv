@@ -4,16 +4,16 @@ module.exports = {
         "es2021": true
     },
     "extends": [
+        "../../.eslintrc.json",
         "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
+        "plugin:@nx/typescript",
         "plugin:react/recommended",
-        "react-app"
     ],
     "overrides": [
         {
             "files": ["**/UuvAssistant.tsx"],
             "rules": {
-                "@typescript-eslint/no-var-requires": "off"
+                "@typescript-eslint/no-var-requires": "off",
             }
         }
     ],
@@ -23,7 +23,6 @@ module.exports = {
         "sourceType": "module"
     },
     "plugins": [
-        "@typescript-eslint",
         "jest",
         "react"
     ],
@@ -104,6 +103,7 @@ module.exports = {
                 "nonwords": false
             }
         ],
-        "no-multiple-empty-lines": 2
+        "no-multiple-empty-lines": 2,
+        "@typescript-eslint/no-empty-function": ["error", { "allow": ["arrowFunctions"] }]
     }
 }
