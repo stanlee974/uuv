@@ -1,3 +1,12 @@
+# [2.56.0](https://github.com/e2e-test-quest/uuv/compare/runner-cypress-v2.55.0...runner-cypress-v2.56.0) (2025-06-01)
+
+
+### Features
+
+* **assistant:** fix assistant uuv test, [#1006](https://github.com/e2e-test-quest/uuv/issues/1006) ([d670572](https://github.com/e2e-test-quest/uuv/commit/d6705723ef7f6f94962b63d52788db721c80c2e2))
+* **runner-cypress:** update dependency cypress to v14 ([d8f19ed](https://github.com/e2e-test-quest/uuv/commit/d8f19ed9b7bfa867bb96231e07b9a91edf1dae2c))
+* update cypress to v14, nx to v21, eslint to v9 and move assitant builder to vite ([1db2aa7](https://github.com/e2e-test-quest/uuv/commit/1db2aa7930653af95dc2da27fcf8ef2e38cd737a))
+
 # [2.55.0](https://github.com/e2e-test-quest/uuv/compare/runner-cypress-v2.54.0...runner-cypress-v2.55.0) (2025-05-11)
 
 
