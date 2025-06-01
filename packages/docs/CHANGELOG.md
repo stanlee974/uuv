@@ -1,3 +1,11 @@
+# [1.80.0](https://github.com/e2e-test-quest/uuv/compare/docs-v1.79.1...docs-v1.80.0) (2025-06-01)
+
+
+### Features
+
+* **runner-cypress:** update dependency cypress to v14 ([d8f19ed](https://github.com/e2e-test-quest/uuv/commit/d8f19ed9b7bfa867bb96231e07b9a91edf1dae2c))
+* update cypress to v14, nx to v21, eslint to v9 and move assitant builder to vite ([1db2aa7](https://github.com/e2e-test-quest/uuv/commit/1db2aa7930653af95dc2da27fcf8ef2e38cd737a))
+
 ## [1.79.1](https://github.com/e2e-test-quest/uuv/compare/docs-v1.79.0...docs-v1.79.1) (2025-05-13)
 
 
