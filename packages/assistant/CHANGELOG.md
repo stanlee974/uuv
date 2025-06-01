@@ -1,3 +1,10 @@
+# [2.54.0](https://github.com/e2e-test-quest/uuv/compare/assistant-v2.53.1...assistant-v2.54.0) (2025-06-01)
+
+
+### Features
+
+* update cypress to v14, nx to v21, eslint to v9 and move assitant builder to vite ([1db2aa7](https://github.com/e2e-test-quest/uuv/commit/1db2aa7930653af95dc2da27fcf8ef2e38cd737a))
+
 ## [2.53.1](https://github.com/e2e-test-quest/uuv/compare/assistant-v2.53.0...assistant-v2.53.1) (2025-05-13)
 
 
