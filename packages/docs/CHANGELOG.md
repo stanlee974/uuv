@@ -1,3 +1,10 @@
+# [1.81.0](https://github.com/e2e-test-quest/uuv/compare/docs-v1.80.0...docs-v1.81.0) (2025-06-08)
+
+
+### Features
+
+* **runner-playwright:** update dependency playwright-bdd to v8.3.0 ([5be62fc](https://github.com/e2e-test-quest/uuv/commit/5be62fce63fdd6ebbd5a33cb3b5910a339d18a57))
+
 # [1.80.0](https://github.com/e2e-test-quest/uuv/compare/docs-v1.79.1...docs-v1.80.0) (2025-06-01)
 
 
