@@ -1,3 +1,10 @@
+# [1.13.0](https://github.com/e2e-test-quest/uuv/compare/intellij-plugin-v1.12.0...intellij-plugin-v1.13.0) (2025-06-08)
+
+
+### Features
+
+* **runner-playwright:** update dependency playwright-bdd to v8.3.0 ([5be62fc](https://github.com/e2e-test-quest/uuv/commit/5be62fce63fdd6ebbd5a33cb3b5910a339d18a57))
+
 # [1.12.0](https://github.com/e2e-test-quest/uuv/compare/intellij-plugin-v1.11.0...intellij-plugin-v1.12.0) (2025-06-01)
 
 
