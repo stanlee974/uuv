@@ -1,3 +1,12 @@
+# [3.38.0](https://github.com/e2e-test-quest/uuv/compare/runner-playwright-v3.37.0...runner-playwright-v3.38.0) (2025-06-09)
+
+
+### Features
+
+* **runner-playwright:** captures file generation errors, [#1029](https://github.com/e2e-test-quest/uuv/issues/1029) ([df367d7](https://github.com/e2e-test-quest/uuv/commit/df367d7919101b872fd3bc905dd00f26a3f2bc75))
+* **runner-playwright:** cleanly stop the file watcher, [#1029](https://github.com/e2e-test-quest/uuv/issues/1029) ([d5e4f17](https://github.com/e2e-test-quest/uuv/commit/d5e4f177a320645b3c3914d3753e75e9bd4ec32b))
+* **runner-playwright:** remove useless waitForLoadState, [#1029](https://github.com/e2e-test-quest/uuv/issues/1029) ([d2f8035](https://github.com/e2e-test-quest/uuv/commit/d2f80352390e20cd8c35f25db6fca2e4b6173893))
+
 # [3.37.0](https://github.com/e2e-test-quest/uuv/compare/runner-playwright-v3.36.0...runner-playwright-v3.37.0) (2025-06-08)
 
 
