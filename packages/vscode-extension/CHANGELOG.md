@@ -1,3 +1,10 @@
+# [1.21.0](https://github.com/e2e-test-quest/uuv/compare/vscode-extension-v1.20.0...vscode-extension-v1.21.0) (2025-07-01)
+
+
+### Features
+
+* add grid and table sentences, [#1029](https://github.com/e2e-test-quest/uuv/issues/1029) ([97f7330](https://github.com/e2e-test-quest/uuv/commit/97f7330a50926a872275c4f5ad026920174a9592))
+
 # [1.20.0](https://github.com/e2e-test-quest/uuv/compare/vscode-extension-v1.19.0...vscode-extension-v1.20.0) (2025-06-08)
 
 
