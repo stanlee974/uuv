@@ -1,3 +1,10 @@
+# [1.83.0](https://github.com/e2e-test-quest/uuv/compare/docs-v1.82.0...docs-v1.83.0) (2025-07-01)
+
+
+### Features
+
+* add grid and table sentences, [#1029](https://github.com/e2e-test-quest/uuv/issues/1029) ([97f7330](https://github.com/e2e-test-quest/uuv/commit/97f7330a50926a872275c4f5ad026920174a9592))
+
 # [1.82.0](https://github.com/e2e-test-quest/uuv/compare/docs-v1.81.0...docs-v1.82.0) (2025-06-09)
 
 
