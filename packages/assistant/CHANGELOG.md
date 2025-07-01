@@ -1,3 +1,10 @@
+# [2.57.0](https://github.com/e2e-test-quest/uuv/compare/assistant-v2.56.0...assistant-v2.57.0) (2025-07-01)
+
+
+### Features
+
+* add grid and table sentences, [#1029](https://github.com/e2e-test-quest/uuv/issues/1029) ([97f7330](https://github.com/e2e-test-quest/uuv/commit/97f7330a50926a872275c4f5ad026920174a9592))
+
 # [2.56.0](https://github.com/e2e-test-quest/uuv/compare/assistant-v2.55.0...assistant-v2.56.0) (2025-06-09)
 
 
