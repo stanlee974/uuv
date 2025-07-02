@@ -1,3 +1,15 @@
+# [3.40.0](https://github.com/e2e-test-quest/uuv/compare/runner-playwright-v3.39.0...runner-playwright-v3.40.0) (2025-07-02)
+
+
+### Bug Fixes
+
+* update doc for grid and table sentences, [#1029](https://github.com/e2e-test-quest/uuv/issues/1029) ([751e12a](https://github.com/e2e-test-quest/uuv/commit/751e12ab912fa6890717526a4b5e15be7aeafb91))
+
+
+### Features
+
+* add treegrid sentence, [#1029](https://github.com/e2e-test-quest/uuv/issues/1029) ([847462e](https://github.com/e2e-test-quest/uuv/commit/847462e75fd733ee332f197a1b72b331c0fe5b98))
+
 # [3.39.0](https://github.com/e2e-test-quest/uuv/compare/runner-playwright-v3.38.0...runner-playwright-v3.39.0) (2025-07-01)
 
 
