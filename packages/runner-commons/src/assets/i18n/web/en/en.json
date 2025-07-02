@@ -191,7 +191,7 @@
   },
   {
     "key": "key.then.table.withNameAndContent",
-    "description": "Checks that there is a table with the specified [name](https://russmaxdesign.github.io/html-elements-names/) containing list items.<br/> <u>Example</u>\\n```gherkin\\nThen I should see a table named \"test-list\" and containing\\n| Company                       | Contact          | Country |\\n| ----------------------------- | ---------------- | ------- |\\n| Alfreds Futterkiste           | Maria Anders     | Germany |\\n| Centro comercial Moctezuma    | Francisco Chang  | Mexico  |\\n| Ernst Handel                  | Roland Mendel    | Austria |\\n| Island Trading                | Helen Bennett    | UK      |\\n| Laughing Bacchus Winecellars  | Yoshi Tannamuri  | Canada  |\\n| Magazzini Alimentari Riuniti  | Giovanni Rovelli | Italy   |\\n```",
+    "description": "Checks that there is a table with the specified [name](https://russmaxdesign.github.io/html-elements-names/) containing list items.<br/> <u>Example</u>\\n```gherkin\\nWhen I visit path \"https://e2e-test-quest.github.io/simple-webapp/table.html\"\\nThen I should see a table named \"test-list\" and containing\\n| Company                       | Contact          | Country |\\n| ----------------------------- | ---------------- | ------- |\\n| Alfreds Futterkiste           | Maria Anders     | Germany |\\n| Centro comercial Moctezuma    | Francisco Chang  | Mexico  |\\n| Ernst Handel                  | Roland Mendel    | Austria |\\n| Island Trading                | Helen Bennett    | UK      |\\n| Laughing Bacchus Winecellars  | Yoshi Tannamuri  | Canada  |\\n| Magazzini Alimentari Riuniti  | Giovanni Rovelli | Italy   |\\n```",
     "wording": "I should see a table named {string} and containing"
   },
  {
