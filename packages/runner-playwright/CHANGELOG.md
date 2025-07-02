@@ -1,3 +1,10 @@
+## [3.40.1](https://github.com/e2e-test-quest/uuv/compare/runner-playwright-v3.40.0...runner-playwright-v3.40.1) (2025-07-02)
+
+
+### Bug Fixes
+
+* **runner-playwright:** remove useless includeHidden for locator ([63bf400](https://github.com/e2e-test-quest/uuv/commit/63bf40072150e0f883efa9cc3118db596795d16e))
+
 # [3.40.0](https://github.com/e2e-test-quest/uuv/compare/runner-playwright-v3.39.0...runner-playwright-v3.40.0) (2025-07-02)
 
 
