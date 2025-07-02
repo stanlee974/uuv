@@ -1,3 +1,10 @@
+## [1.84.1](https://github.com/e2e-test-quest/uuv/compare/docs-v1.84.0...docs-v1.84.1) (2025-07-02)
+
+
+### Bug Fixes
+
+* **runner-playwright:** remove useless includeHidden for locator ([63bf400](https://github.com/e2e-test-quest/uuv/commit/63bf40072150e0f883efa9cc3118db596795d16e))
+
 # [1.84.0](https://github.com/e2e-test-quest/uuv/compare/docs-v1.83.0...docs-v1.84.0) (2025-07-02)
 
 
