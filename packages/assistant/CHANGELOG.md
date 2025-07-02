@@ -1,3 +1,10 @@
+## [2.58.1](https://github.com/e2e-test-quest/uuv/compare/assistant-v2.58.0...assistant-v2.58.1) (2025-07-02)
+
+
+### Bug Fixes
+
+* **runner-playwright:** remove useless includeHidden for locator ([63bf400](https://github.com/e2e-test-quest/uuv/commit/63bf40072150e0f883efa9cc3118db596795d16e))
+
 # [2.58.0](https://github.com/e2e-test-quest/uuv/compare/assistant-v2.57.0...assistant-v2.58.0) (2025-07-02)
 
 
