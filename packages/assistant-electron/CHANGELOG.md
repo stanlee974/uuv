@@ -1,3 +1,10 @@
+# [1.75.0](https://github.com/e2e-test-quest/uuv/compare/assistant-electron-v1.74.1...assistant-electron-v1.75.0) (2025-07-03)
+
+
+### Features
+
+* add sentence to check page title ([9f720c2](https://github.com/e2e-test-quest/uuv/commit/9f720c2e926b99a9f8beea093f0b9fc44dd1909c))
+
 ## [1.74.1](https://github.com/e2e-test-quest/uuv/compare/assistant-electron-v1.74.0...assistant-electron-v1.74.1) (2025-07-02)
 
 
