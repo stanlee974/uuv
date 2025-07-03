@@ -1,3 +1,10 @@
+# [1.23.0](https://github.com/e2e-test-quest/uuv/compare/vscode-extension-v1.22.0...vscode-extension-v1.23.0) (2025-07-03)
+
+
+### Features
+
+* add sentence to check page title ([9f720c2](https://github.com/e2e-test-quest/uuv/commit/9f720c2e926b99a9f8beea093f0b9fc44dd1909c))
+
 # [1.22.0](https://github.com/e2e-test-quest/uuv/compare/vscode-extension-v1.21.0...vscode-extension-v1.22.0) (2025-07-02)
 
 
