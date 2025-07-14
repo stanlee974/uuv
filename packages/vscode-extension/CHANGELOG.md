@@ -1,3 +1,13 @@
+# [1.24.0](https://github.com/e2e-test-quest/uuv/compare/vscode-extension-v1.23.0...vscode-extension-v1.24.0) (2025-07-14)
+
+
+### Features
+
+* add disabled and enabled sentence without content verification, [#1040](https://github.com/e2e-test-quest/uuv/issues/1040) ([feee934](https://github.com/e2e-test-quest/uuv/commit/feee934ea058e1e06fcad821d8377b1a46d6c4a3))
+* add sentence to check heading with specific level, [#1037](https://github.com/e2e-test-quest/uuv/issues/1037) ([3921ab0](https://github.com/e2e-test-quest/uuv/commit/3921ab0973ac706075d61241e1ac5df60497b934))
+* add short sentence for role option, listitem and combobox ([ae75a07](https://github.com/e2e-test-quest/uuv/commit/ae75a07a061bbc179762b09f65d4af64ac042ef2))
+* replace picture sentence by image, [#1042](https://github.com/e2e-test-quest/uuv/issues/1042) ([be897f2](https://github.com/e2e-test-quest/uuv/commit/be897f28e483c1e0476ef217f9ee110b061dfb22))
+
 # [1.23.0](https://github.com/e2e-test-quest/uuv/compare/vscode-extension-v1.22.0...vscode-extension-v1.23.0) (2025-07-03)
 
 
