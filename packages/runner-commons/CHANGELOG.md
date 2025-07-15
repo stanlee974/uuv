@@ -1,3 +1,10 @@
+# [2.56.0](https://github.com/e2e-test-quest/uuv/compare/runner-commons-v2.55.0...runner-commons-v2.56.0) (2025-07-15)
+
+
+### Features
+
+* **assistant:** update dependency antd to v5.26.5 ([0b94ebc](https://github.com/e2e-test-quest/uuv/commit/0b94ebc6925ee5a1a571627806502aeda2cac3f5))
+
 # [2.55.0](https://github.com/e2e-test-quest/uuv/compare/runner-commons-v2.54.0...runner-commons-v2.55.0) (2025-07-14)
 
 
