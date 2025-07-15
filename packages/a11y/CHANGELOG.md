@@ -1,3 +1,10 @@
+# [1.0.0-beta.72](https://github.com/e2e-test-quest/uuv/compare/a11y-v1.0.0-beta.71...a11y-v1.0.0-beta.72) (2025-07-15)
+
+
+### Features
+
+* **assistant:** update dependency antd to v5.26.5 ([0b94ebc](https://github.com/e2e-test-quest/uuv/commit/0b94ebc6925ee5a1a571627806502aeda2cac3f5))
+
 # [1.0.0-beta.71](https://github.com/e2e-test-quest/uuv/compare/a11y-v1.0.0-beta.70...a11y-v1.0.0-beta.71) (2025-06-08)
 
 
