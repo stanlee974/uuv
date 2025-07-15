@@ -1,3 +1,11 @@
+# [1.87.0](https://github.com/e2e-test-quest/uuv/compare/docs-v1.86.0...docs-v1.87.0) (2025-07-15)
+
+
+### Features
+
+* **assistant:** add default selection on menu level 1, [#1043](https://github.com/e2e-test-quest/uuv/issues/1043) ([bcafd52](https://github.com/e2e-test-quest/uuv/commit/bcafd522672066921721fee753b2ca9460359fe5))
+* **assistant:** update dependency antd to v5.26.5 ([0b94ebc](https://github.com/e2e-test-quest/uuv/commit/0b94ebc6925ee5a1a571627806502aeda2cac3f5))
+
 # [1.86.0](https://github.com/e2e-test-quest/uuv/compare/docs-v1.85.0...docs-v1.86.0) (2025-07-14)
 
 
