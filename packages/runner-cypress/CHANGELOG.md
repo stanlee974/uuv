@@ -1,3 +1,10 @@
+# [2.62.0](https://github.com/e2e-test-quest/uuv/compare/runner-cypress-v2.61.0...runner-cypress-v2.62.0) (2025-07-15)
+
+
+### Features
+
+* **assistant:** update dependency antd to v5.26.5 ([0b94ebc](https://github.com/e2e-test-quest/uuv/commit/0b94ebc6925ee5a1a571627806502aeda2cac3f5))
+
 # [2.61.0](https://github.com/e2e-test-quest/uuv/compare/runner-cypress-v2.60.0...runner-cypress-v2.61.0) (2025-07-14)
 
 
