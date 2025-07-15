@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/e2e-test-quest/uuv/compare/intellij-plugin-v1.13.0...intellij-plugin-v1.14.0) (2025-07-15)
+
+
+### Features
+
+* **assistant:** update dependency antd to v5.26.5 ([0b94ebc](https://github.com/e2e-test-quest/uuv/commit/0b94ebc6925ee5a1a571627806502aeda2cac3f5))
+
 # [1.13.0](https://github.com/e2e-test-quest/uuv/compare/intellij-plugin-v1.12.0...intellij-plugin-v1.13.0) (2025-06-08)
 
 
