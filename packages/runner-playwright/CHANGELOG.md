@@ -1,3 +1,10 @@
+# [3.43.0](https://github.com/e2e-test-quest/uuv/compare/runner-playwright-v3.42.0...runner-playwright-v3.43.0) (2025-07-15)
+
+
+### Features
+
+* **assistant:** update dependency antd to v5.26.5 ([0b94ebc](https://github.com/e2e-test-quest/uuv/commit/0b94ebc6925ee5a1a571627806502aeda2cac3f5))
+
 # [3.42.0](https://github.com/e2e-test-quest/uuv/compare/runner-playwright-v3.41.0...runner-playwright-v3.42.0) (2025-07-14)
 
 
