@@ -1,3 +1,11 @@
+# [1.77.0](https://github.com/e2e-test-quest/uuv/compare/assistant-electron-v1.76.0...assistant-electron-v1.77.0) (2025-07-15)
+
+
+### Features
+
+* **assistant:** add default selection on menu level 1, [#1043](https://github.com/e2e-test-quest/uuv/issues/1043) ([bcafd52](https://github.com/e2e-test-quest/uuv/commit/bcafd522672066921721fee753b2ca9460359fe5))
+* **assistant:** update dependency antd to v5.26.5 ([0b94ebc](https://github.com/e2e-test-quest/uuv/commit/0b94ebc6925ee5a1a571627806502aeda2cac3f5))
+
 # [1.76.0](https://github.com/e2e-test-quest/uuv/compare/assistant-electron-v1.75.0...assistant-electron-v1.76.0) (2025-07-14)
 
 
