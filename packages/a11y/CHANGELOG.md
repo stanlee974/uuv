@@ -1,3 +1,10 @@
+# [1.0.0-beta.73](https://github.com/e2e-test-quest/uuv/compare/a11y-v1.0.0-beta.72...a11y-v1.0.0-beta.73) (2025-07-22)
+
+
+### Features
+
+* **assistant:** remove dependency inspector-dom, [#1054](https://github.com/e2e-test-quest/uuv/issues/1054) ([6f736a4](https://github.com/e2e-test-quest/uuv/commit/6f736a407790492f7b996b0fbb435816710048fa))
+
 # [1.0.0-beta.72](https://github.com/e2e-test-quest/uuv/compare/a11y-v1.0.0-beta.71...a11y-v1.0.0-beta.72) (2025-07-15)
 
 
