@@ -1,7 +1,6 @@
 /**
  * Software Name : UUV
  *
- * SPDX-FileCopyrightText: Copyright (c) Orange SA
  * SPDX-License-Identifier: MIT
  *
  * This software is distributed under the MIT License,
@@ -19,16 +18,17 @@ import { Method } from "cypress/types/net-stubbing";
 import { key } from "@uuv/runner-commons/wording/web";
 import {
     assertTextContent,
+    click,
     findWithRoleAndName,
     findWithRoleAndNameAndContent,
-    findWithRoleAndNameAndContentDisable,
-    findWithRoleAndNameAndContentEnable,
+    findWithRoleAndNameAndContentDisabled,
+    findWithRoleAndNameAndContentEnabled,
     findWithRoleAndNameFocused,
     notFoundWithRoleAndName,
     withinRoleAndName
 } from "./core-engine";
 import { A11yReferenceEnum } from "@uuv/a11y";
-import { pressKey } from "./_.common";
+import { expectTableToHaveContent, pressKey, removeHeaderSeparatorLine } from "./_.common";
 
 /**
  * key.when.visit.description
@@ -55,13 +55,6 @@ When(`${key.when.click.withContext}`, function() {
 });
 
 /**
- * key.when.click.button.description
- * */
-When(`${key.when.click.button}`, function(name: string) {
-  click("button", name);
-});
-
-/**
  * key.when.click.withRole.description
  * */
 When(`${key.when.click.withRole}`, function(role: string, name: string) {
@@ -69,17 +62,17 @@ When(`${key.when.click.withRole}`, function(role: string, name: string) {
 });
 
 /**
- * key.when.type.description
+ * key.when.type.withContext.description
  * */
-When(`${key.when.type}`, function(textToType: string) {
-    if (haveKeyBoardFocused()) {
-        cy.focused().type(textToType);
-    } else {
-        cy.uuvCheckContextWithinFocusedElement().then((context) => {
-            context.withinFocusedElement!.focus();
-            context.withinFocusedElement!.type(textToType);
-        });
-    }
+When(`${key.when.type.withContext}`, function(textToType: string) {
+    type(textToType);
+});
+
+/**
+ * key.when.enter.withContext.description
+ * */
+When(`${key.when.enter.withContext}`, function(textToType: string) {
+    type(textToType);
 });
 
 /**
@@ -212,6 +205,11 @@ When(`${key.when.withinElement.selector}`, function(selector: string) {
  * */
 When(`${key.when.resetContext}`, function() {
     cy.wrap(new Context()).as("context");
+    if (haveKeyBoardFocused()) {
+        cy.focused().blur();
+    } else {
+        cy.window().trigger("blur");
+    }
 });
 
 /**
@@ -291,6 +289,13 @@ When(`${key.when.headers.forUri}`, function(url: string, headersToSet: DataTable
 ////////////////////////////////////////////
 // VALIDATION
 ////////////////////////////////////////////
+
+/**
+ * key.then.page.withTitle.description
+ * */
+Then(`${key.then.page.withTitle}`, function(pageTitle: string) {
+    cy.title().should("eq", pageTitle);
+});
 
 /**
  * key.then.element.withContent.description
@@ -383,7 +388,7 @@ Then(
 Then(
  `${key.then.element.withRoleAndNameAndContentDisabled}`,
   function(expectedRole: string, name: string, expectedTextContent: string) {
-   findWithRoleAndNameAndContentDisable(expectedRole, name, expectedTextContent);
+   findWithRoleAndNameAndContentDisabled(expectedRole, name, expectedTextContent);
  }
 );
 
@@ -393,7 +398,7 @@ Then(
 Then(
  `${key.then.element.withRoleAndNameAndContentEnabled}`,
   function(expectedRole: string, name: string, expectedTextContent: string) {
-   findWithRoleAndNameAndContentEnable(expectedRole, name, expectedTextContent);
+   findWithRoleAndNameAndContentEnabled(expectedRole, name, expectedTextContent);
  }
 );
 
@@ -487,6 +492,64 @@ Then(
 );
 
 /**
+ * key.then.grid.withNameAndContent.description
+ * */
+Then(
+    `${key.then.grid.withNameAndContent}`,
+    function(expectedListName: string, pExpectedElementsOfList: DataTable) {
+        const expectedElementsOfList = removeHeaderSeparatorLine(pExpectedElementsOfList);
+        cy.uuvFindByRole("grid", { name: expectedListName })
+            .uuvFoundedElement()
+            .should("exist")
+            .within(() => {
+                expectTableToHaveContent(expectedElementsOfList, "gridcell");
+            });
+    }
+);
+
+/**
+ * key.then.treegrid.withNameAndContent.description
+ * */
+Then(
+    `${key.then.treegrid.withNameAndContent}`,
+    function(expectedListName: string, pExpectedElementsOfList: DataTable) {
+        const expectedElementsOfList = removeHeaderSeparatorLine(pExpectedElementsOfList);
+        cy.uuvFindByRole("treegrid", { name: expectedListName })
+            .uuvFoundedElement()
+            .should("exist")
+            .within(() => {
+                expectTableToHaveContent(expectedElementsOfList, "gridcell");
+            });
+    }
+);
+
+
+/**
+ * key.then.table.withNameAndContent.description
+ * */
+Then(
+    `${key.then.table.withNameAndContent}`,
+    function(expectedListName: string, pExpectedElementsOfList: DataTable) {
+        const expectedElementsOfList = removeHeaderSeparatorLine(pExpectedElementsOfList);
+        cy.uuvFindByRole("table", { name: expectedListName })
+            .uuvFoundedElement()
+            .should("exist")
+            .within(() => {
+                expectTableToHaveContent(expectedElementsOfList, "cell");
+            });
+    }
+);
+
+/**
+ * key.then.title.withNameAndLevel.description
+ * */
+Then(`${key.then.title.withNameAndLevel}`, function(name: string, level: number) {
+    cy.uuvFindByRole("heading", { name, level })
+        .uuvFoundedElement()
+        .should("exist");
+});
+
+/**
  * key.then.attributes.withValues.description
  * */
 Then(
@@ -518,8 +581,10 @@ Then(`${key.then.element.withSelector}`, function(selector: string) {
 Then(
  `${key.then.a11y.axecore.default}`,
   function() {
-   cy.injectAxe();
-   cy.checkA11y();
+    cy.injectUvvA11y();
+    cy.checkUvvA11y({
+      reference: A11yReferenceEnum.WCAG_WEB
+    });
  });
 
 /**
@@ -528,9 +593,12 @@ Then(
 Then(
  `${key.then.a11y.axecore.onlyCritical}`,
   function() {
-   cy.injectAxe();
-   cy.checkA11y(undefined, {
-     includedImpacts: ["critical"]
+   cy.injectUvvA11y();
+   cy.checkUvvA11y({
+      reference: A11yReferenceEnum.WCAG_WEB,
+      runnerOptions: {
+        includedImpacts: ["critical"]
+      }
    });
  });
 
@@ -540,9 +608,12 @@ Then(
 Then(
  `${key.then.a11y.axecore.withImpacts}`,
   function(impacts: any) {
-   cy.injectAxe();
-   cy.checkA11y(undefined, {
-     includedImpacts: [impacts]
+   cy.injectUvvA11y();
+   cy.checkUvvA11y({
+      reference: A11yReferenceEnum.WCAG_WEB,
+      runnerOptions: {
+        includedImpacts: [impacts]
+      }
    });
  });
 
@@ -552,12 +623,15 @@ Then(
 Then(
  `${key.then.a11y.axecore.withTags}`,
   function(tags: any) {
-   cy.injectAxe();
-   cy.checkA11y(undefined, {
-     runOnly: {
-       type: "tag",
-       values: [tags]
-     }
+   cy.injectUvvA11y();
+   cy.checkUvvA11y({
+      reference: A11yReferenceEnum.WCAG_WEB,
+      runnerOptions: {
+        runOnly: {
+          type: "tag",
+          values: [tags]
+        }
+      }
    });
  });
 
@@ -581,9 +655,12 @@ Then(
 Then(
  `${key.then.a11y.axecore.withFixtureOption}`,
   function(option: any) {
-   cy.injectAxe();
+   cy.injectUvvA11y();
    cy.fixture(option).then(data => {
-     cy.checkA11y(undefined, data);
+    cy.checkUvvA11y({
+      reference: A11yReferenceEnum.WCAG_WEB,
+      runnerOptions: data
+    });
    });
  });
 
@@ -595,35 +672,46 @@ Then(
  `${key.then.a11y.rgaa.default}`,
   function() {
    cy.injectUvvA11y();
-   cy.checkUvvA11y(A11yReferenceEnum.RGAA);
+   cy.checkUvvA11y({
+    reference: A11yReferenceEnum.RGAA
+   });
  });
 
 Then(
  `${key.then.a11y.rgaa.defaultWithResult}`,
   function(expectedResult: string) {
    cy.injectUvvA11y();
-   cy.checkUvvA11y(A11yReferenceEnum.RGAA, JSON.parse(expectedResult));
+   cy.checkUvvA11y({
+    reference: A11yReferenceEnum.RGAA,
+    expectedResult: {
+      value: JSON.parse(expectedResult)
+    }
+   });
  });
 
 Then(
  `${key.then.a11y.rgaa.defaultWithResultContaining}`,
   function(expectedResult: string) {
    cy.injectUvvA11y();
-   cy.checkUvvA11y(A11yReferenceEnum.RGAA, JSON.parse(expectedResult), true);
- });
-
-function click(role: string, name: string) {
-  cy.uuvGetContext().then(context => {
-    const parentElement = context.withinFocusedElement;
-    if (parentElement) {
-      cy.uuvFindByRole(role, { name: name }).uuvFoundedElement().click();
-      cy.wrap(new Context()).as("context");
-    } else {
-      cy.findByRole(role, { name: name }).click();
+   cy.checkUvvA11y({
+    reference: A11yReferenceEnum.RGAA,
+    expectedResult: {
+      value: JSON.parse(expectedResult),
+      isContainsMode: true
     }
-  });
-}
+   });
+});
 
 function haveKeyBoardFocused() {
   return Cypress.$(":focus").length > 0;
+}
+
+function type(textToType: string) {
+  cy.uuvCheckContextWithinFocusedElement(true).then((context) => {
+    if (context.withinFocusedElement) {
+      context.withinFocusedElement!.type(textToType);
+    } else if (haveKeyBoardFocused()) {
+      cy.focused().type(textToType);
+    }
+  });
 }

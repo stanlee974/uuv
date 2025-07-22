@@ -1,4 +1,6 @@
 import { defineConfig, devices } from "@playwright/test";
+import { buildConfig } from "./src/lib/config";
+import { UUVListenerHelper } from "@uuv/runner-commons";
 
 /**
  * Read environment variables from file.
@@ -10,7 +12,15 @@ import { defineConfig, devices } from "@playwright/test";
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: "tests/.features-gen",
+  testDir: buildConfig(
+      ["e2e/*.feature"],
+      [
+        "src/cucumber/preprocessor/index.ts",
+        "src/cucumber/step_definitions/playwright/**/*.{ts,js}"
+      ],
+      "tests/.features-gen",
+      "e2e"
+  ),
   testMatch: ["**/*.spec.ts", "**/*.{ts,js}"],
   /* Run tests in files in parallel */
   fullyParallel: false,
@@ -64,11 +74,11 @@ export default defineConfig({
 
     /* Test against branded browsers. */
     {
-      name: "Microsoft Edge",
+      name: "edge",
       use: { ...devices["Desktop Edge"], channel: "msedge" },
     },
     {
-      name: "Google Chrome",
+      name: "chrome",
       use: { ...devices["Desktop Chrome"], channel: "chrome" },
     },
   ]

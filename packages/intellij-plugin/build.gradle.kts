@@ -1,7 +1,7 @@
 plugins {
   id("java")
-  id("org.jetbrains.kotlin.jvm") version "1.9.24"
-  id("org.jetbrains.intellij") version "1.17.3"
+  id("org.jetbrains.kotlin.jvm") version "1.9.25"
+  id("org.jetbrains.intellij") version "1.17.4"
 }
 
 group = "com.e2e-testing.uuv"
@@ -11,7 +11,7 @@ repositories {
 }
 
 dependencies {
-  implementation("com.google.code.gson:gson:2.10.1")
+  implementation("com.google.code.gson:gson:2.11.0")
 }
 
 // Configure Gradle IntelliJ Plugin

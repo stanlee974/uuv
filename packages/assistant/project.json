@@ -71,7 +71,7 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": [
         "{options.outputFile}"
       ],
@@ -80,7 +80,7 @@
           "packages/assistant/src/**/*.{jsx,tsx}"
         ],
         "fix": true,
-        "eslintConfig": "packages/assistant/.eslintrc.json"
+        "eslintConfig": "packages/assistant/.eslintrc.js"
       }
     },
     "semantic-release": {

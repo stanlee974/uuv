@@ -5,16 +5,6 @@
   "wording": "I click"
  },
  {
-  "key": "key.when.click.button",
-  "description": "Triggers a click on the given button with specific name",
-  "wording": "I click on button named {string}"
- },
- {
-  "key": "key.when.click.link",
-  "description": "Triggers a click on the given link with specific name",
-  "wording": "I click on link named {string}"
- },
- {
   "key": "key.when.click.withRole",
   "description": "Triggers a click on the element with given role and specific name",
   "wording": "I click on element with role {string} and name {string}"
@@ -40,9 +30,14 @@
   "wording": "I set timeout with value {int}"
  },
  {
-  "key": "key.when.type",
+  "key": "key.when.type.withContext",
   "description": "Writes the sentence passed as a parameter (useful for example to fill in a form field).<br/>Make sure you've selected an element beforehand with the <strong>within...</strong> phrases.",
   "wording": "I type the sentence {string}"
+ },
+ {
+  "key": "key.when.enter.withContext",
+  "description": "Writes the sentence passed as a parameter (useful for example to fill in a form field).<br/>Make sure you've selected an element beforehand with the <strong>within...</strong> phrases.",
+  "wording": "I enter the value {string}"
  },
  {
   "key": "key.when.keyboard.press",
@@ -56,12 +51,12 @@
  },
  {
   "key": "key.when.keyboard.nextElement",
-  "description": "Move to the next html element that can be reached with Tab",
+  "description": "Move to the next html element that can be reached with Tab<br/><a target='_blank' href='https://github.com/e2e-test-quest/uuv/blob/main/example/en-keyboard.feature'>Examples</a>",
   "wording": "I go to next keyboard element"
  },
  {
   "key": "key.when.keyboard.previousElement",
-  "description": "Move to the previous html element that can be reached with back Tab",
+  "description": "Move to the previous html element that can be reached with back Tab<br/><a target='_blank' href='https://github.com/e2e-test-quest/uuv/blob/main/example/en-keyboard.feature'>Examples</a>",
   "wording": "I go to previous keyboard element"
  },
  {
@@ -116,8 +111,18 @@
  },
  {
   "key": "key.given.keyboard.startNavigationFromTheTop",
-  "description": "Start a keyboard navigation session from the top of the page",
+  "description": "Start a keyboard navigation session from the top of the page<br/><a target='_blank' href='https://github.com/e2e-test-quest/uuv/blob/main/example/en-keyboard.feature'>Examples</a>",
   "wording": "I start a keyboard navigation from the top of the page"
+ },
+ {
+  "key": "key.then.page.withTitle",
+  "description": "Checks the current html page have the specified title",
+  "wording": "I should see the page title {string}"
+ },
+ {
+  "key": "key.then.title.withNameAndLevel",
+  "description": "Checks that an Html element exists with [accessible role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles#aria_role_types) `heading`, the specified [name](https://russmaxdesign.github.io/html-elements-names/) and title level",
+  "wording": "I should see a title named {string} with level {int}"
  },
  {
   "key": "key.then.attributes.withValues",
@@ -152,7 +157,7 @@
  {
   "key": "key.then.element.withRoleAndNameAndContentEnabled",
   "description": "Checks that an Html element exists with the specified [accessible role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles#aria_role_types), [name](https://russmaxdesign.github.io/html-elements-names/) and content, and with the disabled attribute set to false",
-  "wording": "I should see an element with role {string} and name {string} and content {string} not disabled"
+  "wording": "I should see an element with role {string} and name {string} and content {string} enabled"
  },
  {
   "key": "key.then.element.withRoleAndNameAndContent",
@@ -161,12 +166,12 @@
  },
  {
   "key": "key.then.element.withSelectorFocused",
-  "description": "Checks that the Html element with the specified selector is focused",
+  "description": "Checks that the Html element with the specified selector is focused<br/><a target='_blank' href='https://github.com/e2e-test-quest/uuv/blob/main/example/en-keyboard.feature'>Examples</a>",
   "wording": "the element with selector {string} should be keyboard focused"
  },
  {
   "key": "key.then.element.withRoleAndNameFocused",
-  "description": "Checks that the Html element with the specified [accessible role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles#aria_role_types) and [name](https://russmaxdesign.github.io/html-elements-names/) is focused",
+  "description": "Checks that the Html element with the specified [accessible role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles#aria_role_types) and [name](https://russmaxdesign.github.io/html-elements-names/) is focused<br/><a target='_blank' href='https://github.com/e2e-test-quest/uuv/blob/main/example/en-keyboard.feature'>Examples</a>",
   "wording": "the element with role {string} and name {string} should be keyboard focused"
  },
  {
@@ -184,6 +189,21 @@
   "description": "Checks that there is a list with the specified [name](https://russmaxdesign.github.io/html-elements-names/) containing list items.<br/> <u>Example</u>\\n```gherkin\\nThen I should see a list named \"test-list\" and containing\\n| First element   |\\n| Second element  |\\n| Third element   |\\n```",
   "wording": "I should see a list named {string} and containing"
  },
+ {
+  "key": "key.then.grid.withNameAndContent",
+  "description": "Checks that there is a grid with the specified [name](https://russmaxdesign.github.io/html-elements-names/) containing list items.<br/> <u>Example</u>\\n```gherkin\\nWhen I visit path \"https://e2e-test-quest.github.io/simple-webapp/grid.html\"\\nThen I should see a grid named \"HTML Grid Example\" and containing\\n| Make         | Model   | Price  |\\n| ------------ | ------- | ------ |\\n| Toyota       | Celica  | 35000  |\\n| Ford         | Mondeo  | 32000  |\\n| Porsche      | Boxster | 72000  |\\n| BMW          | M50     | 60000  |\\n| Aston Martin | DBX     | 190000 |\\n```",
+  "wording": "I should see a grid named {string} and containing"
+ },
+  {
+    "key": "key.then.treegrid.withNameAndContent",
+    "description": "Checks that there is a treegrid with the specified [name](https://russmaxdesign.github.io/html-elements-names/) containing list items.<br/> <u>Example</u>\\n```gherkin\\nWhen I visit path \"https://e2e-test-quest.github.io/simple-webapp/treegrid.html\"\\nThen I should see a treegrid named \"HTML Treegrid Example\" and containing\\n| Make         | Model   | Price  |\\n| ------------ | ------- | ------ |\\n| Toyota       | Celica  | 35000  |\\n| Ford         | Mondeo  | 32000  |\\n| Porsche      | Boxster | 72000  |\\n| BMW          | M50     | 60000  |\\n| Aston Martin | DBX     | 190000 |\\n```",
+    "wording": "I should see a treegrid named {string} and containing"
+  },
+  {
+    "key": "key.then.table.withNameAndContent",
+    "description": "Checks that there is a table with the specified [name](https://russmaxdesign.github.io/html-elements-names/) containing list items.<br/> <u>Example</u>\\n```gherkin\\nWhen I visit path \"https://e2e-test-quest.github.io/simple-webapp/table.html\"\\nThen I should see a table named \"test-list\" and containing\\n| Company                       | Contact          | Country |\\n| ----------------------------- | ---------------- | ------- |\\n| Alfreds Futterkiste           | Maria Anders     | Germany |\\n| Centro comercial Moctezuma    | Francisco Chang  | Mexico  |\\n| Ernst Handel                  | Roland Mendel    | Austria |\\n| Island Trading                | Helen Bennett    | UK      |\\n| Laughing Bacchus Winecellars  | Yoshi Tannamuri  | Canada  |\\n| Magazzini Alimentari Riuniti  | Giovanni Rovelli | Italy   |\\n```",
+    "wording": "I should see a table named {string} and containing"
+  },
  {
   "key": "key.then.element.not.withContent",
   "description": "Checks that an Html element does not exists with the specified content",
@@ -206,13 +226,13 @@
  },
  {
   "key": "key.then.element.nextWithRoleAndNameFocused",
-  "description": "Move to the next html element that can be reached with Tab and checks that the Html element with the specified [accessible role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles#aria_role_types) and [name](https://russmaxdesign.github.io/html-elements-names/) is focused",
+  "description": "Move to the next html element that can be reached with Tab and checks that the Html element with the specified [accessible role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles#aria_role_types) and [name](https://russmaxdesign.github.io/html-elements-names/) is focused<br/><a target='_blank' href='https://github.com/e2e-test-quest/uuv/blob/main/example/en-keyboard.feature'>Examples</a>",
   "wording": "the next keyboard element focused should have name {string} and role {string}",
   "section": "keyboard"
  },
  {
   "key": "key.then.element.previousWithRoleAndNameFocused",
-  "description": "Move to the previous html element that can be reached with Tab and checks that the Html element with the specified [accessible role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles#aria_role_types) and [name](https://russmaxdesign.github.io/html-elements-names/) is focused",
+  "description": "Move to the previous html element that can be reached with Tab and checks that the Html element with the specified [accessible role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles#aria_role_types) and [name](https://russmaxdesign.github.io/html-elements-names/) is focused<br/><a target='_blank' href='https://github.com/e2e-test-quest/uuv/blob/main/example/en-keyboard.feature'>Examples</a>",
   "wording": "the previous keyboard element focused should have name {string} and role {string}",
   "section": "keyboard"
  },

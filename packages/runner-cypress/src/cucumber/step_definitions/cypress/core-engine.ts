@@ -1,7 +1,6 @@
 /**
  * Software Name : UUV
  *
- * SPDX-FileCopyrightText: Copyright (c) Orange SA
  * SPDX-License-Identifier: MIT
  *
  * This software is distributed under the MIT License,
@@ -22,7 +21,7 @@ beforeEach(function () {
 
 after(function () {
     if (shouldGenerateA11yReport()) {
-        cy.showUvvA11yReport(A11yReferenceEnum.RGAA);
+        // cy.showUvvA11yReport(A11yReferenceEnum.RGAA);
     }
     return null;
 });
@@ -78,7 +77,7 @@ export function findWithRoleAndNameAndContent(expectedRole: string, name: string
         });
 }
 
-export function findWithRoleAndNameAndContentDisable(expectedRole: string, name: string, expectedTextContent: string) {
+export function findWithRoleAndNameAndContentDisabled(expectedRole: string, name: string, expectedTextContent: string) {
     cy.uuvFindByRole(expectedRole, { name })
         .uuvFoundedElement()
         .should("exist")
@@ -90,7 +89,15 @@ export function findWithRoleAndNameAndContentDisable(expectedRole: string, name:
         .should("eq", "disabled");
 }
 
-export function findWithRoleAndNameAndContentEnable(expectedRole: string, name: string, expectedTextContent: string) {
+export function findWithRoleAndNameDisabled(expectedRole: string, name: string) {
+    cy.uuvFindByRole(expectedRole, { name })
+        .uuvFoundedElement()
+        .should("exist")
+        .invoke("attr", "disabled")
+        .should("eq", "disabled");
+}
+
+export function findWithRoleAndNameAndContentEnabled(expectedRole: string, name: string, expectedTextContent: string) {
     cy.uuvFindByRole(expectedRole, { name })
         .uuvFoundedElement()
         .should("exist")
@@ -102,8 +109,37 @@ export function findWithRoleAndNameAndContentEnable(expectedRole: string, name: 
         .should("eq", undefined);
 }
 
+export function findWithRoleAndNameEnabled(expectedRole: string, name: string) {
+    cy.uuvFindByRole(expectedRole, { name })
+        .uuvFoundedElement()
+        .should("exist")
+        .invoke("attr", "disabled")
+        .should("eq", undefined);
+}
+
+export function findWithRoleAndNameAndAttribute(expectedRole: string, name: string, attributeName: string, attributeValue: any) {
+    cy.uuvFindByRole(expectedRole, { name })
+        .uuvFoundedElement()
+        .should("exist")
+        .then((elements) => {
+            assert.equal(elements[0][attributeName], attributeValue);
+        });
+}
+
 function findByRoleAndName(role: string, name: string) {
   return cy.uuvFindByRole(role, { name })
    .uuvFoundedElement()
    .should("exist");
+}
+
+export function click(role: string, name: string) {
+    cy.uuvGetContext().then(context => {
+        const parentElement = context.withinFocusedElement;
+        if (parentElement) {
+            cy.uuvFindByRole(role, { name: name }).uuvFoundedElement().click();
+            cy.wrap(new Context()).as("context");
+        } else {
+            cy.findByRole(role, { name: name, ...context }).click();
+        }
+    });
 }

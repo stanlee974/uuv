@@ -21,7 +21,7 @@ runs:
     - name: Cache node modules
       uses: actions/cache@v4
       with:
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./package-lock.json') }}
         path: |
           node_modules
           packages/assistant/node_modules
@@ -30,6 +30,8 @@ runs:
           packages/runner-commons/node_modules
           packages/runner-cypress/node_modules
           packages/runner-playwright/node_modules
+          packages/vscode-extension/node_modules
+          packages/a11y-dashboard/node_modules
     - name: Use Node.js ${{ inputs.node-version }}
       uses: actions/setup-node@v4
       with:

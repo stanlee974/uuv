@@ -38,12 +38,14 @@ Fonctionnalité: Navigation au clavier
     Et le prochain élément avec le focus clavier doit être un bouton rotatif nommé "Latitude"
     Et le prochain élément avec le focus clavier doit être un bouton rotatif nommé "Longitude"
     Et le prochain élément avec le focus clavier doit être une boîte à texte nommée "Description"
+    Et le prochain élément avec le focus clavier doit être un bouton radio nommé "Small (under 150000)"
+    Et le prochain élément avec le focus clavier doit être une case à cocher nommée "Allow automatic update"
     Et le prochain élément avec le focus clavier doit être un bouton nommé "Back to town list"
     Et le prochain élément avec le focus clavier doit être un bouton nommé "Submit new town form"
 
   Scénario: Fill new town form with keyboard
     Etant donné que je visite l'Url "https://e2e-test-quest.github.io/weather-app/?isStarted=true"
-     Et je simule une requête GET sur l'url "https://e2e-test-quest.github.io/weather-app/assets/data/mock.json" nommée "mock-new-town" avec le fichier suivant mock-new-town.json
+     Et je simule une requête GET sur l'url "https://e2e-test-quest.github.io/weather-app/data/mock.json" nommée "mock-new-town" avec le fichier suivant mock-new-town.json
      Et je simule une requête POST sur l'url "https://e2e-test-quest.github.io/weather-app/api" nommée "mock-post-new-town" avec le contenu suivant "Success"
 
     Quand je clique sur le bouton nommé "Add new town"
@@ -62,6 +64,9 @@ Fonctionnalité: Navigation au clavier
 
      Et le prochain élément avec le focus clavier doit être une boîte à texte nommée "Description"
      Et je saisie les mots "Simple Description"
+
+     Et je vais au prochain élément au clavier
+     Et je vais au prochain élément au clavier
 
      Et le prochain élément avec le focus clavier doit être un bouton nommé "Back to town list"
      Et le prochain élément avec le focus clavier doit être un bouton nommé "Submit new town form"

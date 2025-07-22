@@ -2,8 +2,9 @@ import chalk from "chalk";
 import figlet from "figlet";
 import minimist from "minimist";
 import path from "path";
-import { UUVCliOptions } from "./options";
+import { UUV_TARGET_COMMAND, UUVCliOptions } from "./options";
 import { isEmpty } from "lodash";
+import cp from "child_process";
 
 export class UUVCliHelper {
     /**
@@ -43,8 +44,8 @@ export class UUVCliHelper {
         }
     }
 
-    private static getTargetCommand(argv) {
-        return argv._[0];
+    private static getTargetCommand(argv): UUV_TARGET_COMMAND {
+        return UUV_TARGET_COMMAND[(argv._[0] ).toUpperCase()];
     }
 
     static extractArgs(projectDir: string, defaultBrowser): Partial<UUVCliOptions> {
@@ -54,9 +55,15 @@ export class UUVCliHelper {
         const targetTestFile = argv.targetTestFile ? argv.targetTestFile : null;
 
         const reportDir = path.join(projectDir, "reports");
+        // eslint-disable-next-line dot-notation
+        process.env["ENABLE_TEAMCITY_LOGGING"] = env.enableTeamcityLogging;
+        // eslint-disable-next-line dot-notation
+        process.env["ENABLE_VSCODE_LISTENER"] = env.enableVsCodeListener;
+
         return {
             // eslint-disable-next-line dot-notation
             baseUrl: process.env["UUV_BASE_URL"],
+            projectDir: process.cwd(),
             browser,
             extraArgs: env,
             targetTestFile,
@@ -65,6 +72,7 @@ export class UUVCliHelper {
                 outputDir: reportDir,
                 a11y: {
                     enabled: argv.generateA11yReport,
+                    relativePath: path.join("reports", "a11y-report.json"),
                     outputFile: path.join(process.cwd(), reportDir, "a11y-report.json")
                 },
                 html: {
@@ -84,6 +92,7 @@ export class UUVCliHelper {
         if (options.baseUrl) {
             console.debug(`  -> baseUrl: ${options.baseUrl}`);
         }
+        console.debug(`  -> projectDir: ${options.projectDir}`);
         console.debug(`  -> browser: ${options.browser}`);
         console.debug(`  -> report: ${JSON.stringify(options.report)}`);
         console.debug(`  -> env: ${JSON.stringify(options.extraArgs)}`);
@@ -91,5 +100,13 @@ export class UUVCliHelper {
             console.debug(`  -> targetTestFile: ${options.targetTestFile}`);
         }
         console.debug("\n");
+    }
+
+    static startIpcServer () {
+        return cp.fork(path.join(__dirname, "start-ipc-server"));
+    }
+
+    static stopIpcServer (ipcServerProcess: cp.ChildProcess) {
+        return ipcServerProcess.kill();
     }
 }

@@ -1,7 +1,6 @@
 /**
  * Software Name : UUV
  *
- * SPDX-FileCopyrightText: Copyright (c) Orange SA
  * SPDX-License-Identifier: MIT
  *
  * This software is distributed under the MIT License,
@@ -34,6 +33,7 @@ export class UuvAssistant {
             `var translator = ${translatorFn.toString()}; console.log('translator'); console.log(translator);` :
             "var translator = null;";
 
+        console.log(`${translatorDeclaration} - ${__dirname}${conf.unifiedFile}`);
         await browserContext.addInitScript({
             content: `${translatorDeclaration}`
         });

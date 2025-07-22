@@ -1,15 +1,15 @@
 {
   "name": "@uuv/runner-commons",
-  "version": "2.16.0",
+  "version": "2.57.0",
   "type": "commonjs",
   "author": "Louis Fredice NJAKO MOLOM (https://github.com/luifr10) & Stanley SERVICAL (https://github.com/stanlee974)",
   "description": "A common lib for uuv",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Orange-OpenSource/uuv"
+    "url": "https://github.com/e2e-test-quest/uuv"
   },
-  "homepage": "https://orange-opensource.github.io/uuv/",
+  "homepage": "https://e2e-test-quest.github.io/uuv/",
   "keywords": [
     "uuv",
     "e2e",
@@ -36,10 +36,7 @@
     "unit-tests": "jest --coverage"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "5.62.0",
-    "@typescript-eslint/parser": "5.62.0",
-    "eslint": "8.57.0",
-    "jest": "29.7.0"
+    "xml2js": "^0.6.2"
   },
   "files": [
     "dist/index.d.ts",
@@ -66,12 +63,23 @@
       "import": "./dist/assets/i18n/web/en/index.js",
       "require": "./dist/assets/i18n/web/en/index.js",
       "types": "./dist/assets/i18n/web/en/index.d.ts"
+    },
+    "./runner/event": {
+      "import": "./dist/runner/event/index.js",
+      "require": "./dist/runner/event/index.js",
+      "types": "./dist/runner/event/index.d.ts"
+    },
+    "./runner/utils": {
+      "import": "./dist/runner/utils.js",
+      "require": "./dist/runner/utils.js",
+      "types": "./dist/runner/utils.d.ts"
     }
   },
   "dependencies": {
     "chalk": "^4.1.2",
-    "figlet": "1.7.0",
+    "figlet": "1.8.1",
     "lodash": "^4.17.21",
-    "minimist": "1.2.8"
+    "minimist": "1.2.8",
+    "node-ipc": "^12.0.0"
   }
 }

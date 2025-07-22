@@ -1,7 +1,7 @@
 <p align="center">  
-<a href="https://orange-opensource.github.io/uuv/">  
+<a href="https://e2e-test-quest.github.io/uuv/">  
 <picture>  
-<img alt="UUV Logo" src="https://orange-opensource.github.io/uuv/img/uuv.png">  
+<img alt="UUV Logo" src="https://e2e-test-quest.github.io/uuv/img/uuv.png">  
 </picture>  
 </a>  
 </p>  
@@ -17,11 +17,11 @@ Make test writing fast, understandable by any human understanding English or Fre
 
 ## Benefits
 - If used correctly, integrates accessibility from the development stage
-- A living documentation is possible because we propose an unified language for developers and non-developers with a [rich dictionary](https://orange-opensource.github.io/uuv/docs/category/step-definition) of ready-to-use sentences
-- [@uuv/assistant](https://orange-opensource.github.io/uuv/docs/tools/uuv-assistant) that facilitates the writing of tests by suggesting the most accessible sentences
-- [JetBrains Plugin](https://orange-opensource.github.io/uuv/docs/tools/uuv-jetbrains-plugin) that helps you to write and execute your UUV E2E tests from JetBrains IDEs
+- A living documentation is possible because we propose an unified language for developers and non-developers with a [rich dictionary](https://e2e-test-quest.github.io/uuv/docs/category/step-definition) of ready-to-use sentences
+- [@uuv/assistant](https://e2e-test-quest.github.io/uuv/docs/tools/uuv-assistant) that facilitates the writing of tests by suggesting the most accessible sentences
+- [JetBrains Plugin](https://e2e-test-quest.github.io/uuv/docs/tools/uuv-jetbrains-plugin) that helps you to write and execute your UUV E2E tests from JetBrains IDEs
 - Integrates several runtime engines: Cypress / Playwright
-- User friendly and standardized execution report([example](https://e2e-test-quest.github.io/kata-e2e-uuv/5-go-further/))
+- User friendly and standardized execution report([example](https://e2e-test-quest.github.io/kata-e2e-uuv/06-go-further/))
   ### <u>Comparison</u>
 | Criteria | Cypress | Playwright | Testing library | UUV |  
 |:-: |:-: |:-: |:-: |:-: |  
@@ -46,7 +46,7 @@ we see that the sentence proposed by **UUV is the most understandable** of all
 | UUV | Then I should see a title named "Result"|
 
 ## Documentation
-<a href="https://orange-opensource.github.io/uuv/"><img src="https://img.shields.io/badge/documentation-black?&style=for-the-badge&logo=github&logoColor=white" alt="documentation"/></a>
+<a href="https://e2e-test-quest.github.io/uuv/"><img src="https://img.shields.io/badge/documentation-black?&style=for-the-badge&logo=github&logoColor=white" alt="documentation"/></a>
 
 ## Libraries
 <a href="https://www.npmjs.com/package/@uuv/a11y"><img src="https://img.shields.io/badge/@uuv/a11y-uuv library to perform a11y checks-brown?logo=npm" alt="UUV a11y npm library"/></a>  
@@ -69,7 +69,7 @@ The `End to End test` is a technique used to verify if an application (web,
 mobile...) behaves as expected, from start to finish. It consists in verifying that the end user can complete the main usage scenarios of the application.
 
 Unlike `unit test` which only aims to verifying the behavior of a function, or  
-the `integration test` which consists in making several modules of the application interact with each other in order to see their good cooperation, the `End to End test` allows to check from a browser (for example for web applications), the `End to End test` allows to check from a browser (for example for web applications) the behavior of your application according to a set of use cases.
+the `integration test` which consists in making several modules of the application interact with each other in order to see their good cooperation, the `End to End test` allows to check from a browser (for example for web applications) the behavior of your application according to a set of use cases.
 
 > During the `E2E test`, the validations consist most of the time in checking the elements returned to the user via the web browser ([DOM](https://developer.mozilla.org/fr/docs/Web/API/Document_Object_Model))
 
@@ -87,14 +87,38 @@ To answer the above issues and many others, our solution is to set up a coherent
 ![Ecosystème UUV](./packages/docs/static/img/docs/ecosystem-uuv.png)
 
 
-
 ## License
 
-[<a href="https://github.com/Orange-OpenSource/uuv/blob/main/LICENSE">  
+[<a href="https://github.com/e2e-test-quest/uuv/blob/main/LICENSE">  
 <img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT license"/>  
 </a>](https://spdx.org/licenses/MIT.html)
 
-This project is licensed under the terms of the [MIT license](https://github.com/Orange-OpenSource/uuv/blob/main/LICENSE).
+This project is licensed under the terms of the [MIT license](https://github.com/e2e-test-quest/uuv/blob/main/LICENSE).
+
+## Sponsorship
+We thank the following parties for sponsoring this project:
+
+<table>
+  <tr>
+    <td align="center" width="200px">
+      <a href="https://www.jetbrains.com/">
+        <img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jetbrains.png" alt="JetBrains logo.">
+      </a>
+      <br>
+      <strong>JetBrains</strong>
+      <br>
+      Providing free open-source licenses for IntelliJ.
+    </td>
+    <td align="center" width="200px">
+      <!-- Placeholder for future sponsor -->
+    </td>
+    <td align="center" width="200px">
+      <!-- Placeholder for future sponsor -->
+    </td>
+  </tr>
+</table>
+
+Interested in supporting UUV ? We welcome sponsorships of all sizes! Your support helps us maintain and improve this open-source project. Please get in touch with us via GitHub or Discord to discuss sponsorship opportunities.
 
 ## Authors
 

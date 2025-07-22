@@ -1,7 +1,6 @@
 /**
  * Software Name : UUV
  *
- * SPDX-FileCopyrightText: Copyright (c) Orange SA
  * SPDX-License-Identifier: MIT
  *
  * This software is distributed under the MIT License,
@@ -14,24 +13,16 @@
 
 import { UUVCliOptions, UUVCliRunner } from "@uuv/runner-commons";
 import fs from "fs";
-import { generateTestFiles } from "../cucumber/preprocessor/gen";
-import { GherkinDocument } from "@cucumber/messages/dist/esm/src";
 import chalk from "chalk";
 import { GeneratedReportType } from "../reporter/uuv-playwright-reporter-helper";
 import path from "path";
 import cp, { execSync } from "child_process";
 import _ from "lodash";
 
-export interface UUVPlaywrightCucumberMapItem {
-    originalFile: string;
-    generatedFile: string;
-}
-
-export const UUVPlaywrightCucumberMapFile = ".uuv-playwright-cucumber-map.json";
-
 export class UUVCliPlaywrightRunner implements UUVCliRunner {
     name = "Playwright";
-    defaultBrowser = "chromium";
+    defaultBrowser = "chrome";
+    watchProcess?: cp.ChildProcess | null;
 
     constructor(public projectDir, private tempDir) {}
 
@@ -43,7 +34,13 @@ export class UUVCliPlaywrightRunner implements UUVCliRunner {
     }
 
     async prepare(options: Partial<UUVCliOptions>) {
-        await executePreprocessor(this.tempDir, options.extraArgs.TAGS);
+        try {
+            console.log("running preprocessor...");
+            this.executeSystemCommand(`npx bddgen -c ${this.projectDir}/playwright.config.ts`);
+            console.log("preprocessor executed\n");
+        } catch (e) {
+            console.warn(chalk.redBright("An error occured during preprocessor, please be sure to use existing step definitions"));
+        }
         this.setEnvironmentVariables(options);
     }
 
@@ -67,7 +64,20 @@ export class UUVCliPlaywrightRunner implements UUVCliRunner {
     }
 
     executeOpenCommand(options: Partial<UUVCliOptions>) {
-        cp.fork(path.join(__dirname, "watch-test-files"), [this.tempDir, this.projectDir]);
+        this.watchProcess = cp.fork(path.join(__dirname, "watch-test-files"), [this.tempDir, this.projectDir]);
+        process.on("exit", () => this.cleanup(this.watchProcess));
+        process.on("SIGINT", () => {
+            this.cleanup(this.watchProcess);
+            process.exit();
+        });
+        process.on("SIGTERM", () => {
+            this.cleanup(this.watchProcess);
+            process.exit();
+        });
+        process.on("uncaughtException", (err) => {
+            this.cleanup(this.watchProcess);
+            throw err;
+        });
         this.runPlaywright(options);
     }
 
@@ -76,8 +86,9 @@ export class UUVCliPlaywrightRunner implements UUVCliRunner {
             return "";
         }
         return `${targetTestFile
-            .replaceAll("uuv/e2e/", ".uuv-features-gen/uuv/e2e/")
-            .replaceAll(".feature", ".feature.spec.js")}`;
+            .replaceAll("uuv/e2e/", ".uuv-features-gen/")
+            .replaceAll("e2e/", ".features-gen/")
+            .replaceAll(/\.feature$/g, ".feature.spec.js")}`;
     }
 
     private runPlaywright(options: Partial<UUVCliOptions>) {
@@ -88,7 +99,7 @@ export class UUVCliPlaywrightRunner implements UUVCliRunner {
             if (options.report?.junit.enabled) {
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
-                process.env.PLAYWRIGHT_JUNIT_OUTPUT_NAME = options.report?.junit.outputFile;
+                process.env.PLAYWRIGHT_JUNIT_OUTPUT_FILE = options.report?.junit.outputFile;
                 reporter = `${reporter},junit`;
             }
 
@@ -100,55 +111,53 @@ export class UUVCliPlaywrightRunner implements UUVCliRunner {
         }
     }
 
-    private executeSystemCommand(command: string) {
-        console.log(chalk.gray(`Running command: ${command}`));
-        execSync(command, { stdio: "inherit" });
-    }
-
     private buildCommand(options: Partial<UUVCliOptions>, configFile: string, reporter: string): string {
         return _.trimEnd(
             [
                 "npx",
                 "playwright",
                 "test",
-                `--project=${options.browser}`,
+                `--project="${options.browser}"`,
                 "-c",
                 configFile,
                 _.trimStart([
                     options.command === "open" ? "--ui" : "",
                     reporter].join(" ")
                 ),
-                this.getTargetTestFileForPlaywright(options.targetTestFile)
+                _.trimStart([
+                    this.getTargetTestFileForPlaywright(options.targetTestFile),
+                    options.extraArgs.TAGS ? `--grep ${options.extraArgs.TAGS}` : ""
+                ].join(" "))
             ].join(" ")
         );
     }
+
+    private executeSystemCommand(command: string) {
+        executeSystemCommandHelper(command);
+    }
+
+    private cleanup(watchProcess?: cp.ChildProcess | null) {
+        if (watchProcess) {
+            console.log("Stopping file watcher...");
+            watchProcess.kill();
+            console.log("File watcher stopped");
+        }
+    };
 }
 
-export async function executePreprocessor(tempDir: string, tags: string) {
+function executeSystemCommandHelper(command: string) {
+    console.log(chalk.gray(`Running command: ${command}`));
+    execSync(command, { stdio: "inherit" });
+}
+
+export function executePreprocessor(projectDir: string): boolean {
     console.log("running preprocessor...");
-    await bddGen(tempDir, tags);
-    console.log("preprocessor executed\n");
-}
-
-async function bddGen(tempDir: string, tags: string) {
     try {
-        const mapOfFile = await generateTestFiles({
-            outputDir: tempDir,
-            tags
-        });
-        const content: UUVPlaywrightCucumberMapItem[] = [];
-        mapOfFile.forEach((value: GherkinDocument, key: string) => {
-            if (value.uri) {
-                content.push({
-                    originalFile: value.uri,
-                    generatedFile: key
-                });
-            }
-        });
-        fs.writeFileSync(`${tempDir}/${UUVPlaywrightCucumberMapFile}`, JSON.stringify(content, null, 4), { encoding: "utf8" });
-    } catch (err) {
-        console.error(chalk.red("Something went wrong..."));
-        console.dir(err);
-        process.exit(2);
+        executeSystemCommandHelper(`npx bddgen -c ${projectDir}/playwright.config.ts`);
+        console.log("preprocessor executed\n");
+        return true;
+    } catch (e) {
+        console.warn(chalk.redBright("An error occured during preprocessor, please be sure to use existing step definitions"));
+        return false;
     }
 }

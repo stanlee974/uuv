@@ -1,7 +1,6 @@
 /**
  * Software Name : UUV
  *
- * SPDX-FileCopyrightText: Copyright (c) Orange SA
  * SPDX-License-Identifier: MIT
  *
  * This software is distributed under the MIT License,
@@ -247,10 +246,14 @@ export function runGenerateDoc(destDir: string) {
         switch (wordingsConf.section) {
             case "contains" :
                 return role.shouldGenerateContainsSentence;
+            case "click" :
+                return role.shouldGenerateClickSentence;
             case "type" :
                 return role.shouldGenerateTypeSentence;
             case "keyboard" :
                 return role.shouldGenerateKeyboardSentence;
+            case "checkable" :
+                return role.shouldGenerateCheckedSentence;
             default :
                 return true;
         }

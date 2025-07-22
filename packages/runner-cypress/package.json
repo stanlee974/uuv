@@ -1,14 +1,14 @@
 {
   "name": "@uuv/cypress",
-  "version": "2.21.0",
+  "version": "2.63.0",
   "type": "commonjs",
   "author": "Louis Fredice NJAKO MOLOM (https://github.com/luifr10) & Stanley SERVICAL (https://github.com/stanlee974)",
   "description": "A solution to facilitate the writing and execution of E2E tests understandable by any human being using cucumber(BDD) and cypress",
   "license": "MIT",
-  "homepage": "https://orange-opensource.github.io/uuv/",
+  "homepage": "https://e2e-test-quest.github.io/uuv/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Orange-OpenSource/uuv"
+    "url": "https://github.com/e2e-test-quest/uuv"
   },
   "bin": {
     "uuv": "bin/uuv"
@@ -36,30 +36,32 @@
     "generate:step-definitions": "ts-node generate-step-definitions.ts",
     "package": "npm pack --pack-destination=\"../../dist/packages\"",
     "postinstall": "node postinstall.js",
-    "unit-tests": "jest --runInBand --coverage --config=./jest.config.ts",
-    "e2e-test:run": "node test.js e2e",
-    "e2e-test:open": "node test.js open --",
-    "test": "npm run unit-test && npm run e2e-test:run",
-    "lint": "eslint -c .eslintrc.json"
+    "unit-tests": "jest --runInBand --coverage --config=./jest.config.ts --testPathIgnorePatterns=src/tests/report",
+    "verify-report": "jest --runInBand --coverage --config=./jest.config.ts --testPathPattern=src/tests/report",
+    "e2e-test:run": "ts-node test.ts e2e",
+    "e2e-test:open": "ts-node test.ts open",
+    "test": "npm run unit-tests && npm run e2e-test:run",
+    "lint": "eslint -c .eslintrc.js"
   },
   "dependencies": {
-    "@badeball/cypress-cucumber-preprocessor": "20.0.5",
-    "@cypress/webpack-preprocessor": "6.0.1",
-    "@testing-library/cypress": "10.0.1",
-    "@uuv/a11y": "1.0.0-beta.28",
-    "@uuv/runner-commons": "2.16.0",
-    "axe-core": "4.9.1",
+    "@badeball/cypress-cucumber-preprocessor": "22.0.1",
+    "@cypress/webpack-preprocessor": "6.0.4",
+    "@testing-library/cypress": "10.0.3",
+    "@uuv/a11y": "1.0.0-beta.73",
+    "@uuv/runner-commons": "2.57.0",
+    "axe-core": "4.10.3",
     "chai-subset": "^1.6.0",
-    "cypress": "13.10.0",
-    "cypress-axe": "1.5.0",
+    "cypress": "14.4.0",
+    "cypress-axe": "1.6.0",
     "cypress-real-events": "^1.10.0",
     "is-admin": "4.0.0",
     "junit-report-merger": "^7.0.0",
-    "multiple-cucumber-html-reporter": "3.6.2",
+    "lodash": "^4.17.21",
+    "multiple-cucumber-html-reporter": "3.9.0",
     "path-browserify": "^1.0.1",
     "ts-node": "10.9.2",
-    "typescript": "5.4.5",
-    "webpack": "5.90.3"
+    "typescript": "5.8.3",
+    "webpack": "5.99.6"
   },
   "types": "./dist/index.d.ts",
   "main": "./dist/index.js",
@@ -102,8 +104,8 @@
     "@types/node": "20.12.12",
     "chalk": "^4.1.2",
     "cross-env": "7.0.3",
-    "eslint-plugin-cypress": "2.15.2",
-    "ts-loader": "9.4.2",
+    "eslint-plugin-cypress": "4.1.0",
+    "ts-loader": "9.5.2",
     "tsconfig-paths": "4.2.0"
   }
 }

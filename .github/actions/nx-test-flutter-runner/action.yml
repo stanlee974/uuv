@@ -1,0 +1,30 @@
+name: Run tests for flutter runner
+description: Action for run flutter test for runner uuv_flutter
+inputs:
+  node-version:
+    required: true
+    description: Nodejs version
+  runner-name:
+    required: true
+    description: Targeted runner
+  generate-test:
+    required: false
+    description: Targeted runner
+    default: "false"
+runs:
+  using: "composite"
+  steps:
+    - uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.16.9'
+        channel: 'stable'
+    - name: Get dependencies
+      run: cd packages/${{ inputs.runner-name }} && dart pub get
+      shell: bash
+    - if: ${{ inputs.generate-test == 'true' }}
+      name: Generate test files
+      shell: bash
+      run: cd packages/${{ inputs.runner-name }} && dart run build_runner build
+    - name: Execute tests
+      run: cd packages/${{ inputs.runner-name }} && flutter test
+      shell: bash

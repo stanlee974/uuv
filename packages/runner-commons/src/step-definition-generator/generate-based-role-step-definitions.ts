@@ -1,7 +1,6 @@
 /**
  * Software Name : UUV
  *
- * SPDX-FileCopyrightText: Copyright (c) Orange SA
  * SPDX-License-Identifier: MIT
  *
  * This software is distributed under the MIT License,
@@ -82,6 +81,11 @@ export class BasedRoleStepDefinition extends GenerateFileProcessing {
             }
 
             // Exclude Role based Type sentence if specified
+            if (!role.shouldGenerateClickSentence) {
+                dataUpdated = dataUpdated.replace(/\/\/ Begin of Click Section[\s\S]*?\/\/ End of Click Section/, "");
+            }
+
+            // Exclude Role based Type sentence if specified
             if (!role.shouldGenerateTypeSentence) {
                 dataUpdated = dataUpdated.replace(/\/\/ Begin of Type Section[\s\S]*?\/\/ End of Type Section/, "");
             }
@@ -89,6 +93,11 @@ export class BasedRoleStepDefinition extends GenerateFileProcessing {
             // Exclude Role based Keyboard sentence if specified
             if (!role.shouldGenerateKeyboardSentence) {
                 dataUpdated = dataUpdated.replace(/\/\/ Begin of Keyboard Section[\s\S]*?\/\/ End of Keyboard Section/, "");
+            }
+
+            // Exclude Role based Checked sentence if specified
+            if (!role.shouldGenerateCheckedSentence) {
+                dataUpdated = dataUpdated.replace(/\/\/ Begin of Checkable Section[\s\S]*?\/\/ End of Checkable Section/, "");
             }
 
             const generatedFilename = generatedFile.replace("$roleId", role.id);

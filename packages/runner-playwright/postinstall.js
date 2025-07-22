@@ -1,7 +1,6 @@
 /**
  * Software Name : UUV
  *
- * SPDX-FileCopyrightText: Copyright (c) Orange SA
  * SPDX-License-Identifier: MIT
  *
  * This software is distributed under the MIT License,
@@ -41,7 +40,6 @@ function copyFileIfMissing(fileToCopy, originFolder, destFolder) {
 function main () {
     if (fs.existsSync(`${PROJECT_DIR}/package.json`) && !fs.existsSync(`${PROJECT_DIR}/.no-postinstall`)) {
         copyFileIfMissing("playwright.config.ts", `${TARGET_CONFIG_DIR}`, `${PROJECT_DIR}/uuv`);
-        copyFileIfMissing("cucumber.cjs", `${TARGET_CONFIG_DIR}`, `${PROJECT_DIR}`);
         execSync("npx playwright install", { stdio: "inherit" });
     } else {
         console.log("postinstall - Nothing to copy");

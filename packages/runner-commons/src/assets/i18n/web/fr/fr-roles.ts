@@ -17,9 +17,11 @@ class FrAccessibleRole extends AccessibleRole {
         override name: string,
         private definiteArticle: FR_DEFINITE_ARTICLE,
         private indefiniteArticle: FR_INDEFINITE_ARTICLE,
-        override shouldGenerateTypeSentence: boolean = true,
-        override shouldGenerateContainsSentence: boolean = true,
-        override shouldGenerateKeyboardSentence: boolean = false
+        override shouldGenerateClickSentence = false,
+        override shouldGenerateTypeSentence = true,
+        override shouldGenerateContainsSentence = true,
+        override shouldGenerateKeyboardSentence = false,
+        override shouldGenerateCheckedSentence = false
     ) {
         super();
     }
@@ -85,6 +87,7 @@ export const FR_ROLES: AccessibleRole[] = [
         name: "bouton",
         definiteArticle: FR_DEFINITE_ARTICLE.LE,
         indefiniteArticle: FR_INDEFINITE_ARTICLE.UN,
+        shouldGenerateClickSentence: true,
         shouldGenerateKeyboardSentence: true
     },
     {
@@ -98,7 +101,9 @@ export const FR_ROLES: AccessibleRole[] = [
         name: "case à cocher",
         definiteArticle: FR_DEFINITE_ARTICLE.LA,
         indefiniteArticle: FR_INDEFINITE_ARTICLE.UNE,
-        shouldGenerateKeyboardSentence: true
+        shouldGenerateClickSentence: true,
+        shouldGenerateKeyboardSentence: true,
+        shouldGenerateCheckedSentence: true
     },
     {
         id: "columnheader",
@@ -111,7 +116,8 @@ export const FR_ROLES: AccessibleRole[] = [
         name: "boîte à choix",
         definiteArticle: FR_DEFINITE_ARTICLE.LA,
         indefiniteArticle: FR_INDEFINITE_ARTICLE.UNE,
-        shouldGenerateKeyboardSentence: true
+        shouldGenerateKeyboardSentence: true,
+        shouldGenerateClickSentence: true
     },
     {
         id: "command",
@@ -232,6 +238,7 @@ export const FR_ROLES: AccessibleRole[] = [
         name: "lien",
         definiteArticle: FR_DEFINITE_ARTICLE.LE,
         indefiniteArticle: FR_INDEFINITE_ARTICLE.UN,
+        shouldGenerateClickSentence: true,
         shouldGenerateKeyboardSentence: true
     },
     {
@@ -253,7 +260,9 @@ export const FR_ROLES: AccessibleRole[] = [
         id: "listitem",
         name: "élément de liste",
         definiteArticle: FR_DEFINITE_ARTICLE.L,
-        indefiniteArticle: FR_INDEFINITE_ARTICLE.UN
+        indefiniteArticle: FR_INDEFINITE_ARTICLE.UN,
+        shouldGenerateKeyboardSentence: true,
+        shouldGenerateClickSentence: true
     },
     {
         id: "log",
@@ -310,7 +319,8 @@ export const FR_ROLES: AccessibleRole[] = [
         name: "menu d'élement de bouton radio",
         definiteArticle: FR_DEFINITE_ARTICLE.LE,
         indefiniteArticle: FR_INDEFINITE_ARTICLE.UN,
-        shouldGenerateKeyboardSentence: true
+        shouldGenerateKeyboardSentence: true,
+        shouldGenerateCheckedSentence: true
     },
     {
         id: "meter",
@@ -340,7 +350,9 @@ export const FR_ROLES: AccessibleRole[] = [
         id: "option",
         name: "option",
         definiteArticle: FR_DEFINITE_ARTICLE.L,
-        indefiniteArticle: FR_INDEFINITE_ARTICLE.UNE
+        indefiniteArticle: FR_INDEFINITE_ARTICLE.UNE,
+        shouldGenerateKeyboardSentence: true,
+        shouldGenerateClickSentence: true
     },
     {
         id: "presentation",
@@ -359,7 +371,9 @@ export const FR_ROLES: AccessibleRole[] = [
         name: "bouton radio",
         definiteArticle: FR_DEFINITE_ARTICLE.LE,
         indefiniteArticle: FR_INDEFINITE_ARTICLE.UN,
-        shouldGenerateKeyboardSentence: true
+        shouldGenerateClickSentence: true,
+        shouldGenerateKeyboardSentence: true,
+        shouldGenerateCheckedSentence: true
     },
     {
         id: "radiogroup",
@@ -498,7 +512,7 @@ export const FR_ROLES: AccessibleRole[] = [
         id: "table",
         name: "tableau",
         definiteArticle: FR_DEFINITE_ARTICLE.LE,
-        indefiniteArticle: FR_INDEFINITE_ARTICLE.UNE
+        indefiniteArticle: FR_INDEFINITE_ARTICLE.UN
     },
     {
         id: "tablist",
@@ -579,7 +593,9 @@ export const FR_ROLES: AccessibleRole[] = [
     role.name,
     role.definiteArticle,
     role.indefiniteArticle,
+    role.shouldGenerateClickSentence,
     role.shouldGenerateContainsSentence,
     role.shouldGenerateContainsSentence,
-    role.shouldGenerateKeyboardSentence
+    role.shouldGenerateKeyboardSentence,
+    role.shouldGenerateCheckedSentence
 ));

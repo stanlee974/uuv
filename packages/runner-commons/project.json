@@ -21,7 +21,7 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": [
         "{options.outputFile}"
       ],
@@ -134,6 +134,22 @@
                   "results": [
                     {
                       "file": "packages/docs/package.json",
+                      "hasChanged": true,
+                      "numMatches": 1,
+                      "numReplacements": 1
+                    }
+                  ],
+                  "countMatches": true
+                },
+                {
+                  "files": [
+                    "packages/vscode-extension/package.json"
+                  ],
+                  "from": "\"@uuv/runner-commons\": \".*\"",
+                  "to": "\"@uuv/runner-commons\": \"${nextRelease.version}\"",
+                  "results": [
+                    {
+                      "file": "packages/vscode-extension/package.json",
                       "hasChanged": true,
                       "numMatches": 1,
                       "numReplacements": 1

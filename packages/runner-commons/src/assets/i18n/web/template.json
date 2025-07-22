@@ -6,7 +6,12 @@
       "withRole": "",
       "withContext": ""
     },
-    "type": "",
+    "type": {
+      "withContext": ""
+    },
+    "enter": {
+      "withContext": ""
+    },
     "keyboard": {
       "multiplePress": "",
       "press": "",
@@ -41,16 +46,23 @@
     }
   },
   "then": {
+    "page": {
+      "withTitle": ""
+    },
     "element": {
       "withContent": "",
       "withRoleAndName": "",
       "withTestId": "",
       "withRoleAndNameAndContent": "",
+      "withRoleAndNameAndChecked": "",
+      "withRoleAndNameAndUnchecked": "",
       "withRoleAndNameFocused": "",
       "nextWithRoleAndNameFocused": "",
       "previousWithRoleAndNameFocused": "",
       "withRoleAndNameAndContentDisabled": "",
       "withRoleAndNameAndContentEnabled": "",
+      "withRoleAndNameDisabled": "",
+      "withRoleAndNameEnabled": "",
       "withAriaLabel": "",
       "withAriaLabelAndContent": "",
       "withSelector": "",
@@ -71,6 +83,18 @@
     "list": {
       "withNameAndContent": ""
     },
+    "grid": {
+      "withNameAndContent": ""
+    },
+    "treegrid": {
+      "withNameAndContent": ""
+    },
+    "table": {
+      "withNameAndContent": ""
+    },
+    "title": {
+      "withNameAndLevel": ""
+    },
     "attributes": {
       "withValues": ""
     },
@@ -85,7 +109,8 @@
       },
       "rgaa": {
         "default": "",
-        "defaultWithResult": ""
+        "defaultWithResult": "",
+        "defaultWithResultContaining": ""
       }
     }
   }

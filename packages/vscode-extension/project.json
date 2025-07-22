@@ -1,0 +1,57 @@
+{
+  "name": "vscode-extension",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/vscode-extension/src",
+  "root": "packages/vscode-extension",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "rootDir": "packages/vscode-extension/src",
+        "outputPath": "packages/vscode-extension/out/",
+        "tsConfig": "packages/vscode-extension/tsconfig.json",
+        "main": "packages/vscode-extension/src/extension.ts",
+        "assets": [
+          "packages/vscode-extension/README.md"
+        ]
+      },
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "packages/vscode-extension/src/**/*.{ts,js,feature}"
+        ],
+        "fix": false,
+        "eslintConfig": "packages/vscode-extension/.eslintrc.js"
+      }
+    },
+    "semantic-release": {
+      "executor": "@theunderscorer/nx-semantic-release:semantic-release",
+      "options": {
+        "commitMessage": "release(vscode-extension): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
+        "plugins": [
+          [
+            "@semantic-release/npm",
+            {
+              "npmPublish": false,
+              "tarballDir": "dist/",
+              "pkgRoot": "packages/vscode-extension"
+            }
+          ]
+        ]
+      }
+    }
+  },
+  "tags": []
+}

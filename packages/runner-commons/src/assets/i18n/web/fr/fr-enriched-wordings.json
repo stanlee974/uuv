@@ -14,19 +14,19 @@
     },
     {
       "key": "key.then.element.withRoleAndNameFocused",
-      "description": "Vérifie que l'élément Html avec le [rôle accessible](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles#aria_role_types) et le [nom accessible](https://russmaxdesign.github.io/html-elements-names/) a le focus clavier",
+      "description": "Vérifie que l'élément Html avec le [rôle accessible](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles#aria_role_types) et le [nom accessible](https://russmaxdesign.github.io/html-elements-names/) a le focus clavier<br/><a target='_blank' href='https://github.com/e2e-test-quest/uuv/blob/main/example/fr-keyboard.feature'>Exemples</a>",
       "wording": "je dois voir $indefiniteArticle $roleName $namedAdjective {string} avoir le focus clavier",
       "section": "keyboard"
     },
     {
       "key": "key.then.element.nextWithRoleAndNameFocused",
-      "description": "Se déplace au prochain élément HTML atteignable avec la tabulation et vérifie que l'élément Html avec le [rôle accessible](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles#aria_role_types) et le [nom accessible](https://russmaxdesign.github.io/html-elements-names/) a le focus clavier",
+      "description": "Se déplace au prochain élément HTML atteignable avec la tabulation et vérifie que l'élément Html avec le [rôle accessible](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles#aria_role_types) et le [nom accessible](https://russmaxdesign.github.io/html-elements-names/) a le focus clavier<br/><a target='_blank' href='https://github.com/e2e-test-quest/uuv/blob/main/example/fr-keyboard.feature'>Exemples</a>",
       "wording": "le prochain élément avec le focus clavier doit être $indefiniteArticle $roleName $namedAdjective {string}",
       "section": "keyboard"
     },
     {
       "key": "key.then.element.previousWithRoleAndNameFocused",
-      "description": "Se déplace au précédent élément HTML atteignable avec la tabulation et vérifie que l'élément Html avec le [rôle accessible](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles#aria_role_types) et le [nom accessible](https://russmaxdesign.github.io/html-elements-names/) a le focus clavier",
+      "description": "Se déplace au précédent élément HTML atteignable avec la tabulation et vérifie que l'élément Html avec le [rôle accessible](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles#aria_role_types) et le [nom accessible](https://russmaxdesign.github.io/html-elements-names/) a le focus clavier<br/><a target='_blank' href='https://github.com/e2e-test-quest/uuv/blob/main/example/fr-keyboard.feature'>Exemples</a>",
       "wording": "le précédent élément avec le focus clavier doit être $indefiniteArticle $roleName $namedAdjective {string}",
       "section": "keyboard"
     },
@@ -45,20 +45,56 @@
     {
       "key": "key.then.element.withRoleAndNameAndContentDisabled",
       "description": "Vérifie l'existence d'un élément Html ayant le rôle $roleId, le [nom accessible](https://russmaxdesign.github.io/html-elements-names/), le contenu spécifiés et avec l'attribut disabled à false",
-      "wording": "je dois voir $indefiniteArticle $roleName $namedAdjective {string} et contenant {string} inactif",
+      "wording": "je dois voir $indefiniteArticle $roleName $namedAdjective {string} et contenant {string} désactivé",
       "section": "contains"
     },
     {
       "key": "key.then.element.withRoleAndNameAndContentEnabled",
       "description": "Vérifie l'existence d'un élément Html ayant le rôle $roleId, le [nom accessible](https://russmaxdesign.github.io/html-elements-names/), le contenu spécifiés et avec l'attribut disabled à true",
-      "wording": "je dois voir $indefiniteArticle $roleName $namedAdjective {string} et contenant {string} actif",
+      "wording": "je dois voir $indefiniteArticle $roleName $namedAdjective {string} et contenant {string} activé",
+      "section": "contains"
+    },
+    {
+      "key": "key.then.element.withRoleAndNameDisabled",
+      "description": "Vérifie l'existence d'un élément Html ayant le rôle $roleId, le [nom accessible](https://russmaxdesign.github.io/html-elements-names/) et avec l'attribut disabled à false",
+      "wording": "je dois voir $indefiniteArticle $roleName $namedAdjective {string} désactivé",
+      "section": "contains"
+    },
+    {
+      "key": "key.then.element.withRoleAndNameEnabled",
+      "description": "Vérifie l'existence d'un élément Html ayant le rôle $roleId, le [nom accessible](https://russmaxdesign.github.io/html-elements-names/) et avec l'attribut disabled à true",
+      "wording": "je dois voir $indefiniteArticle $roleName $namedAdjective {string} activé",
       "section": "contains"
     },
     {
       "key": "key.when.type",
-      "description": "Saisie de la phrase passée en paramètre dans le champ spécifié(utile par exemple pour remplir un champ de formulaire).",
+      "description": "Saisie de la phrase passée en paramètre dans le champ spécifié (utile par exemple pour remplir un champ de formulaire).",
       "wording": "je saisie le(s) mot(s) {string} dans $definiteArticle$roleName $namedAdjective {string}",
       "section": "type"
+    },
+    {
+      "key": "key.then.element.withRoleAndNameAndChecked",
+      "description": "Vérifie l'existence d'un élément Html ayant le rôle $roleId, le [nom accessible](https://russmaxdesign.github.io/html-elements-names/) et coché",
+      "wording": "je dois voir $indefiniteArticle $roleName $namedAdjective {string} coché(e)",
+      "section": "checkable"
+    },
+    {
+      "key": "key.then.element.withRoleAndNameAndUnchecked",
+      "description": "Vérifie l'existence d'un élément Html ayant le rôle $roleId, le [nom accessible](https://russmaxdesign.github.io/html-elements-names/) et décoché",
+      "wording": "je dois voir $indefiniteArticle $roleName $namedAdjective {string} décoché(e)",
+      "section": "checkable"
+    },
+    {
+      "key": "key.when.enter",
+      "description": "Saisie de la phrase passée en paramètre dans le champ spécifié (utile par exemple pour remplir un champ de formulaire).",
+      "wording": "j'entre la valeur {string} dans $definiteArticle$roleName $namedAdjective {string}",
+      "section": "type"
+    },
+    {
+      "key": "key.when.click",
+      "description": "Déclenche un click sur l'élément Html ayant le rôle $roleId, le [nom accessible](https://russmaxdesign.github.io/html-elements-names/)",
+      "wording": "je clique sur $definiteArticle$roleName nommé {string}",
+      "section": "click"
     }
   ]
 }

@@ -1,13 +1,25 @@
 import * as webpack from "@cypress/webpack-preprocessor";
-import { addCucumberPreprocessorPlugin, beforeRunHandler, afterRunHandler, beforeSpecHandler, afterSpecHandler } from "@badeball/cypress-cucumber-preprocessor";
+import {
+  addCucumberPreprocessorPlugin,
+  beforeRunHandler,
+  afterRunHandler,
+  beforeSpecHandler,
+  afterSpecHandler
+} from "@badeball/cypress-cucumber-preprocessor";
 import fs from "fs";
+import { UUVListenerHelper, UUVEventEmitter } from "@uuv/runner-commons/runner/event";
+import path from "path";
 
 export async function setupNodeEvents (
   on: Cypress.PluginEvents,
   config: Cypress.PluginConfigOptions
 ): Promise<Cypress.PluginConfigOptions> {
   const startedFile: string[] = [];
+
   await addCucumberPreprocessorPlugin(on, config);
+
+  await UUVListenerHelper.build();
+
   on(
     "file:preprocessor",
     webpack.default({
@@ -15,6 +27,7 @@ export async function setupNodeEvents (
         resolve: {
           extensions: [".ts", ".js"],
           fallback: {
+            child_process: false,
             fs: false,
             path: require.resolve("path-browserify")
           }
@@ -56,20 +69,23 @@ export async function setupNodeEvents (
     const generateA11yReport = config.env["uuvOptions"].report.a11y.enabled;
     clearA11yReport(a11yReportFilePath);
     if (generateA11yReport === true) {
-      initA11yReport(a11yReportFilePath);
+      await initA11yReport(a11yReportFilePath);
     }
-    logTeamCity("##teamcity[progressStart 'Running UUV Tests']");
+    UUVEventEmitter.getInstance().emitProgressStart();
   });
 
   on("after:run", async () => {
     await afterRunHandler(config);
-    logTeamCity("##teamcity[progressFinish 'Running UUV Tests']");
+    UUVEventEmitter.getInstance().emitProgressFinish();
   });
 
   on("before:spec", async (spec: any) => {
     if (!startedFile.includes(spec.absolute)) {
       await beforeSpecHandler(config, spec);
-      logTeamCity(`##teamcity[testSuiteStarted ${teamcityAddName(spec.name)} ${teamcityFlowId(spec.name)}  ${teamcityAddCustomField("locationHint", "test://" + spec.absolute)} ]`);
+      UUVEventEmitter.getInstance().emitTestSuiteStarted({
+        testSuiteName: spec.name,
+        testSuitelocation: spec.absolute
+      });
       startedFile.push(spec.absolute);
     }
   });
@@ -77,48 +93,34 @@ export async function setupNodeEvents (
   on("after:spec", async (spec: any, results: CypressCommandLine.RunResult) => {
     await afterSpecHandler(config, spec, results);
     results?.tests?.forEach(test => {
-      logTeamCity(`##teamcity[testStarted ${teamcityAddName(test.title[1])} ${teamcityFlowIdAndParentFlowId(test.title[1], spec.name)} ${teamcityAddCustomField("locationHint", "test://" + spec.absolute)} ]`);
+      UUVEventEmitter.getInstance().emitTestStarted({
+        testName: test.title[1],
+        testSuiteName: spec.name,
+        testSuitelocation: spec.absolute
+      });
       if (test.state === "passed") {
-        // eslint-disable-next-line max-len
-        logTeamCity(`##teamcity[testFinished ${teamcityAddName(test.title[1])} ${teamcityFlowIdAndParentFlowId(test.title[1], spec.name)} ${teamcityAddDuration(test)} ]`);
+        UUVEventEmitter.getInstance().emitTestFinished({
+          testName: test.title[1],
+          testSuiteName: spec.name,
+          duration: test.duration
+        });
       } else if (test.state === "failed") {
-        // eslint-disable-next-line max-len
-        logTeamCity(`##teamcity[testFailed ${teamcityAddName(test.title[1])} ${teamcityFlowIdAndParentFlowId(test.title[1], spec.name)} type='comparisonFailure' message='Test failed' ]`);
-        // eslint-disable-next-line max-len
-        logTeamCity(`##teamcity[testFinished ${teamcityAddName(test.title[1])} ${teamcityFlowIdAndParentFlowId(test.title[1], spec.name)} ${teamcityAddDuration(test)} ]`);
+        UUVEventEmitter.getInstance().emitTestFailed({
+          testName: test.title[1],
+          testSuiteName: spec.name,
+          duration: test.duration
+        });
       } else {
-        logTeamCity(`##teamcity[testIgnored ${teamcityAddName(test.title[1])} ${teamcityFlowIdAndParentFlowId(test.title[1], spec.name)} ]`);
+        UUVEventEmitter.getInstance().emitTestIgnored({
+          testName: test.title[1],
+          testSuiteName: spec.name
+        });
       }
     });
-    logTeamCity(`##teamcity[testSuiteFinished ${teamcityAddName(spec.name)} ${teamcityFlowId(spec.name)}]`);
+    UUVEventEmitter.getInstance().emitTestSuiteFinished({
+      testSuiteName: spec.name
+    });
   });
-
-  function logTeamCity(line) {
-    // eslint-disable-next-line dot-notation
-    if (config.env["enableTeamcityLogging"]) {
-      console.log(line);
-    }
-  }
-
-  function teamcityFlowId(name) {
-    return "flowId='" + name.replaceAll("'", "|'") + "'";
-  }
-
-  function teamcityFlowIdAndParentFlowId(name, parentName) {
-    return "flowId='" + name.replaceAll("'", "|'") + "' parent='" + parentName.replaceAll("'", "|'") + "'";
-  }
-
-  function teamcityAddName(name) {
-    return "name='" + name.replaceAll("'", "|'") + "'";
-  }
-
-  function teamcityAddDuration(testResult) {
-    return "duration='" + testResult.attempts[testResult.attempts.length - 1].wallClockDuration + "'";
-  }
-
-  function teamcityAddCustomField(fieldName, value) {
-    return `${fieldName}='${value}'`;
-  }
 
   function clearA11yReport(reportFilePath: string) {
     if (fs.existsSync(reportFilePath)) {
@@ -126,10 +128,16 @@ export async function setupNodeEvents (
     }
   }
 
-  function initA11yReport(reportFilePath: string) {
+  async function initA11yReport(reportFilePath: string) {
+    // eslint-disable-next-line dot-notation
+    const packageJson = await import(path.join(config.env["uuvOptions"].projectDir, "package.json"));
+
     const emptyReport = {
-      date: (new Date()).toISOString(),
-      features: []
+      app: {
+        name: packageJson.name,
+        description: packageJson.description,
+        usecases: []
+      }
     };
     fs.writeFileSync(reportFilePath, JSON.stringify(emptyReport, null, 4), { flag: "w" });
   }

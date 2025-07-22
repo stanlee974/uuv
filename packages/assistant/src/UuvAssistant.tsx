@@ -1,7 +1,7 @@
+
 /**
  * Software Name : UUV
  *
- * SPDX-FileCopyrightText: Copyright (c) Orange SA
  * SPDX-License-Identifier: MIT
  *
  * This software is distributed under the MIT License,
@@ -16,41 +16,66 @@ import React, { useEffect, useState } from "react";
 import uuvLogoJson from "./assets/uuvLogo.json";
 import mouseIcon from "./assets/mouse.json";
 import keyboardIcon from "./assets/keyboard.json";
-
-import { BaseSentence, StepCaseEnum, TranslateHelper, TranslateSentences } from "./helper/TranslateHelper";
+import formIcon from "./assets/form.json";
 import {
   Avatar,
   Button,
+  Card,
   ConfigProvider,
   Divider,
   Flex,
+  Form,
   Layout,
   Menu,
   MenuProps,
   message,
-  RadioChangeEvent,
+  Row,
   Spin,
+  Switch,
   theme,
   Tooltip,
-  Typography
+  Typography,
 } from "antd";
-import { CloseOutlined, CopyOutlined, DoubleLeftOutlined, DoubleRightOutlined } from "@ant-design/icons";
+import {
+  CheckOutlined,
+  CloseOutlined,
+  CopyOutlined,
+  DoubleLeftOutlined,
+  DoubleRightOutlined,
+  SettingOutlined,
+} from "@ant-design/icons";
 import { StyleProvider } from "@ant-design/cssinjs";
 import { CssHelper } from "./helper/CssHelper";
-import { FocusableElement, tabbable } from "tabbable";
+import { FocusableElement } from "tabbable";
 
-import CodeMirror, { EditorView, Extension, gutter } from "@uiw/react-codemirror";
+import CodeMirror, {
+  EditorView,
+  Extension,
+  gutter,
+} from "@uiw/react-codemirror";
 import { StreamLanguage } from "@codemirror/language";
 import { gherkin } from "@codemirror/legacy-modes/mode/gherkin";
 import { githubDark } from "@uiw/codemirror-theme-github";
 
-import { enSentences } from "@uuv/runner-commons/wording/web/en";
-import { KeyboardNavigationHelper } from "./helper/KeyboardNavigationHelper";
-import { buildResultingScript, buildUuvGutter } from "./helper/ResultScriptHelper";
-import { ActionEnum, AdditionalLayerEnum, KeyboardNavigationModeEnum, ResultSentence, Suggestion, VisibilityEnum } from "./Commons";
+import * as KeyboardNavigationHelper from "./helper/KeyboardNavigationHelper";
+import * as FormCompletionHelper from "./helper/FormCompletionHelper";
+import {
+  buildResultingScript,
+  buildUuvGutter,
+} from "./helper/ResultScriptHelper";
+import {
+  ActionEnum,
+  AdditionalLayerEnum,
+  KeyboardNavigationModeEnum,
+  ResultSentence,
+  VisibilityEnum,
+} from "./Commons";
+import * as LayerHelper from "./helper/LayerHelper";
+import { SelectionHelper } from "./helper/SelectionHelper";
+import { TranslateSentences } from "./translator/model";
 
 const { Sider } = Layout;
-const { Text } = Typography;
+const { Text, Title } = Typography;
 type MenuItem = Required<MenuProps>["items"][number];
 
 type UuvAssistantProps = {
@@ -72,38 +97,10 @@ function UuvAssistant(props: UuvAssistantProps) {
   const [currentKeyboardNavigation, setCurrentKeyboardNavigation] = useState<FocusableElement[]>([]);
   const [expectedKeyboardNavigation, setExpectedKeyboardNavigation] = useState<FocusableElement[]>([]);
   const [displayedKeyboardNavigation, setDisplayedKeyboardNavigation] = useState<KeyboardNavigationModeEnum>(KeyboardNavigationModeEnum.NONE);
+  const [intelligentHighlight, setIntelligentHighlight] = useState<boolean>(true);
 
-  const jsonBase: BaseSentence[] = enSentences;
-  const Inspector = require("inspector-dom");
-  const inspector = Inspector({
-    root: "body",
-    outlineStyle: "2px solid red",
-    onClick: (el: HTMLElement) => {
-      console.log("value", selectedAction);
-      translate(el, selectedAction).then((translateSentences) => {
-        setVisibility(VisibilityEnum.WITH_RESULT);
-        const data = translateSentences.sentences.map((elem, key) => {
-          return {
-            key: key as React.Key,
-            result: elem
-          } as ResultSentence;
-        });
-        setGeneratedScript(
-         buildResultingScript(
-          "Your amazing feature name",
-          `Action - ${selectedAction}`,
-          data.map(sentence => sentence.result)
-         )
-        );
-        inspector.cancel();
-        setDisplayedResult(selectedAction);
-        setSelectedAction(ActionEnum.NONE);
-        endLoading();
-      });
-    }
-  });
+  const selectionHelper = new SelectionHelper(onElementSelection, reset, intelligentHighlight);
 
-  /* eslint-disable */
   useEffect(() => {
     return () => {
       reset();
@@ -112,29 +109,40 @@ function UuvAssistant(props: UuvAssistantProps) {
 
   useEffect(() => {
     setUuvGutter(
-     buildUuvGutter()
+      buildUuvGutter()
     );
   }, [generatedScript]);
 
   useEffect(() => {
-    KeyboardNavigationHelper.removeLayerToShadowDom(props.assistantAdditionalLayersRoot, AdditionalLayerEnum.CURRENT_NAVIGATION);
-    KeyboardNavigationHelper.removeLayerToShadowDom(props.assistantAdditionalLayersRoot, AdditionalLayerEnum.EXPECTED_NAVIGATION);
+    clearAllAdditionalLayer();
     switch (selectedAction) {
       case ActionEnum.WITHIN:
       case ActionEnum.EXPECT:
       case ActionEnum.CLICK:
-        startSelect();
+        selectionHelper.startSelect(true);
+        break;
+      case ActionEnum.TYPE:
+        selectionHelper.startSelect(false);
         break;
       case ActionEnum.KEYBOARD_GLOBAL_NAVIGATION:
         setDisplayedKeyboardNavigation(KeyboardNavigationModeEnum.NONE);
-        keyboardNavigation().then(currentKeyboardFocusableElements => {
-          if (currentKeyboardFocusableElements) {
-            setDisplayedKeyboardNavigation(KeyboardNavigationModeEnum.CURRENT_NAVIGATION);
-            setVisibility(VisibilityEnum.WITH_RESULT);
-            setDisplayedResult(ActionEnum.KEYBOARD_GLOBAL_NAVIGATION);
-            setSelectedAction(ActionEnum.NONE);
-          }
+        KeyboardNavigationHelper.getKeyboardNavigation().then(keyboardNavigation => {
+          setExpectedKeyboardNavigation(keyboardNavigation.expected);
+          setCurrentKeyboardNavigation(keyboardNavigation.current);
+          setDisplayedKeyboardNavigation(KeyboardNavigationModeEnum.CURRENT_NAVIGATION);
+          setVisibility(VisibilityEnum.WITH_RESULT);
+          setDisplayedResult(ActionEnum.KEYBOARD_GLOBAL_NAVIGATION);
+          setSelectedAction(ActionEnum.NONE);
         });
+        break;
+      case ActionEnum.FORM_COMPLETION_MOUSE:
+        FormCompletionHelper.show(
+          props.assistantAdditionalLayersRoot,
+          AdditionalLayerEnum.FORM_COMPLETION,
+          [].slice.call(document.forms),
+          buildFormCompletionResultSentence,
+          reset
+        );
         break;
       case ActionEnum.NONE:
       default:
@@ -146,27 +154,64 @@ function UuvAssistant(props: UuvAssistantProps) {
     if (displayedKeyboardNavigation !== KeyboardNavigationModeEnum.NONE) {
       let keyboardNavigationElement;
       if (displayedKeyboardNavigation === KeyboardNavigationModeEnum.CURRENT_NAVIGATION) {
-        KeyboardNavigationHelper.switchKeyboardLayer(props.assistantAdditionalLayersRoot, AdditionalLayerEnum.CURRENT_NAVIGATION, currentKeyboardNavigation);
+        KeyboardNavigationHelper.switchKeyboardLayer(
+          props.assistantAdditionalLayersRoot,
+          AdditionalLayerEnum.CURRENT_NAVIGATION,
+          currentKeyboardNavigation
+        );
         keyboardNavigationElement = currentKeyboardNavigation;
       } else {
-        KeyboardNavigationHelper.switchKeyboardLayer(props.assistantAdditionalLayersRoot, AdditionalLayerEnum.EXPECTED_NAVIGATION, expectedKeyboardNavigation);
-        keyboardNavigationElement = expectedKeyboardNavigation
+        KeyboardNavigationHelper.switchKeyboardLayer(
+          props.assistantAdditionalLayersRoot,
+          AdditionalLayerEnum.EXPECTED_NAVIGATION,
+          expectedKeyboardNavigation
+        );
+        keyboardNavigationElement = expectedKeyboardNavigation;
       }
-      buildKeyboardNavigationResultSentence(keyboardNavigationElement).then(resultSentences => {
+      KeyboardNavigationHelper.buildResultSentence(keyboardNavigationElement).then(resultSentences => {
         setGeneratedScript(
-            buildResultingScript(
-                "Your amazing feature name",
-                "Keyboard Navigation",
-                resultSentences.map(sentence => sentence.result)
-            )
+          buildResultingScript(
+            "Your amazing feature name",
+            "Keyboard Navigation",
+            resultSentences.map(sentence => sentence.result)
+          )
         );
         endLoading();
       });
     }
   }, [displayedKeyboardNavigation]);
 
+  function onElementSelection(el: HTMLElement) {
+    console.debug("customTranslator", props.translator);
+    let translator;
+    if (props.translator) {
+      translator = Promise.resolve({ sentences: [props.translator(el)] } as TranslateSentences);
+    } else {
+      translator = selectionHelper.buildResultSentence(el, selectedAction as any, disabledElement !== "");
+    }
+
+    translator.then((translateSentences) => {
+      setVisibility(VisibilityEnum.WITH_RESULT);
+      const data = translateSentences.sentences.map((elem, key) => {
+        return {
+          key: key as React.Key,
+          result: elem
+        } as ResultSentence;
+      });
+      setGeneratedScript(
+        buildResultingScript(
+          "Your amazing feature name",
+          `Action - ${selectedAction}`,
+          data.map(sentence => sentence.result)
+        )
+      );
+      setDisplayedResult(selectedAction);
+      setSelectedAction(ActionEnum.NONE);
+      endLoading();
+    });
+  }
+
   function reset() {
-    inspector.cancel();
     setDisplayedResult(selectedAction);
     setSelectedAction(ActionEnum.NONE);
     setDisabledElement("");
@@ -184,100 +229,25 @@ function UuvAssistant(props: UuvAssistantProps) {
     }
   };
 
-  function startSelect() {
-    const removeDisableHandler = clickOnDisabledElementFeature();
-    document.addEventListener("mouseover", removeDisableHandler);
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        reset();
-      }
-    });
-    inspector.enable();
-  }
+  const switchRefineHighlight = () => {
+    clearAllAdditionalLayer();
+    setIntelligentHighlight(!intelligentHighlight);
+  };
 
-  function clickOnDisabledElementFeature() {
-    return (e: MouseEvent): void => {
-      e.preventDefault();
-      const element = document.elementFromPoint(e.clientX, e.clientY);
-      let internalDisabledElement = disabledElement;
-      if (selectedAction !== ActionEnum.NONE && element && element.hasAttribute("disabled")) {
-        internalDisabledElement = TranslateHelper.getSelector(element);
-        element.removeAttribute("disabled");
-        element.setAttribute("readonly", "true");
-        setDisabledElement(internalDisabledElement);
-      } else {
-        if (internalDisabledElement) {
-          const querySelector = document.querySelector(internalDisabledElement);
-          querySelector?.setAttribute("disabled", "true");
-          querySelector?.removeAttribute("readonly");
-          setDisabledElement("");
-        }
-      }
-    };
-  }
-
-  async function buildKeyboardNavigationResultSentence(focusableElements: FocusableElement[]) {
-    const sentences: string[] = [];
-    const startKeyboardNavigationSentence = jsonBase.find((el: BaseSentence) => el.key === "key.given.keyboard.startNavigationFromTheTop");
-    if (startKeyboardNavigationSentence) {
-      sentences.push(StepCaseEnum.AND + startKeyboardNavigationSentence.wording);
-    }
-    const promises = focusableElements.map(async (node, index, focusableElements) => {
-      const focusBySelectorControlSentence = jsonBase
-          .find((el: BaseSentence) => el.key === "key.then.element.withSelectorFocused");
-      const focusByRoleAndNameControlSentence = jsonBase
-          .find((el: BaseSentence) => el.key === "key.then.element.withRoleAndNameFocused");
-
-      if (focusBySelectorControlSentence && focusByRoleAndNameControlSentence) {
-        const result = await translate(node, ActionEnum.KEYBOARD_GLOBAL_NAVIGATION);
-        result.sentences.forEach((element) => {
-          sentences.push(element);
-        });
-      } else {
-        console.error("sentences next focus element or check focused element is undefined");
-      }
-      return Promise.resolve("");
-    });
-    await Promise.all(promises);
-    return sentences.map((elem, key) => {
-      return {
-        key: key as React.Key,
-        result: elem
-      } as ResultSentence;
-    });
-  }
-
-  function extractExpectedKeyboardNavigation(currentKeyboardFocusableElements: FocusableElement[]) {
-    return [...currentKeyboardFocusableElements].sort((a: FocusableElement, b: FocusableElement) => {
-      const leftRect = a.getBoundingClientRect();
-      const rightRect = b.getBoundingClientRect();
-      if (leftRect.y < rightRect.y) {
-        return -1;
-      }
-      if (leftRect.y === rightRect.y && leftRect.x < rightRect.x) {
-        return -1;
-      }
-      return 1;
-    });
-  }
-
-  async function keyboardNavigation() {
-    const currentKeyboardFocusableElements = tabbable(document.body, {});
-    setCurrentKeyboardNavigation(currentKeyboardFocusableElements);
-    const expectedKeyboardFocusableElements = extractExpectedKeyboardNavigation(currentKeyboardFocusableElements);
-    setExpectedKeyboardNavigation(expectedKeyboardFocusableElements);
-    return currentKeyboardFocusableElements;
-  }
-
-  async function translate(el: FocusableElement, action: string): Promise<TranslateSentences> {
-    console.debug("translator,", props.translator);
-    if (props.translator) {
-      return Promise.resolve({ sentences: [props.translator(el)] } as TranslateSentences);
-    }
-    const translate = await TranslateHelper.translateEngine(el, action, disabledElement !== "");
-    const result: TranslateSentences = { suggestion: new Suggestion() } as TranslateSentences;
-    result.sentences = translate.sentences;
-    return Promise.resolve(result);
+  async function buildFormCompletionResultSentence(selectedForm: HTMLFormElement) {
+    const sentences = await FormCompletionHelper.buildResultSentence(selectedForm);
+    setGeneratedScript(
+      buildResultingScript(
+        "Your amazing feature name",
+        `Action - ${selectedAction}`,
+        sentences
+      )
+    );
+    clearAllAdditionalLayer();
+    setVisibility(VisibilityEnum.WITH_RESULT);
+    setDisplayedResult(ActionEnum.FORM_COMPLETION_MOUSE);
+    setSelectedAction(ActionEnum.NONE);
+    endLoading();
   }
 
   const handleMouseNavigationChoice = (newValue: ActionEnum) => {
@@ -292,13 +262,20 @@ function UuvAssistant(props: UuvAssistantProps) {
     setSelectedAction(ActionEnum.KEYBOARD_GLOBAL_NAVIGATION);
   }
 
+  function handleFormCompletionChoice() {
+    setVisibility(VisibilityEnum.HIDE);
+    setIsLoading(true);
+    setSelectedAction(ActionEnum.FORM_COMPLETION_MOUSE);
+  }
+
   function getItem(
-   label: React.ReactNode,
-   key: React.Key,
-   disabled: boolean,
-   onClick?: Function,
-   icon?: React.ReactNode,
-   children?: MenuItem[]
+    label: React.ReactNode,
+    key: React.Key,
+    disabled: boolean,
+    onClick?: () => void,
+    icon?: React.ReactNode,
+    children?: MenuItem[],
+    onTitleClick?: () => void
   ): MenuItem {
     return {
       key,
@@ -306,7 +283,8 @@ function UuvAssistant(props: UuvAssistantProps) {
       disabled,
       children,
       label,
-      onClick
+      onClick,
+      onTitleClick
     } as MenuItem;
   }
 
@@ -321,13 +299,23 @@ function UuvAssistant(props: UuvAssistantProps) {
     return document.body;
   }
 
+  const switchShowSettings = () => {
+    if (visibility === VisibilityEnum.SETTINGS) {
+      setVisibility(VisibilityEnum.WITHOUT_RESULT);
+    } else {
+      setVisibility(VisibilityEnum.SETTINGS);
+    }
+  };
+
   const actionMenuItems: MenuItem[] = [
     getItem(
       "Mouse actions",
       "mouse-actions",
       false,
-      () => {},
-        <div className={"menu-custom-svg-container"}><img src={CssHelper.getBase64File(mouseIcon)} aria-hidden={true} alt="" className={"menu-custom-svg-from-black-to-white"}/></div>,
+      undefined,
+      <div className={"menu-custom-svg-container"}>
+        <img src={CssHelper.getBase64File(mouseIcon)}  aria-label={"mouse selection"} className={"menu-custom-svg-from-black-to-white"}/>
+      </div>,
       [
         getItem(ActionEnum.EXPECT.toString(), ActionEnum.EXPECT, false, () => {
           handleMouseNavigationChoice(ActionEnum.EXPECT);
@@ -337,20 +325,42 @@ function UuvAssistant(props: UuvAssistantProps) {
         }),
         getItem(ActionEnum.WITHIN.toString(), ActionEnum.WITHIN, false, () => {
           handleMouseNavigationChoice(ActionEnum.WITHIN);
+        }),
+        getItem(ActionEnum.TYPE.toString(), ActionEnum.TYPE, false, () => {
+          handleMouseNavigationChoice(ActionEnum.TYPE);
         })
-      ]
+      ],
+      () => handleMouseNavigationChoice(ActionEnum.EXPECT)
     ),
     getItem(
       "Keyboard actions",
       "keyboard-actions",
       false,
-      () => {},
-      <div className={"menu-custom-svg-container"}><img src={CssHelper.getBase64File(keyboardIcon)} aria-hidden={true} alt="" className={"menu-custom-svg-from-black-to-white"}/></div>,
+      undefined,
+      <div className={"menu-custom-svg-container"}>
+        <img src={CssHelper.getBase64File(keyboardIcon)} aria-label={"keyboard selection"} className={"menu-custom-svg-from-black-to-white"}/>
+      </div>,
       [
         getItem("Keyboard navigation", "KeybNav", false, () => {
           handleKeyboardNavigationChoice();
         })
-      ]
+      ],
+      () => handleKeyboardNavigationChoice()
+    ),
+    getItem(
+      "Form actions",
+      "form-actions",
+      false,
+      undefined,
+      <div className={"menu-custom-svg-container"}>
+        <img src={CssHelper.getBase64File(formIcon)} aria-label={"form selection"} className={"menu-custom-svg-from-black-to-white"}/>
+      </div>,
+      [
+        getItem("Form completion with mouse", "FormCompletionMouse", false, () => {
+          handleFormCompletionChoice();
+        })
+      ],
+      () => handleFormCompletionChoice()
     )
   ];
 
@@ -358,143 +368,295 @@ function UuvAssistant(props: UuvAssistantProps) {
     setTimeout(() => setIsLoading(false), 100);
   }
 
-  function switchKeyboardNavigationMode({ target: { value } }: RadioChangeEvent): void {
-    setIsLoading(true);
-    setGeneratedScript("");
-    setTimeout(() => setDisplayedKeyboardNavigation(value as KeyboardNavigationModeEnum));
-  }
+  // function switchKeyboardNavigationMode({ target: { value } }: RadioChangeEvent): void {
+  //   setIsLoading(true);
+  //   setGeneratedScript("");
+  //   setTimeout(() => setDisplayedKeyboardNavigation(value as KeyboardNavigationModeEnum));
+  // }
 
   function getBottomButtonLabel() {
     return visibility === VisibilityEnum.WITH_RESULT ? "Close result view" : "Open result view";
   }
 
+  function clearAllAdditionalLayer() {
+    for (const additionalLayerKey in AdditionalLayerEnum) {
+      const value = AdditionalLayerEnum[additionalLayerKey];
+      LayerHelper.removeLayerToShadowDom(props.assistantAdditionalLayersRoot, value);
+    }
+  }
+
+  type FieldType = {
+    intelligentHighlight?: boolean;
+  };
+
   return (
-   <div id='uuvAssistantMenu'>
-     <StyleProvider container={props.assistantRoot}>
-       <ConfigProvider
-        theme={{
-          algorithm: isDark ? theme.darkAlgorithm : theme.defaultAlgorithm,
-          token: {
-            fontSize: 18,
-            zIndexBase: 9999999989,
-            zIndexPopupBase: 9999999999
-          }
-        }}
-       >
-       {visibility === VisibilityEnum.WITH_RESULT ?
-          <Flex id='uuvAssistantResultZone' vertical={true}>
-            <header>
-              <Flex justify={"space-between"} align={"center"}>
-                <Typography.Title level={2}>Result of <span className={"secondary"}>{displayedResult.toString()}</span></Typography.Title>
-                <Tooltip placement='bottom' title='Close' getPopupContainer={(triggerNode) => getAsideParentInHierarchy(triggerNode)}>
-                  <Button type='link' shape='circle' icon={<CloseOutlined />} className='primary' onClick={() => {
-                    KeyboardNavigationHelper.removeLayerToShadowDom(props.assistantAdditionalLayersRoot, AdditionalLayerEnum.CURRENT_NAVIGATION);
-                    KeyboardNavigationHelper.removeLayerToShadowDom(props.assistantAdditionalLayersRoot, AdditionalLayerEnum.EXPECTED_NAVIGATION);
-                    setVisibility(VisibilityEnum.WITHOUT_RESULT);
-                  }} />
-                </Tooltip>
-              </Flex>
-            </header>
-            <div id={"toolbar"}>
-              <Flex justify={"space-between"} align={"center"}>
-                <Tooltip placement='bottom' title='Copy' getPopupContainer={(triggerNode) => getAsideParentInHierarchy(triggerNode)}>
-                  <Button type='link' shape='circle' icon={<CopyOutlined />} className='primary' disabled={generatedScript.length === 0} onClick={copyResult} />
-                </Tooltip>
-                {/*{displayedResult === ActionEnum.KEYBOARD_GLOBAL_NAVIGATION ?*/}
-                {/*  <Radio.Group*/}
-                {/*     options={[*/}
-                {/*       { label: 'Current', title: "Current navigation", value: KeyboardNavigationModeEnum.CURRENT_NAVIGATION },*/}
-                {/*       { label: 'Expected', title: "Navigation based on element position", value: KeyboardNavigationModeEnum.EXPECTED_NAVIGATION }*/}
-                {/*     ]}*/}
-                {/*     optionType="button"*/}
-                {/*     buttonStyle="solid"*/}
-                {/*     value={displayedKeyboardNavigation}*/}
-                {/*     onChange={switchKeyboardNavigationMode}*/}
-                {/*  />*/}
-                {/*  : ""}*/}
-              </Flex>
-            </div>
-            <CodeMirror
-             readOnly={true}
-             indentWithTab={true}
-             value={generatedScript}
-             height='100%'
-             extensions={[
-               StreamLanguage.define(gherkin),
-               EditorView.lineWrapping,
-               uuvGutter,
-               EditorView.contentAttributes.of({ "aria-label": "Generated UUV Script" })
-             ]}
-             theme={githubDark}
-             aria-label={"tot"}
-            />
-          </Flex>
-          : ""}
-         {visibility !== VisibilityEnum.HIDE ?
-          <Sider
-           reverseArrow={true}
-           defaultCollapsed={true}
-           id={"uuvAssistantMainBar"}
-           onCollapse={(value) => {
-             if (value) {
-             setVisibility(VisibilityEnum.WITHOUT_RESULT)
-             } else {
-               setVisibility(VisibilityEnum.WITH_RESULT)
-             }
-           }}>
-            <Flex align={"center"} vertical={true}>
-              <Flex align={"center"} vertical={true} className={"uuvAssistantAvatarContainer"}>
-                <Avatar className={"uuvAssistantAvatar"} size='large'>
-                  <Tooltip placement='top' title='Go to steps definition'
-                           getPopupContainer={(triggerNode) => getAsideParentInHierarchy(triggerNode)}>
-                    <a href='https://orange-opensource.github.io/uuv/docs/category/description-of-sentences'>
-                      <img
-                       src={CssHelper.getBase64File(uuvLogoJson)}
-                       alt='UUV logo'
-                       className={"uuvAssistantIcon"}
-                      />
-                    </a>
+    <div id="uuvAssistantMenu">
+      <StyleProvider container={props.assistantRoot}>
+        <ConfigProvider
+          theme={{
+            algorithm: isDark ? theme.darkAlgorithm : theme.defaultAlgorithm,
+            token: {
+              fontSize: 18,
+              zIndexBase: 9999999989,
+              zIndexPopupBase: 9999999999,
+            },
+          }}
+        >
+          {visibility === VisibilityEnum.WITH_RESULT ? (
+            <Flex id="uuvAssistantResultZone" vertical={true}>
+              <header>
+                <Flex justify={"space-between"} align={"center"}>
+                  <Typography.Title level={2}>
+                    Result of{" "}
+                    <span className={"secondary"}>
+                      {displayedResult.toString()}
+                    </span>
+                  </Typography.Title>
+                  <Tooltip
+                    placement="bottom"
+                    title="Close"
+                    getPopupContainer={(triggerNode) =>
+                      getAsideParentInHierarchy(triggerNode)
+                    }
+                  >
+                    <Button
+                      type="link"
+                      shape="circle"
+                      icon={<CloseOutlined />}
+                      className="primary"
+                      onClick={() => {
+                        clearAllAdditionalLayer();
+                        setVisibility(VisibilityEnum.WITHOUT_RESULT);
+                      }}
+                    />
                   </Tooltip>
-                </Avatar>
-                <Text className='uuvAssistantTitle'>UUV</Text>
-              </Flex>
-              <Divider />
-                {!isLoading ?
-                    <React.Fragment>
-                      <Menu
-                        mode="inline"
-                        items={actionMenuItems}
-                        getPopupContainer={(triggerNode) => getAsideParentInHierarchy(triggerNode)}
-                      />
-                      <Divider/>
-                      <Tooltip placement="left" title={getBottomButtonLabel()}
-                               getPopupContainer={(triggerNode) => getAsideParentInHierarchy(triggerNode)}>
-                        <Button
-                            size={"large"}
-                            type={"link"}
-                            block={true}
-                            style={{ background: "#001529", bottom: 0 }}
-                            icon={
-                              visibility === VisibilityEnum.WITH_RESULT
-                                ? <DoubleRightOutlined aria-hidden={true}/>
-                                : <DoubleLeftOutlined aria-hidden={true}/>
-                            }
-                            onClick={() => setVisibility(
-                                visibility === VisibilityEnum.WITH_RESULT ?
-                                    VisibilityEnum.WITHOUT_RESULT :
-                                    VisibilityEnum.WITH_RESULT
-                            )}
-                            aria-label={getBottomButtonLabel()}
-                        />
-                      </Tooltip>
-                    </React.Fragment>
-                : <Spin tip='Loading' size='large' spinning={isLoading} /> }
+                </Flex>
+              </header>
+              <div id={"toolbar"}>
+                <Flex justify={"space-between"} align={"center"}>
+                  <Tooltip
+                    placement="bottom"
+                    title="Copy"
+                    getPopupContainer={(triggerNode) =>
+                      getAsideParentInHierarchy(triggerNode)
+                    }
+                  >
+                    <Button
+                      type="link"
+                      shape="circle"
+                      icon={<CopyOutlined />}
+                      className="primary"
+                      disabled={generatedScript.length === 0}
+                      onClick={copyResult}
+                    />
+                  </Tooltip>
+                  {/*{displayedResult === ActionEnum.KEYBOARD_GLOBAL_NAVIGATION ?*/}
+                  {/*  <Radio.Group*/}
+                  {/*     options={[*/}
+                  {/*       { label: 'Current', title: "Current navigation", value: KeyboardNavigationModeEnum.CURRENT_NAVIGATION },*/}
+                  {/*       { label: 'Expected', title: "Navigation based on element position", value: KeyboardNavigationModeEnum.EXPECTED_NAVIGATION }*/}
+                  {/*     ]}*/}
+                  {/*     optionType="button"*/}
+                  {/*     buttonStyle="solid"*/}
+                  {/*     value={displayedKeyboardNavigation}*/}
+                  {/*     onChange={switchKeyboardNavigationMode}*/}
+                  {/*  />*/}
+                  {/*  : ""}*/}
+                </Flex>
+              </div>
+              <CodeMirror
+                readOnly={true}
+                indentWithTab={true}
+                value={generatedScript}
+                height="100%"
+                extensions={[
+                  StreamLanguage.define(gherkin),
+                  EditorView.lineWrapping,
+                  uuvGutter,
+                  EditorView.contentAttributes.of({
+                    "aria-label": "Generated UUV Script",
+                  }),
+                ]}
+                theme={githubDark}
+                aria-label={"Generated UUV Script"}
+              />
             </Flex>
-          </Sider>
-          : ""}
-       </ConfigProvider>
-     </StyleProvider>
-   </div>
+          ) : (
+            ""
+          )}
+          {visibility === VisibilityEnum.SETTINGS ? (
+            <Flex id="uuvAssistantResultZone" vertical={true}>
+              <header>
+                <Flex justify={"space-between"} align={"center"}>
+                  <Title level={2}>
+                    Settings
+                  </Title>
+                  <Tooltip
+                    placement="bottom"
+                    title="Close"
+                    getPopupContainer={(triggerNode) =>
+                      getAsideParentInHierarchy(triggerNode)
+                    }
+                  >
+                    <Button
+                      type="link"
+                      shape="circle"
+                      icon={<CloseOutlined />}
+                      className="primary"
+                      onClick={() => {
+                        clearAllAdditionalLayer();
+                        setVisibility(VisibilityEnum.WITHOUT_RESULT);
+                      }}
+                    />
+                  </Tooltip>
+                </Flex>
+              </header>
+              <div >
+                <Flex justify={"space-between"} align={"center"}>
+                  <Form
+                    name="basic"
+                    labelCol={{ span: 20 }}
+                    wrapperCol={{ span: 50 }}
+                    style={{ maxWidth: 600 }}
+                    size={"large"}
+                    initialValues={{ remember: true }}
+                  >
+                    <Row>
+                      <Card size="small" className="settings" variant="borderless" title="General" style={{ width: "100%" }}>
+                        <Card.Meta
+                          title={
+                          <Form.Item<FieldType>
+                            label="Intelligent Highlighter" labelAlign={"left"}
+                            colon={false}
+                          >
+                            <Switch
+                              title={`${intelligentHighlight ? "disable" : "active"} intelligent highlight`}
+                              checkedChildren={<CheckOutlined />}
+                              unCheckedChildren={<CloseOutlined />}
+                              defaultChecked
+                              onClick={switchRefineHighlight}
+                            />
+                          </Form.Item>
+                        }
+                          description={<span>This intelligent highlighter help you to find only informative elements</span>}
+                        />
+                      </Card>
+                      <Divider />
+                    </Row>
+                  </Form>
+                </Flex>
+              </div>
+            </Flex>
+          ) : (
+            ""
+          )}
+          {visibility !== VisibilityEnum.HIDE ? (
+            <Sider
+              reverseArrow={true}
+              defaultCollapsed={true}
+              id={"uuvAssistantMainBar"}
+              onCollapse={(value) => {
+                if (value) {
+                  setVisibility(VisibilityEnum.WITHOUT_RESULT);
+                } else {
+                  setVisibility(VisibilityEnum.WITH_RESULT);
+                }
+              }}
+            >
+              <Flex align={"center"} vertical={true}>
+                <Flex
+                  align={"center"}
+                  vertical={true}
+                  className={"uuvAssistantAvatarContainer"}
+                >
+                  <Avatar className={"uuvAssistantAvatar"} size="large">
+                    <Tooltip
+                      placement="top"
+                      title="Go to steps definition"
+                      getPopupContainer={(triggerNode) =>
+                        getAsideParentInHierarchy(triggerNode)
+                      }
+                    >
+                      <a href="https://e2e-test-quest.github.io/uuv/docs/category/description-of-sentences">
+                        <img
+                          src={CssHelper.getBase64File(uuvLogoJson)}
+                          alt="UUV logo"
+                          className={"uuvAssistantIcon"}
+                        />
+                      </a>
+                    </Tooltip>
+                  </Avatar>
+                  <Text className="uuvAssistantTitle">UUV</Text>
+                </Flex>
+                <Divider />
+                {!isLoading ? (
+                  <React.Fragment>
+                    <Menu
+                      mode="inline"
+                      items={actionMenuItems}
+                      getPopupContainer={(triggerNode) =>
+                        getAsideParentInHierarchy(triggerNode)
+                      }
+                    />
+                    <Divider />
+                    <Tooltip
+                      placement="bottom"
+                      title={`${visibility === VisibilityEnum.SETTINGS ? "Close" : "Open"} settings module`}
+                      getPopupContainer={(triggerNode) =>
+                        getAsideParentInHierarchy(triggerNode)
+                      }
+                    >
+                      <Button type={visibility === VisibilityEnum.SETTINGS ? "primary" : "link"}
+                              onClick={switchShowSettings}
+                              icon={<SettingOutlined />}
+                              shape="circle"
+                              className="primary"
+                              aria-pressed={visibility === VisibilityEnum.SETTINGS}
+                      >
+                      </Button>
+                    </Tooltip>
+                    <Divider />
+                    <Tooltip
+                      placement="left"
+                      title={getBottomButtonLabel()}
+                      getPopupContainer={(triggerNode) =>
+                        getAsideParentInHierarchy(triggerNode)
+                      }
+                    >
+                      <Button
+                        size={"large"}
+                        type={"link"}
+                        block={true}
+                        style={{ background: "#001529", bottom: 0 }}
+                        icon={
+                          visibility === VisibilityEnum.WITH_RESULT ? (
+                            <DoubleRightOutlined aria-hidden={true} />
+                          ) : (
+                            <DoubleLeftOutlined aria-hidden={true} />
+                          )
+                        }
+                        onClick={() =>
+                          setVisibility(
+                            visibility === VisibilityEnum.WITH_RESULT
+                              ? VisibilityEnum.WITHOUT_RESULT
+                              : VisibilityEnum.WITH_RESULT,
+                          )
+                        }
+                        aria-label={getBottomButtonLabel()}
+                      />
+                    </Tooltip>
+                  </React.Fragment>
+                ) : (
+                  <Spin tip="Loading" size="large" spinning={isLoading} />
+                )}
+              </Flex>
+            </Sider>
+          ) : (
+            ""
+          )}
+        </ConfigProvider>
+      </StyleProvider>
+    </div>
   );
 }
 

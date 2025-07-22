@@ -1,15 +1,15 @@
 {
   "name": "@uuv/a11y",
-  "version": "1.0.0-beta.28",
+  "version": "1.0.0-beta.73",
   "type": "commonjs",
   "author": "Louis Fredice NJAKO MOLOM (https://github.com/luifr10) & Stanley SERVICAL (https://github.com/stanlee974)",
   "description": "A javascript lib for running a11y validation based on multiple reference(RGAA, etc)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Orange-OpenSource/uuv"
+    "url": "https://github.com/e2e-test-quest/uuv"
   },
-  "homepage": "https://orange-opensource.github.io/uuv/",
+  "homepage": "https://e2e-test-quest.github.io/uuv/",
   "keywords": [
     "a11y",
     "rgaa",
@@ -37,8 +37,9 @@
     "dev": "ts-node watch.ts"
   },
   "dependencies": {
-    "@testing-library/dom": "^9.3.3",
-    "dom-accessibility-api": "^0.6.3",
+    "@testing-library/dom": "^10.0.0",
+    "axe-core": "^4.10.0",
+    "dom-accessibility-api": "^0.7.0",
     "emulate-tab": "^1.2.1",
     "jquery": "^3.7.1",
     "lodash": "^4.17.21",
@@ -50,12 +51,12 @@
     "@babel/preset-typescript": "^7.23.3",
     "babel-loader": "^9.1.3",
     "babel-plugin-lodash": "^3.3.4",
-    "chokidar": "^3.5.3",
+    "chokidar": "^4.0.0",
     "jest-junit": "^16.0.0",
-    "jest-puppeteer": "^10.0.0",
-    "puppeteer": "^22.0.0",
+    "jest-puppeteer": "11.0.0",
+    "puppeteer": "23.11.1",
     "tslib": "^2.3.0",
-    "webpack": "^5.89.0",
+    "webpack": "^5.94.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.0"
   },

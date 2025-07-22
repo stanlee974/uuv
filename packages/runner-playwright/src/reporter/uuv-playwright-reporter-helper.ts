@@ -3,13 +3,15 @@ import { generateMessages } from "@cucumber/gherkin";
 import { Query } from "@cucumber/gherkin-utils";
 import { Envelope, IdGenerator, parseEnvelope, SourceMediaType, AttachmentContentEncoding } from "@cucumber/messages";
 import fs from "fs";
-import { UUVPlaywrightCucumberMapFile, UUVPlaywrightCucumberMapItem } from "../lib/runner-playwright";
 import report from "multiple-cucumber-html-reporter";
 import { nanoid } from "nanoid";
 import chalk from "chalk";
 import chalkTable from "chalk-table";
 import { UuvCustomFormatter } from "./uuv-custom-formatter";
 import parseTagsExpression from "@cucumber/tag-expressions";
+import path from "path";
+import { UUVEventEmitter } from "@uuv/runner-commons/runner/event";
+import { updateChartJsVersion } from "@uuv/runner-commons/runner/utils";
 
 
 const NANOS_IN_SECOND = 1000000000;
@@ -41,7 +43,6 @@ interface TestError {
 }
 
 class UuvPlaywrightReporterHelper {
-    private UUVPlaywrightCucumberMap: UUVPlaywrightCucumberMapItem[] = [];
     testDir!: string;
     private queries: Map<string, Query> = new Map<string, Query>();
     envelopes: Envelope[] = [];
@@ -53,10 +54,23 @@ class UuvPlaywrightReporterHelper {
     private consoleReportMap: Map<string, ReportOfFeature> = new Map<string, ReportOfFeature>();
     private errors: TestError[] = [];
     private currentFeatureFile!: string;
+    private foundConf!: {outputDir: string, featuresRoot: string};
+
+    constructor() {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        const bddgenConfAsString = process.env.PLAYWRIGHT_BDD_CONFIGS;
+        if (bddgenConfAsString) {
+            const bddgenConf = JSON.parse(bddgenConfAsString);
+            if (Object.keys.length > 0) {
+                const foundPath = Object.keys(bddgenConf)[0];
+                this.foundConf = bddgenConf[foundPath];
+            }
+        }
+    }
 
     public createTestRunStartedEnvelope(config: FullConfig, suite: Suite, startTimestamp: { seconds: number; nanos: number }) {
         this.testDir = config.projects[0].testDir;
-        this.loadUUVPlaywrightCucumberMap();
         const featureFiles = this.getFeatureFiles(suite);
         this.initializeCucumberReportNdJson(suite, featureFiles);
         this.envelopes.push(
@@ -101,7 +115,11 @@ class UuvPlaywrightReporterHelper {
             this.testCasesAndTestCasesStartedIdMap.set(test.id, testCaseStartedId);
             this.initConsoleReportIfNotExists(featureFile);
         }
-        this.logTeamCity(`##teamcity[testStarted ${this.teamcityAddName(test.title)} ${this.teamcityFlowIdAndParentFlowId(test.title, featureFile)} ${this.teamcityAddCustomField("locationHint", "test://" + featureFile)} ]`);
+        UUVEventEmitter.getInstance().emitTestStarted({
+            testName: test.title,
+            testSuiteName: this.getTestSuiteName(featureFile),
+            testSuitelocation: featureFile
+        });
     }
 
     public createTestStepStartedEnvelope(test: TestCase, step: TestStep, featureFile: string, startTimestamp: { seconds: number; nanos: number }) {
@@ -208,7 +226,7 @@ class UuvPlaywrightReporterHelper {
     }
 
     public createTestCaseFinishedEnvelope(test: TestCase, result: TestResult, featureFile: string, endTimestamp) {
-        this.logTeamcityTestEnd(result, test, featureFile);
+        this.handleTestEnd(result, test, featureFile);
         this.updateTestcaseStatus(featureFile, test.id, "done");
         const currentQuery = this.queries.get(featureFile);
         if (currentQuery) {
@@ -229,28 +247,40 @@ class UuvPlaywrightReporterHelper {
             this.addResultErrors(result, test, featureFile);
             this.createTestCaseErrorAttachmentsEnvelope(testCaseStartedId, result);
         }
-        this.logTeamcitySuiteFinishedIfNeeded(featureFile);
+        this.handleTestSuiteFinishedIfNeeded(featureFile);
     }
 
-    private logTeamcityTestEnd(result: TestResult, test: TestCase, featureFile: string) {
+    private handleTestEnd(result: TestResult, test: TestCase, featureFile: string) {
         switch (result.status) {
             case "passed":
-                this.logTeamCity(`##teamcity[testFinished ${this.teamcityAddName(test.title)} ${this.teamcityFlowIdAndParentFlowId(test.title, featureFile)} ${this.teamcityAddDuration(result)} ]`);
+                UUVEventEmitter.getInstance().emitTestFinished({
+                    testName: test.title,
+                    testSuiteName: this.getTestSuiteName(featureFile),
+                    duration: result.duration
+                });
                 break;
             case "failed":
-                this.logTeamCity(`##teamcity[testFailed ${this.teamcityAddName(test.title)} ${this.teamcityFlowIdAndParentFlowId(test.title, featureFile)} type='comparisonFailure' message='Test failed' ]`);
-                this.logTeamCity(`##teamcity[testFinished ${this.teamcityAddName(test.title)} ${this.teamcityFlowIdAndParentFlowId(test.title, featureFile)} ${this.teamcityAddDuration(result)} ]`);
+                UUVEventEmitter.getInstance().emitTestFailed({
+                    testName: test.title,
+                    testSuiteName: this.getTestSuiteName(featureFile),
+                    duration: result.duration
+                });
                 break;
             default:
-                this.logTeamCity(`##teamcity[testIgnored ${this.teamcityAddName(test.title)} ${this.teamcityFlowIdAndParentFlowId(test.title, featureFile)} ]`);
+                UUVEventEmitter.getInstance().emitTestIgnored({
+                    testName: test.title,
+                    testSuiteName: this.getTestSuiteName(featureFile)
+                });
         }
     }
 
-    private logTeamcitySuiteFinishedIfNeeded(featureFile: string) {
+    private handleTestSuiteFinishedIfNeeded(featureFile: string) {
         const featureTestCaseStatus = this.featureFileAndTestCaseStatusMap.get(featureFile);
         if (featureTestCaseStatus) {
             if (Object.entries(featureTestCaseStatus).find(([, value]) => value === "todo") === undefined) {
-                this.logTeamCity(`##teamcity[testSuiteFinished ${this.teamcityAddName(featureFile)} ${this.teamcityFlowId(featureFile)} ]`);
+                UUVEventEmitter.getInstance().emitTestSuiteFinished({
+                    testSuiteName: this.getTestSuiteName(featureFile)
+                });
             }
         }
     }
@@ -288,7 +318,10 @@ class UuvPlaywrightReporterHelper {
 
     private initConsoleReportIfNotExists(featureFile: string) {
         if (!this.consoleReportMap.get(featureFile)) {
-            this.logTeamCity(`##teamcity[testSuiteStarted ${this.teamcityAddName(featureFile)} ${this.teamcityFlowId(featureFile)} ${this.teamcityAddCustomField("locationHint", "suite://" + featureFile)} ]`);
+            UUVEventEmitter.getInstance().emitTestSuiteStarted({
+                testSuiteName: this.getTestSuiteName(featureFile),
+                testSuitelocation: featureFile
+            });
             this.consoleReportMap.set(featureFile, new ReportOfFeature());
         }
     }
@@ -332,8 +365,26 @@ class UuvPlaywrightReporterHelper {
         };
     }
 
-    public getOriginalFeatureFile(generateFile: string): string | undefined {
-        return this.UUVPlaywrightCucumberMap.find(item => item.generatedFile === generateFile)?.originalFile;
+    public getOriginalFeatureFile(generatedFile: string): string | undefined {
+        if (this.foundConf) {
+            return path.relative(
+                process.cwd(),
+                generatedFile
+                    .replaceAll(this.foundConf.outputDir, this.foundConf.featuresRoot)
+                    .replaceAll(".feature.spec.js", ".feature")
+            );
+        }
+        return;
+    }
+
+    public getTestSuiteName(featureFile: string): string {
+        if (this.foundConf) {
+            return path.relative(
+                this.foundConf.featuresRoot,
+                path.join(process.cwd(), featureFile)
+            );
+        }
+        return featureFile;
     }
 
     public getCurrentRunningScenario(test: TestCase, featureFile: string) {
@@ -374,15 +425,6 @@ class UuvPlaywrightReporterHelper {
         } catch (err) {
             console.log(err);
         }
-    }
-
-    private loadUUVPlaywrightCucumberMap() {
-        this.UUVPlaywrightCucumberMap = JSON.parse(
-            fs.readFileSync(
-                `${this.testDir}/${UUVPlaywrightCucumberMapFile}`,
-                { encoding: "utf8" }
-            )
-        );
     }
 
     private initializeCucumberReportNdJson(suite: Suite, featureFiles: string[]) {
@@ -495,6 +537,7 @@ class UuvPlaywrightReporterHelper {
         report.generate({
             jsonDir: reportDirJson,
             reportPath: reportDirHtml,
+            useCDN: true,
             metadata: {
                 browser: {
                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -509,6 +552,7 @@ class UuvPlaywrightReporterHelper {
                 },
             },
         });
+        updateChartJsVersion(reportDirHtml, "2.5.0", "2.6.0");
     }
 
     private async generateHtmlReport() {
@@ -609,34 +653,6 @@ class UuvPlaywrightReporterHelper {
         } else {
             return chalk.redBright(message);
         }
-    }
-
-    public logTeamCity(line) {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        if (process.env.enableTeamcityLogging) {
-            console.log(line);
-        }
-    }
-
-    private teamcityFlowId(name) {
-        return "flowId='" + name.replaceAll("'", "|'") + "'";
-    }
-
-    private teamcityFlowIdAndParentFlowId(name, parentName) {
-        return "flowId='" + name.replaceAll("'", "|'") + "' parent='" + parentName.replaceAll("'", "|'") + "'";
-    }
-
-    private teamcityAddName(name) {
-        return "name='" + name.replaceAll("'", "|'") + "'";
-    }
-
-    private teamcityAddDuration(result: TestResult) {
-        return "duration='" + result.duration + "'";
-    }
-
-    private teamcityAddCustomField(fieldName, value) {
-        return `${fieldName}='${value}'`;
     }
 
     private getTagsParameter() {

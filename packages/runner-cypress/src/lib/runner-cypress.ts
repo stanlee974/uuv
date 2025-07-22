@@ -5,6 +5,7 @@ import chalk from "chalk";
 import { mergeFiles } from "junit-report-merger";
 import report from "multiple-cucumber-html-reporter";
 import cypress from "cypress";
+import { updateChartJsVersion } from "@uuv/runner-commons/runner/utils";
 
 export class UUVCliCypressRunner implements UUVCliRunner {
     name = "Cypress";
@@ -91,7 +92,10 @@ export class UUVCliCypressRunner implements UUVCliRunner {
     executeOpenCommand(options: Partial<UUVCliOptions>) {
         return this.getCypress().open({
             project: this.projectDir,
-            env: options.extraArgs,
+            env: {
+                uuvOptions: options,
+                ...options.extraArgs
+            },
         });
     }
 
@@ -124,6 +128,7 @@ export class UUVCliCypressRunner implements UUVCliRunner {
     private async generateHtmlReport(options: Partial<UUVCliOptions>, reportDir: string) {
         console.info(chalk.blueBright("Generating Html Test Report..."));
         this.generateHtmlReportFromJson(options, this.JSON_REPORT_DIR, reportDir);
+        updateChartJsVersion(reportDir, "2.5.0", "2.6.0");
     }
 
     private generateHtmlReportFromJson(options: Partial<UUVCliOptions>, jsonReportDir: string, htmlReportDir: string) {
@@ -131,6 +136,7 @@ export class UUVCliCypressRunner implements UUVCliRunner {
         report.generate({
             jsonDir: jsonReportDir,
             reportPath: htmlReportDir,
+            useCDN: true,
             metadata: {
                 browser: {
                     name: options.browser,

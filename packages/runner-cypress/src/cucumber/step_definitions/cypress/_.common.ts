@@ -1,7 +1,6 @@
 /**
  * Software Name : UUV
  *
- * SPDX-FileCopyrightText: Copyright (c) Orange SA
  * SPDX-License-Identifier: MIT
  *
  * This software is distributed under the MIT License,
@@ -16,6 +15,8 @@ import { ByRoleOptions } from "@testing-library/cypress";
 import { Context } from "./_context";
 import Chainable = Cypress.Chainable;
 import { KEY_PRESS } from "@uuv/runner-commons";
+import { A11yReferenceEnum } from "@uuv/a11y";
+import { DataTable } from "@badeball/cypress-cucumber-preprocessor";
 
 const contextAlias = "context";
 const foundedChildElementAlias = "foundedChildElement";
@@ -26,17 +27,17 @@ export const shouldGenerateA11yReport = (): boolean => {
 };
 
 export const getA11yResultFilePath = (): string => {
-    return Cypress.env("uuvOptions").report.a11y.outputFile;
+    return Cypress.env("uuvOptions").report.a11y.relativePath;
 };
 
 export const uuvGetContext = (): Chainable<Context> => {
     return cy.get<Context>(`@${contextAlias}`);
 };
 
-export function uuvCheckContextWithinFocusedElement(): Cypress.Chainable<Context> {
+export function uuvCheckContextWithinFocusedElement(dontThrowError = false): Cypress.Chainable<Context> {
     return cy.get<Context>(`@${contextAlias}`)
         .then(context => {
-            if (!context.withinFocusedElement) {
+            if (!context.withinFocusedElement && !dontThrowError) {
                 throw new Error("No element currently selected");
             }
             return context;
@@ -62,8 +63,33 @@ function addContextOptions(context: Context, roleOptions: any): any {
     return Object.assign(roleOptions, retour);
 }
 
-/* eslint-disable  @typescript-eslint/ban-types */
-function abstractFindBy(callBackFunction: Function, inputToSearch: any, inputOptions: any) : Cypress.Chainable<JQuery<HTMLElement>> {
+export function removeHeaderSeparatorLine(pExpectedElementsOfList: DataTable) {
+    const expectedElementsOfList = pExpectedElementsOfList.raw();
+    if (expectedElementsOfList.length > 1) {
+        expectedElementsOfList.splice(1, 1);
+    }
+    return expectedElementsOfList;
+}
+
+export function expectTableToHaveContent(expectedElementsOfList: string[][], cellAccessibleRole: string) {
+    const actualTableContent: string[][] = [];
+    // eslint-disable-next-line cypress/unsafe-to-chain-command
+    cy.findAllByRole("row").each(($row, index) => {
+        const cellRole = index === 0 ? "columnheader" : cellAccessibleRole;
+        cy.findAllByRole(cellRole, { container: $row }).then(($cells) => {
+            const ligne = Array.from($cells, cell => cell.textContent?.trim() ?? "");
+            actualTableContent.push(ligne);
+        });
+    }).then(() => {
+        assert.equal(actualTableContent.length, expectedElementsOfList.length);
+        assert.deepEqual(actualTableContent, expectedElementsOfList, `Expected the table content ${JSON.stringify(actualTableContent)} to equals ${JSON.stringify(expectedElementsOfList)}`);
+    });
+}
+
+function abstractFindBy(
+    callBackFunction: (inputToSearch: any, options: any) => Cypress.Chainable<JQuery<HTMLElement>>,
+    inputToSearch: any, inputOptions: any
+) : Cypress.Chainable<JQuery<HTMLElement>> {
     return cy.uuvGetContext().then(context => {
         // console.log(contextAlias, context);
         const parentElement = context.withinFocusedElement;
@@ -157,4 +183,15 @@ export function pressKey(key: string) {
             console.error("the command" + key + " is unrecognized.");
             break;
     }
+}
+
+export type UuvA11yOptions = {
+    reference: A11yReferenceEnum;
+    runnerOptions?: any;
+    expectedResult?: UuvA11yExpectedResult
+}
+
+export type UuvA11yExpectedResult = {
+    value: any;
+    isContainsMode?: boolean;
 }

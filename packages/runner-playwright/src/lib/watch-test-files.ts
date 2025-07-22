@@ -1,7 +1,6 @@
 /**
  * Software Name : UUV
  *
- * SPDX-FileCopyrightText: Copyright (c) Orange SA
  * SPDX-License-Identifier: MIT
  *
  * This software is distributed under the MIT License,
@@ -28,22 +27,26 @@ if (!tempDir || !projectDir) {
   process.exit(-1);
 }
 
-chokidar.watch(`${projectDir}/e2e/**/*.feature`, {
-  ignoreInitial: true
+chokidar.watch(`${projectDir}/e2e`, {
+  ignoreInitial: true,
+  ignored: (path, stats) => !!stats && stats.isFile() && !path.endsWith(".feature")
 })
- .on("change", async (event, path) => {
+ .on("change", path => {
    console.log(chalk.yellowBright("\nRefreshing test files..."));
-   await executePreprocessor(tempDir, tags);
-   console.log(chalk.yellowBright("Test files refreshed\n"));
+   if (executePreprocessor(projectDir)) {
+        console.log(chalk.yellowBright(`Test file ${path} refreshed\n`));
+   }
  })
- .on("add", async path => {
+ .on("add", path => {
    console.log(chalk.yellowBright(`\nFile ${path} has been added`));
-   await executePreprocessor(tempDir, tags);
-   console.log(chalk.yellowBright("Test files refreshed\n"));
+     if (executePreprocessor(projectDir)) {
+        console.log(chalk.yellowBright(`Test file ${path} refreshed\n`));
+     }
  })
- .on("unlink", async path => {
+ .on("unlink", path => {
    console.log(chalk.yellowBright(`\nFile ${path} has been removed`));
-   await executePreprocessor(tempDir, tags);
-   console.log(chalk.yellowBright("Test files refreshed\n"));
+   if (executePreprocessor(projectDir)) {
+       console.log(chalk.yellowBright(`Test file ${path} refreshed\n`));
+   }
  });
 

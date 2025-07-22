@@ -34,7 +34,7 @@
       ]
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
@@ -85,6 +85,22 @@
                   "results": [
                     {
                       "file": "packages/runner-cypress/package.json",
+                      "hasChanged": true,
+                      "numMatches": 1,
+                      "numReplacements": 1
+                    }
+                  ],
+                  "countMatches": true
+                },
+                {
+                  "files": [
+                    "packages/runner-playwright/package.json"
+                  ],
+                  "from": "\"@uuv/a11y\": \".*\"",
+                  "to": "\"@uuv/a11y\": \"${nextRelease.version}\"",
+                  "results": [
+                    {
+                      "file": "packages/runner-playwright/package.json",
                       "hasChanged": true,
                       "numMatches": 1,
                       "numReplacements": 1

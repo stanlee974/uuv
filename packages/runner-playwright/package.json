@@ -1,15 +1,15 @@
 {
   "name": "@uuv/playwright",
-  "version": "2.17.0",
+  "version": "3.44.0",
   "type": "commonjs",
   "author": "Louis Fredice NJAKO MOLOM (https://github.com/luifr10) & Stanley SERVICAL (https://github.com/stanlee974)",
   "description": "A solution to facilitate the writing and execution of E2E tests understandable by any human being using cucumber(BDD) and playwright",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Orange-OpenSource/uuv"
+    "url": "https://github.com/e2e-test-quest/uuv"
   },
-  "homepage": "https://orange-opensource.github.io/uuv/",
+  "homepage": "https://e2e-test-quest.github.io/uuv/",
   "bin": {
     "uuv": "bin/uuv"
   },
@@ -36,26 +36,29 @@
     "generate:step-definitions": "ts-node generate-step-definitions.ts",
     "package": "npm pack --pack-destination=\"../../dist/packages\"",
     "postinstall": "node postinstall.js",
-    "unit-tests": "jest --runInBand --coverage --config=./jest.config.ts",
+    "unit-tests": "jest --runInBand --coverage --config=./jest.config.ts --testPathIgnorePatterns=src/tests/report",
+    "verify-report": "jest --runInBand --coverage --config=./jest.config.ts --testPathPattern=src/tests/report",
     "e2e-test:run": "ts-node test.ts e2e",
     "e2e-test:open": "ts-node test.ts open --",
-    "test": "npm run unit-test && npm run e2e-test:run"
+    "test": "npm run unit-tests && npm run e2e-test:run"
   },
   "dependencies": {
-    "@cucumber/cucumber": "9.6.0",
-    "@cucumber/tag-expressions": "^6.0.0",
-    "@playwright/test": "1.44.1",
-    "@uuv/runner-commons": "2.16.0",
-    "axe-core": "4.9.1",
-    "axe-playwright": "2.0.1",
-    "chalk-table": "^1.0.2",
-    "chokidar": "3.5.3",
+    "@cucumber/cucumber": "11.0.1",
+    "@cucumber/tag-expressions": "6.2.0",
+    "@playwright/test": "1.52.0",
+    "@uuv/a11y": "1.0.0-beta.73",
+    "@uuv/runner-commons": "2.57.0",
+    "axe-core": "4.10.3",
+    "axe-playwright": "2.1.0",
+    "chalk-table": "1.0.2",
+    "chokidar": "4.0.1",
     "cucumber-json-report-formatter": "0.1.4",
     "lodash": "^4.17.21",
-    "multiple-cucumber-html-reporter": "3.6.2",
-    "nanoid": "^3.3.7",
+    "multiple-cucumber-html-reporter": "3.9.0",
+    "nanoid": "3.3.11",
+    "playwright-bdd": "8.3.0",
     "ts-node": "10.9.2",
-    "typescript": "5.4.5"
+    "typescript": "5.8.3"
   },
   "types": "./dist/index.d.ts",
   "main": "./dist/index.js",
@@ -88,13 +91,16 @@
   "devDependencies": {
     "@types/minimist": "1.2.5",
     "@types/node": "20.12.12",
+    "@typescript-eslint/eslint-plugin": "7.18.0",
+    "@typescript-eslint/parser": "7.18.0",
     "chalk": "^4.1.2",
     "cross-env": "7.0.3",
+    "eslint": "8.56.0",
     "eslint-plugin-cucumber": "2.0.0",
     "eslint-plugin-jest": "27.9.0",
-    "eslint-plugin-playwright": "1.6.2",
-    "ts-loader": "9.4.2",
+    "eslint-plugin-playwright": "2.2.0",
+    "ts-loader": "9.5.2",
     "tsconfig-paths": "4.2.0",
-    "webpack": "5.90.3"
+    "webpack": "5.99.6"
   }
 }

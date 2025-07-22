@@ -4,8 +4,9 @@ set -o pipefail
 set -o errexit
 
 source functions.sh
-WORKING_DIR='runner-playwright'
-RUNNER_DIR='../../../packages/runner-playwright'
+RUNNER_NAME='playwright'
+WORKING_DIR="runner-${RUNNER_NAME}"
+RUNNER_DIR="../../../packages/runner-${RUNNER_NAME}"
 NPM_PACKAGE_COMMONS=$(ls ../../dist/packages/uuv-runner-commons-*)
 NPM_PACKAGE_A11Y=$(ls ../../dist/packages/uuv-a11y-*)
 NPM_PACKAGE_PLAYWRIGHT=$(ls ../../dist/packages/uuv-playwright-*)
@@ -15,16 +16,25 @@ if [ -d "$WORKING_DIR" ]; then rm -Rf $WORKING_DIR; fi
 
 log "I" "Creating directory"
 mkdir -p "$WORKING_DIR"
+cp "tsconfig.${RUNNER_NAME}.json" "$WORKING_DIR/tsconfig.json"
+cp "tsconfig.${RUNNER_NAME}.e2e.json" "$WORKING_DIR/tsconfig.e2e.json"
+mkdir -p "$WORKING_DIR/uuv/cucumber/step_definitions"
+cp "my-custom-step-definitions.${RUNNER_NAME}.ts" "$WORKING_DIR/uuv/cucumber/step_definitions/my-custom-step-definitions.ts"
 cd "$WORKING_DIR"
 
 log "I" "Creating new npm project"
 npm init -y
+cp -f "../package-playwright.json" "package.json"
+A11Y_VERSION="../$NPM_PACKAGE_A11Y"
+sed -i "s|to-replace|${A11Y_VERSION}|" package.json
 
 log "I" "Installing npm dependencies"
-npm install -D "../$NPM_PACKAGE_COMMONS" "../$NPM_PACKAGE_A11Y" "../$NPM_PACKAGE_PLAYWRIGHT"
+npm install -D "../$NPM_PACKAGE_COMMONS" "../$NPM_PACKAGE_PLAYWRIGHT"
 
 log "I" "Copying test files and dependencies"
 cp -R "${RUNNER_DIR}/e2e/" ./uuv
+cp "../custom-step-definition.feature" ./uuv/e2e
+rm ./uuv/e2e/ko.feature
 mkdir -p ./uuv/playwright/fixtures
 cp -R "${RUNNER_DIR}/playwright/fixtures/" ./uuv/playwright
 

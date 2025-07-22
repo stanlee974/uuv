@@ -1,7 +1,6 @@
 /**
  * Software Name : UUV
  *
- * SPDX-FileCopyrightText: Copyright (c) Orange SA
  * SPDX-License-Identifier: MIT
  *
  * This software is distributed under the MIT License,
@@ -15,10 +14,14 @@
 import { Then, When, } from "@badeball/cypress-cucumber-preprocessor";
 import "../../cypress/commands";
 import {
+    click,
     findWithRoleAndName,
+    findWithRoleAndNameAndAttribute,
     findWithRoleAndNameAndContent,
-    findWithRoleAndNameAndContentDisable,
-    findWithRoleAndNameAndContentEnable,
+    findWithRoleAndNameAndContentDisabled,
+    findWithRoleAndNameAndContentEnabled,
+    findWithRoleAndNameDisabled,
+    findWithRoleAndNameEnabled,
     findWithRoleAndNameFocused,
     notFoundWithRoleAndName,
     withinRoleAndName
@@ -53,12 +56,29 @@ Then(
 );
 
 // End of General Section
+// Begin of Click Section
+
+/**
+ * key.when.click.description
+ * */
+When(`${key.when.click}`, function(name: string) {
+    click("$roleId", name);
+});
+
+// End of Click Section
 // Begin of Type Section
 
 /**
  * key.when.type.description
  * */
 When(`${key.when.type}`, function(textToType: string, name: string) {
+    cy.uuvFindByRole("$roleId", { name: name }).uuvFoundedElement().type(textToType);
+});
+
+/**
+ * key.when.enter.description
+ * */
+When(`${key.when.enter}`, function(textToType: string, name: string) {
     cy.uuvFindByRole("$roleId", { name: name }).uuvFoundedElement().type(textToType);
 });
 
@@ -81,7 +101,7 @@ Then(
 Then(
     `${key.then.element.withRoleAndNameAndContentDisabled}`,
     function(name: string, expectedTextContent: string) {
-        findWithRoleAndNameAndContentDisable("$roleId", name, expectedTextContent);
+        findWithRoleAndNameAndContentDisabled("$roleId", name, expectedTextContent);
     }
 );
 
@@ -91,7 +111,27 @@ Then(
 Then(
     `${key.then.element.withRoleAndNameAndContentEnabled}`,
     function(name: string, expectedTextContent: string) {
-        findWithRoleAndNameAndContentEnable("$roleId", name, expectedTextContent);
+        findWithRoleAndNameAndContentEnabled("$roleId", name, expectedTextContent);
+    }
+);
+
+/**
+ * key.then.element.withRoleAndNameDisabled.description
+ * */
+Then(
+    `${key.then.element.withRoleAndNameDisabled}`,
+    function(name: string) {
+        findWithRoleAndNameDisabled("$roleId", name);
+    }
+);
+
+/**
+ * key.then.element.withRoleAndNameEnabled.description
+ * */
+Then(
+    `${key.then.element.withRoleAndNameEnabled}`,
+    function(name: string) {
+        findWithRoleAndNameEnabled("$roleId", name);
     }
 );
 
@@ -132,3 +172,27 @@ Then(
 );
 
 // End of Keyboard Section
+
+// Begin of Checkable Section
+
+/**
+ * key.then.element.withRoleAndNameAndChecked.description
+ * */
+Then(
+    `${key.then.element.withRoleAndNameAndChecked}`,
+    function(name: string) {
+        findWithRoleAndNameAndAttribute("$roleId", name, "checked", true);
+    }
+);
+
+/**
+ * key.then.element.withRoleAndNameAndUnchecked.description
+ * */
+Then(
+    `${key.then.element.withRoleAndNameAndUnchecked}`,
+    function(name: string) {
+        findWithRoleAndNameAndAttribute("$roleId", name, "checked", false);
+    }
+);
+
+// End of Checkable Section

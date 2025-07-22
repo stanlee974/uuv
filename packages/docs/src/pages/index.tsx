@@ -46,12 +46,20 @@ function HomepageHeader() {
                     <a href={'https://plugins.jetbrains.com/plugin/22437-uuv'} target={'_blank'}>
                         <img alt="JetBrains Plugin Downloads" src="https://img.shields.io/jetbrains/plugin/d/22437-uuv?logo=jetbrains&label=UUV%20plugin"></img>
                     </a>
+                    <a href={'https://marketplace.visualstudio.com/items?itemName=e2e-test-quest.uuv-vscode-extension'} target={'_blank'}>
+                        <img alt="VS Code Extension Downloads" src="https://img.shields.io/visual-studio-marketplace/d/e2e-test-quest.uuv-vscode-extension?label=UUV%20VS%20Code%20Extension&cacheSeconds=0"></img>
+                    </a>
+                    <a href={'https://hub.docker.com/r/e2etesting/uuv'} target={'_blank'}>
+                        <img alt="Docker pulls" src="https://img.shields.io/docker/pulls/e2etesting/uuv?logo=docker&cacheSeconds=0"></img>
+                    </a>
                 </div>
                 <div className={styles.buttons}>
                     <Link
                         className={`${styles.button} button button--primary button--lg`}
                         to="docs/intro">
-                        <img src={'img/rocket.svg'} className={styles.buttonIconGetStarted}/>
+                        <div className={styles.buttonIconWrapper}>
+                            <span className={styles.buttonIconGetStarted}></span>
+                        </div>
                         <Translate id="homepage.callToAction">Getting Started</Translate>
                     </Link>
                 </div>
@@ -64,7 +72,7 @@ export default function Home(): JSX.Element {
     const {siteConfig} = useDocusaurusContext();
     return (
         <Layout
-            title={`Homepage`}
+            title={`Homepage`}  
             description={translate({
                 id: 'homepage.headline',
                 message: 'Discovering your application by usecase validation'

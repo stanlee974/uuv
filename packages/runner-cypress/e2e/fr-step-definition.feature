@@ -43,10 +43,10 @@ Fonctionnalité: Dictionnaire français de phrases de base utilisant cypress
       Alors je dois voir un élément avec le rôle "button" et le nom "Reset" et pour contenu "Reset"
 
     Scénario: key.then.element.withRoleAndNameAndContentDisabled
-      Alors je dois voir un élément avec le rôle "textbox" et le nom "First name" et pour contenu "John" inactif
+      Alors je dois voir un élément avec le rôle "textbox" et le nom "First name" et pour contenu "John" désactivé
 
     Scénario: key.then.element.withRoleAndNameAndContentEnabled
-      Alors je dois voir un élément avec le rôle "textbox" et le nom "Last name" et pour contenu "Doe" actif
+      Alors je dois voir un élément avec le rôle "textbox" et le nom "Last name" et pour contenu "Doe" activé
 
     Scénario: key.then.list.withNameAndContent
       Alors je dois voir une liste nommée "test-list" et contenant
@@ -86,7 +86,7 @@ Fonctionnalité: Dictionnaire français de phrases de base utilisant cypress
       Et je vais à l'intérieur de l'élément ayant pour rôle "textbox" et pour nom "Last name"
       Quand je saisie les mots "Toto"
       Et je reinitialise le contexte
-      Alors je dois voir un élément avec le rôle "textbox" et le nom "Last name" et pour contenu "TotoDoe"
+      Alors je dois voir un élément avec le rôle "textbox" et le nom "Last name" et pour contenu "DoeToto"
 
   Règle: Other
     Scénario: key.given.within.selector
@@ -95,3 +95,6 @@ Fonctionnalité: Dictionnaire français de phrases de base utilisant cypress
       Et je dois voir les attributs avec valeurs suivantes
         | class | fname-class |
       Et je reinitialise le contexte
+
+    Scénario: image
+      Alors je dois voir une image nommée "UUV Logo fixture"

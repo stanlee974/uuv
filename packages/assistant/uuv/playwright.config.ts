@@ -1,7 +1,14 @@
 import { defineConfig, devices } from "@playwright/test";
+import { buildConfig } from "@uuv/playwright";
 
 export default defineConfig({
-  testDir: ".uuv-features-gen",
+  testDir: buildConfig(
+      ["e2e/*.feature"],
+      [
+        "../../../node_modules/@uuv/playwright/dist/cucumber/preprocessor/index.js",
+        "../../../node_modules/@uuv/playwright/dist/cucumber/step_definitions/playwright/**/*.js"
+      ]
+  ),
   testMatch: ["**/*.spec.ts", "**/*.{ts,js}"],
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
@@ -41,11 +48,11 @@ export default defineConfig({
 
     /* Test against branded browsers. */
     {
-      name: "Microsoft Edge",
+      name: "edge",
       use: { ...devices["Desktop Edge"], channel: "msedge" },
     },
     {
-      name: "Google Chrome",
+      name: "chrome",
       use: { ...devices["Desktop Chrome"], channel: "chrome" },
     },
   ],

@@ -15,23 +15,7 @@
       ],
       "options": {
         "script": "build"
-      },
-      "dependsOn": [
-        "build:copy-files"
-      ]
-    },
-    "build:copy-files": {
-      "executor": "nx:run-script",
-      "outputs": [
-        "{projectRoot}/../docs/static/assistant/index.html",
-        "{projectRoot}/../docs/static/assistant/style.css"
-      ],
-      "options": {
-        "script": "build:copy-files"
-      },
-      "dependsOn": [
-        "^build"
-      ]
+      }
     },
     "semantic-release": {
       "executor": "@theunderscorer/nx-semantic-release:semantic-release",

@@ -4,14 +4,14 @@ This project was generated using [Nx](https://nx.dev).
 
 ## Prerequisites
 
-- Node JS >= 18.12.0
+- Node JS = 20.x.x
 - Java 17
 
 ## Setup workspace
 
 1. Retrieve sources
     ```shell
-    git clone git@github.com:Orange-OpenSource/uuv.git
+    git clone git@github.com:e2e-test-quest/uuv.git
     ```
 2. Install dependencies
     ```shell
@@ -143,6 +143,20 @@ Playwright engine to execute UUV E2E Tests
 | `package`          | npm packaging                  |
 | `semantic-release` | execute semantic release       |
 
+### vscode-extension
+
+Vscode extension that helps you execute and write your uuv E2E Tests.
+
+#### Main targets
+
+| Target             | Description                    |
+|--------------------|--------------------------------|
+| `lint`             | Execute linter                 |
+| `build`            | Build project                  |
+| `test`             | Run all tests                  |
+| `publish`          | publish                        |
+| `semantic-release` | execute semantic release       |
+
 ## Useful information
 
 ### Show available projects
@@ -155,6 +169,13 @@ npx nx show projects
 
 ```shell
 npx nx graph
+```
+
+### Display available tasks for a project
+
+For example, to show the available tasks for the project `runner-cypress`
+```shell
+npx nx show project runner-cypress --json false
 ```
 
 ### Run a target for a project

@@ -62,6 +62,12 @@ Feature: Keyboard Navigation - Long
     And I should see a text box named "Description" keyboard focused
     And I go to next keyboard element
 
+    And I should see a radio named "Small (under 150000)" keyboard focused
+    And I go to next keyboard element
+
+    And I should see a checkbox named "Allow automatic update" keyboard focused
+    And I go to next keyboard element
+
     And I should see a button named "Back to town list" keyboard focused
     And I go to next keyboard element
 
@@ -69,7 +75,7 @@ Feature: Keyboard Navigation - Long
 
   Scenario: Fill new town form with keyboard
     Given I visit path "https://e2e-test-quest.github.io/weather-app/?isStarted=true"
-    And I mock a request GET on url "https://e2e-test-quest.github.io/weather-app/assets/data/mock.json" named "mock-new-town" with fixture mock-new-town.json
+    And I mock a request GET on url "https://e2e-test-quest.github.io/weather-app/data/mock.json" named "mock-new-town" with fixture mock-new-town.json
     And I mock a request POST on url "https://e2e-test-quest.github.io/weather-app/api" named "mock-post-new-town" with content "Success"
 
     When I click on button named "Add new town"
@@ -85,7 +91,7 @@ Feature: Keyboard Navigation - Long
     And I go to next keyboard element
 
     And I should see a spin button named "Latitude" keyboard focused
-    And I type the sentence "10"
+    And I enter the value "10"
     And I go to next keyboard element
 
     And I should see a spin button named "Longitude" keyboard focused
@@ -94,6 +100,9 @@ Feature: Keyboard Navigation - Long
 
     And the element with selector "#new-town-description" should be keyboard focused
     And I type the sentence "Simple Description"
+    And I go to next keyboard element
+
+    And I go to next keyboard element
     And I go to next keyboard element
 
     And I should see a button named "Back to town list" keyboard focused
