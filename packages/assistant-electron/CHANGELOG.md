@@ -1,3 +1,16 @@
+# [1.78.0](https://github.com/e2e-test-quest/uuv/compare/assistant-electron-v1.77.0...assistant-electron-v1.78.0) (2025-07-22)
+
+
+### Features
+
+* **assistant-electron:** introduce form tag into homepage ([17fa7a2](https://github.com/e2e-test-quest/uuv/commit/17fa7a2430cc0efbfb0f6efc89270160fcc5da6c))
+* **assistant:** add accessibleData on selection mode, [#1054](https://github.com/e2e-test-quest/uuv/issues/1054) ([4fa1e46](https://github.com/e2e-test-quest/uuv/commit/4fa1e4652ff4170fd0db326320205bda55389bf4))
+* **assistant:** add refine highlight selection, [#1054](https://github.com/e2e-test-quest/uuv/issues/1054) ([a1e0511](https://github.com/e2e-test-quest/uuv/commit/a1e05117a8327fca6dcc13590f4c6218510f3b1e))
+* **assistant:** add selector, tagName and type on tooltip, [#1054](https://github.com/e2e-test-quest/uuv/issues/1054) ([d5a9d60](https://github.com/e2e-test-quest/uuv/commit/d5a9d60ec61710a11cc695270afe8f7d9793658c))
+* **assistant:** create settings module [#1054](https://github.com/e2e-test-quest/uuv/issues/1054) ([ba1acc3](https://github.com/e2e-test-quest/uuv/commit/ba1acc33b97c8c9b5072b89677aa5c1c4ed106e9))
+* **assistant:** improuve highlighter style, [#1054](https://github.com/e2e-test-quest/uuv/issues/1054) ([cf2a6a1](https://github.com/e2e-test-quest/uuv/commit/cf2a6a17cee618df21bebf19277caf8c6566467f))
+* **assistant:** remove dependency inspector-dom, [#1054](https://github.com/e2e-test-quest/uuv/issues/1054) ([6f736a4](https://github.com/e2e-test-quest/uuv/commit/6f736a407790492f7b996b0fbb435816710048fa))
+
 # [1.77.0](https://github.com/e2e-test-quest/uuv/compare/assistant-electron-v1.76.0...assistant-electron-v1.77.0) (2025-07-15)
 
 
