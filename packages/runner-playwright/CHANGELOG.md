@@ -1,3 +1,10 @@
+# [3.44.0](https://github.com/e2e-test-quest/uuv/compare/runner-playwright-v3.43.0...runner-playwright-v3.44.0) (2025-07-22)
+
+
+### Features
+
+* **assistant:** remove dependency inspector-dom, [#1054](https://github.com/e2e-test-quest/uuv/issues/1054) ([6f736a4](https://github.com/e2e-test-quest/uuv/commit/6f736a407790492f7b996b0fbb435816710048fa))
+
 # [3.43.0](https://github.com/e2e-test-quest/uuv/compare/runner-playwright-v3.42.0...runner-playwright-v3.43.0) (2025-07-15)
 
 
