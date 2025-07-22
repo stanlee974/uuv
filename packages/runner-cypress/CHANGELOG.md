@@ -1,3 +1,10 @@
+# [2.63.0](https://github.com/e2e-test-quest/uuv/compare/runner-cypress-v2.62.0...runner-cypress-v2.63.0) (2025-07-22)
+
+
+### Features
+
+* **assistant:** remove dependency inspector-dom, [#1054](https://github.com/e2e-test-quest/uuv/issues/1054) ([6f736a4](https://github.com/e2e-test-quest/uuv/commit/6f736a407790492f7b996b0fbb435816710048fa))
+
 # [2.62.0](https://github.com/e2e-test-quest/uuv/compare/runner-cypress-v2.61.0...runner-cypress-v2.62.0) (2025-07-15)
 
 
