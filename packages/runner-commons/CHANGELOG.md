@@ -1,3 +1,10 @@
+# [2.57.0](https://github.com/e2e-test-quest/uuv/compare/runner-commons-v2.56.0...runner-commons-v2.57.0) (2025-07-22)
+
+
+### Features
+
+* **assistant:** remove dependency inspector-dom, [#1054](https://github.com/e2e-test-quest/uuv/issues/1054) ([6f736a4](https://github.com/e2e-test-quest/uuv/commit/6f736a407790492f7b996b0fbb435816710048fa))
+
 # [2.56.0](https://github.com/e2e-test-quest/uuv/compare/runner-commons-v2.55.0...runner-commons-v2.56.0) (2025-07-15)
 
 
