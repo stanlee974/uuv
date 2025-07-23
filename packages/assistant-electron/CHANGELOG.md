@@ -1,3 +1,15 @@
+# [1.79.0](https://github.com/e2e-test-quest/uuv/compare/assistant-electron-v1.78.0...assistant-electron-v1.79.0) (2025-07-23)
+
+
+### Bug Fixes
+
+* **assistant:** delete miss instruction ([4594793](https://github.com/e2e-test-quest/uuv/commit/4594793e67e393f4d0a9f44131c75f479ec222ce))
+
+
+### Features
+
+* **assistant:** add generation of table, grid and treegrid sentences, [#1058](https://github.com/e2e-test-quest/uuv/issues/1058) ([7701aa0](https://github.com/e2e-test-quest/uuv/commit/7701aa0a70371b76e9e9b7582a98908071a28710))
+
 # [1.78.0](https://github.com/e2e-test-quest/uuv/compare/assistant-electron-v1.77.0...assistant-electron-v1.78.0) (2025-07-22)
 
 
