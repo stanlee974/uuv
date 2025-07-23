@@ -1,3 +1,10 @@
+# [2.58.0](https://github.com/e2e-test-quest/uuv/compare/runner-commons-v2.57.0...runner-commons-v2.58.0) (2025-07-23)
+
+
+### Features
+
+* **assistant:** add generation of table, grid and treegrid sentences, [#1058](https://github.com/e2e-test-quest/uuv/issues/1058) ([7701aa0](https://github.com/e2e-test-quest/uuv/commit/7701aa0a70371b76e9e9b7582a98908071a28710))
+
 # [2.57.0](https://github.com/e2e-test-quest/uuv/compare/runner-commons-v2.56.0...runner-commons-v2.57.0) (2025-07-22)
 
 
