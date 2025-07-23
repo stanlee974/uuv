@@ -1,3 +1,10 @@
+# [1.16.0](https://github.com/e2e-test-quest/uuv/compare/intellij-plugin-v1.15.0...intellij-plugin-v1.16.0) (2025-07-23)
+
+
+### Features
+
+* **assistant:** add generation of table, grid and treegrid sentences, [#1058](https://github.com/e2e-test-quest/uuv/issues/1058) ([7701aa0](https://github.com/e2e-test-quest/uuv/commit/7701aa0a70371b76e9e9b7582a98908071a28710))
+
 # [1.15.0](https://github.com/e2e-test-quest/uuv/compare/intellij-plugin-v1.14.0...intellij-plugin-v1.15.0) (2025-07-22)
 
 
