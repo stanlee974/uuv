@@ -1,3 +1,10 @@
+# [2.64.0](https://github.com/e2e-test-quest/uuv/compare/runner-cypress-v2.63.0...runner-cypress-v2.64.0) (2025-07-23)
+
+
+### Features
+
+* **assistant:** add generation of table, grid and treegrid sentences, [#1058](https://github.com/e2e-test-quest/uuv/issues/1058) ([7701aa0](https://github.com/e2e-test-quest/uuv/commit/7701aa0a70371b76e9e9b7582a98908071a28710))
+
 # [2.63.0](https://github.com/e2e-test-quest/uuv/compare/runner-cypress-v2.62.0...runner-cypress-v2.63.0) (2025-07-22)
 
 
