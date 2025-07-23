@@ -14,6 +14,7 @@
 import { computeAccessibleName, getRole } from "dom-accessibility-api";
 import { BaseSentence, EnrichedSentence, EnrichedSentenceRole, EnrichedSentenceWrapper, Suggestion, TranslateSentences } from "./model";
 import { EN_ROLES, enBasedRoleSentences, enSentences } from "@uuv/runner-commons/wording/web/en";
+import { getByRole } from "@testing-library/dom";
 
 export abstract class Translator {
     protected jsonBase: BaseSentence[] = enSentences;
@@ -36,7 +37,7 @@ export abstract class Translator {
                     /* eslint-disable  @typescript-eslint/no-explicit-any */
                     (htmlElem as any).value :
                     htmlElem.getAttribute("value") ?? htmlElem.firstChild?.textContent?.trim();
-                if (content) {
+              if (content) {
                     response = this.getSentenceFromAccessibleRoleAndNameAndContent(
                         accessibleRole,
                         accessibleName,
