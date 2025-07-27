@@ -1,3 +1,11 @@
+# [2.59.0](https://github.com/e2e-test-quest/uuv/compare/runner-commons-v2.58.0...runner-commons-v2.59.0) (2025-07-27)
+
+
+### Features
+
+* add combo box select sentence and sentences to check form value, [#1060](https://github.com/e2e-test-quest/uuv/issues/1060) [#1061](https://github.com/e2e-test-quest/uuv/issues/1061) ([4f93339](https://github.com/e2e-test-quest/uuv/commit/4f933390169b70ddade10ce4f46ba65a971e8374))
+* add funding, [#1065](https://github.com/e2e-test-quest/uuv/issues/1065) ([c569086](https://github.com/e2e-test-quest/uuv/commit/c5690862b920f12e12d815ff1217d2a1b535acab))
+
 # [2.58.0](https://github.com/e2e-test-quest/uuv/compare/runner-commons-v2.57.0...runner-commons-v2.58.0) (2025-07-23)
 
 
