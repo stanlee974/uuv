@@ -1,3 +1,10 @@
+# [1.17.0](https://github.com/e2e-test-quest/uuv/compare/intellij-plugin-v1.16.0...intellij-plugin-v1.17.0) (2025-07-27)
+
+
+### Features
+
+* add funding, [#1065](https://github.com/e2e-test-quest/uuv/issues/1065) ([c569086](https://github.com/e2e-test-quest/uuv/commit/c5690862b920f12e12d815ff1217d2a1b535acab))
+
 # [1.16.0](https://github.com/e2e-test-quest/uuv/compare/intellij-plugin-v1.15.0...intellij-plugin-v1.16.0) (2025-07-23)
 
 
