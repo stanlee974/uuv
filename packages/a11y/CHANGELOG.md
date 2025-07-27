@@ -1,3 +1,10 @@
+# [1.0.0-beta.75](https://github.com/e2e-test-quest/uuv/compare/a11y-v1.0.0-beta.74...a11y-v1.0.0-beta.75) (2025-07-27)
+
+
+### Features
+
+* add funding, [#1065](https://github.com/e2e-test-quest/uuv/issues/1065) ([c569086](https://github.com/e2e-test-quest/uuv/commit/c5690862b920f12e12d815ff1217d2a1b535acab))
+
 # [1.0.0-beta.74](https://github.com/e2e-test-quest/uuv/compare/a11y-v1.0.0-beta.73...a11y-v1.0.0-beta.74) (2025-07-23)
 
 
