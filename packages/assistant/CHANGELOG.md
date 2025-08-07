@@ -1,3 +1,19 @@
+# [2.65.0](https://github.com/e2e-test-quest/uuv/compare/assistant-v2.64.0...assistant-v2.65.0) (2025-08-07)
+
+
+### Bug Fixes
+
+* **assistant:** rename and relocate sub-components ([ec31dc5](https://github.com/e2e-test-quest/uuv/commit/ec31dc5a0ea24d0b8d10667252fc54dbfa6711bf))
+* **assistant:** restore e2e tests ([f671a64](https://github.com/e2e-test-quest/uuv/commit/f671a64e6707130d67e51a282468cdc4ca07f805))
+* **assistant:** stop closing result panel when any touch is pressed for component completion ([54d8304](https://github.com/e2e-test-quest/uuv/commit/54d83048f818c995900cfe2181911e7c6ebce1fa))
+* **runner-playwright:** throw error and stop if error occured during execution of e2e command ([b6abbe0](https://github.com/e2e-test-quest/uuv/commit/b6abbe0326f84a16d7475091fc227c92436ffb54))
+
+
+### Features
+
+* **assistant:** add tests, [#1067](https://github.com/e2e-test-quest/uuv/issues/1067) ([cec766a](https://github.com/e2e-test-quest/uuv/commit/cec766ae49c4abf9d3bd323311050a82c9f44756))
+* **assistant:** generate sentence on modal component, [#1067](https://github.com/e2e-test-quest/uuv/issues/1067) ([48a71fe](https://github.com/e2e-test-quest/uuv/commit/48a71fe11d413d28352d5639a2f75b6c2e904e0a))
+
 # [2.64.0](https://github.com/e2e-test-quest/uuv/compare/assistant-v2.63.0...assistant-v2.64.0) (2025-07-27)
 
 
