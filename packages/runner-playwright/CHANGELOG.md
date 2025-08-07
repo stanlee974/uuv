@@ -1,3 +1,10 @@
+## [3.46.1](https://github.com/e2e-test-quest/uuv/compare/runner-playwright-v3.46.0...runner-playwright-v3.46.1) (2025-08-07)
+
+
+### Bug Fixes
+
+* **runner-playwright:** throw error and stop if error occured during execution of e2e command ([b6abbe0](https://github.com/e2e-test-quest/uuv/commit/b6abbe0326f84a16d7475091fc227c92436ffb54))
+
 # [3.46.0](https://github.com/e2e-test-quest/uuv/compare/runner-playwright-v3.45.0...runner-playwright-v3.46.0) (2025-07-27)
 
 
