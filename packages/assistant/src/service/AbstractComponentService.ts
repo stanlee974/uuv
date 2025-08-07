@@ -57,9 +57,11 @@ export abstract class AbstractComponentService {
           targetElement.addEventListener("click", functionToTrigger);
         }
       });
-      const escapeFunction = () => {
-        onReset();
-        document.removeEventListener("keydown", escapeFunction);
+      const escapeFunction = (e: KeyboardEvent) => {
+        if (e.key === "Escape") {
+          onReset();
+          document.removeEventListener("keydown", escapeFunction);
+        }
       };
       document.addEventListener("keydown", escapeFunction);
     }
