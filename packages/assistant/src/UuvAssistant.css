@@ -19,11 +19,11 @@
 #uuvAssistantMenu {
     position: fixed;
     top: 0;
-    z-index: 10000;
+    z-index: 2147483537;
 }
 
 #uuvAssistantMenu > * {
-    z-index: 10001;
+    z-index: 2147483547;
 }
 
 #uuvAssistantResultZone {
@@ -129,19 +129,32 @@
 }
 
 #uuvAssistantMenu .menu-custom-svg-from-black-to-white {
-    width: 30px;
+    width: 2rem;
     -webkit-filter: invert(100%);
     filter: invert(100%);
-    margin: 0 auto;
+    margin: 0 0.65rem;
+}
+
+#uuvAssistantMenu .menu-native-svg-from-black-to-white {
+    width: 2rem;
+    margin: 0 1rem;
 }
 
 #uuvAssistantMenu .ant-menu-submenu-title {
     padding: 0;
+    align-items: center;
+    align-content: center;
+    display: flex;
 }
 
-#uuvAssistantMenu .menu-custom-svg-container {
-    width: 100%;
-    padding: 3px;
+.menu-custom-svg-container.submenu {
+    display: flex;
+    align-content: center;
+}
+
+#uuv-action-menu-components-actions-popup .ant-menu-item {
+    padding: 0.5rem 0;
+    height: calc(40px + 1rem);
 }
 
 #uuvAssistantMenu .ant-menu-submenu.ant-menu-submenu-vertical {
@@ -150,4 +163,8 @@
 
 #uuvAssistantMenu .settings {
     background-color: var(--ua-bg-color);
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
 }

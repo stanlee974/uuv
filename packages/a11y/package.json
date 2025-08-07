@@ -1,6 +1,6 @@
 {
   "name": "@uuv/a11y",
-  "version": "1.0.0-beta.73",
+  "version": "1.0.0-beta.75",
   "type": "commonjs",
   "author": "Louis Fredice NJAKO MOLOM (https://github.com/luifr10) & Stanley SERVICAL (https://github.com/stanlee974)",
   "description": "A javascript lib for running a11y validation based on multiple reference(RGAA, etc)",
@@ -73,5 +73,9 @@
       "types": "./dist/index.d.ts"
     },
     "./bundle": "./bundle/uuv-a11y.bundle.js"
+  },
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/uuv"
   }
 }

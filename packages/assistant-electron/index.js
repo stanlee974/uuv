@@ -43,8 +43,8 @@ function createWindow () {
     },
     resizable: false,
     movable: false,
-    thickFrame: true,
-    frame: false
+    thickFrame: false,
+    frame: true
   });
 
   ipcMain.on("set-url", (event, url) => {

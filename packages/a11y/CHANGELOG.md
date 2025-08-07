@@ -1,3 +1,17 @@
+# [1.0.0-beta.75](https://github.com/e2e-test-quest/uuv/compare/a11y-v1.0.0-beta.74...a11y-v1.0.0-beta.75) (2025-07-27)
+
+
+### Features
+
+* add funding, [#1065](https://github.com/e2e-test-quest/uuv/issues/1065) ([c569086](https://github.com/e2e-test-quest/uuv/commit/c5690862b920f12e12d815ff1217d2a1b535acab))
+
+# [1.0.0-beta.74](https://github.com/e2e-test-quest/uuv/compare/a11y-v1.0.0-beta.73...a11y-v1.0.0-beta.74) (2025-07-23)
+
+
+### Features
+
+* **assistant:** add generation of table, grid and treegrid sentences, [#1058](https://github.com/e2e-test-quest/uuv/issues/1058) ([7701aa0](https://github.com/e2e-test-quest/uuv/commit/7701aa0a70371b76e9e9b7582a98908071a28710))
+
 # [1.0.0-beta.73](https://github.com/e2e-test-quest/uuv/compare/a11y-v1.0.0-beta.72...a11y-v1.0.0-beta.73) (2025-07-22)
 
 
